@@ -34,6 +34,7 @@ export const Places:FC<PlacesProps> = ({countCities, nameCity}) => {
           id={1}
           title="Beautiful & luxurious apartment at great location"
           previewImage="img/apartment-01.jpg"
+          className="cities"
           type="Room"
           price={120}
           rating={4}

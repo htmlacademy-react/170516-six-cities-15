@@ -1,10 +1,20 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Page} from '../shared';
 import {Header} from '../widgets';
-import {Main} from '../pages/main';
+import {routes} from './routes';
 
 export const App = () => (
-  <Page className={'asd'}>
-    <Header/>
-    <Main/>
-  </Page>
+  <BrowserRouter>
+    <Routes>
+      {routes.map(({className, tpl, path}) => (
+        <Route key={path} path={path} element={
+          <Page className={className ?? ''}>
+            <Header/>
+            {tpl}
+          </Page>
+        }
+        />)
+      )}
+    </Routes>
+  </BrowserRouter>
 );

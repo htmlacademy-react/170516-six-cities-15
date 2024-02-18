@@ -1,4 +1,4 @@
 export type BookmarkType = {
-  isFavorite: boolean;
+  isFavorite?: boolean;
   className?: string;
 }

@@ -7,4 +7,5 @@ export type PlaceCardProps = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
+  className?: string;
 }

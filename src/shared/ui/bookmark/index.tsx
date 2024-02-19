@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import classNames from "classnames";
+import classNames from 'classnames';
 import {VisuallyHidden} from '../../utils';
 
 type BookmarkType = {

@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import classNames from 'classnames';
 
 type UserProps = {
   name: string;
@@ -15,7 +16,11 @@ export const User:FC<UserProps> = ({
   isPro,
   countFavorites,
 }) => {
-  const hasPro = isPro ? `${className}__avatar-wrapper--pro` : '';
+  //TODO: USER есть и в хедере, но классы вроде сильно отличаются(Нужно повторно перепроверить)
+  const hasPro = classNames({
+    [`${className}__avatar-wrapper--pro`]: isPro
+  });
+
   return (
     <div className={`${className}__host-user user`}>
       <div className={`${className}__avatar-wrapper ${hasPro} user__avatar-wrapper`}>

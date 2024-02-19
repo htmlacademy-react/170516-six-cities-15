@@ -1,7 +1,8 @@
 import {Footer} from '../widgets';
-import {Path} from "../shared/config";
+import {Path} from '../shared/config';
 import {Main, Login, Favorites, Offer} from '../pages';
 
+//TODO: Подумать над расположением файла
 export const routes = [
   {
     className: 'page--gray page--main',

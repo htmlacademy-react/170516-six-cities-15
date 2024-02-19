@@ -1,6 +1,10 @@
 import {FC} from 'react';
-import {RatingProps} from './type';
 import {VisuallyHidden} from '../../utils';
+
+type RatingProps = {
+  rating: number;
+  className?: string;
+}
 
 export const Rating:FC<RatingProps> = ({rating, className}) => {
   const percent = `${rating * 20}%`;

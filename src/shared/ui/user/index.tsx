@@ -1,5 +1,12 @@
 import {FC} from 'react';
-import {UserProps} from './type';
+
+type UserProps = {
+  name: string;
+  avatarUrl?: string;
+  isPro: boolean;
+  countFavorites?: number;
+  className?: string;
+}
 
 export const User:FC<UserProps> = ({
   className,

@@ -4,7 +4,6 @@ import {PlaceCardProps} from './type';
 import {Path} from '../../shared/config';
 import {Bookmark, Rating} from '../../shared';
 
-//TODO: А вот если с бека не придет значение то страница упадет. Спросить и уточнить как запустить fix all
 export const PlaceCard:FC<PlaceCardProps> = ({
   id,
   title,
@@ -16,7 +15,6 @@ export const PlaceCard:FC<PlaceCardProps> = ({
   previewImage,
   className
 }) => {
-  //TODO: Подумать над scroll-top
   const linkPath = `${Path.Offer}/${id}`;
   return (
     <article className={`${className}__card place-card`}>

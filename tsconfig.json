@@ -7,9 +7,9 @@
     "types": ["vitest/globals", "@testing-library/jest-dom"],
 
     /* Bundler mode */
-    "moduleResolution": "node", //TODO: Для простоты импортов сменил bundler на node
-    "allowImportingTsExtensions": false, //TODO: отключил т.к. не работал REACT DevTools
-    "allowSyntheticDefaultImports": true, //TODO: Нужно ли использовать export "Default"?
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

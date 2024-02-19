@@ -1,17 +1,20 @@
 import {FC, useState} from 'react';
-import {PlacesProps} from './type';
 import {VisuallyHidden} from '../../shared/utils';
 import {PlaceCard} from '../../entities';
 
+type PlacesProps = {
+  countCities: number;
+  nameCity: string;
+}
+
 export const Places:FC<PlacesProps> = ({countCities, nameCity}) => {
   const [open, setOpen] = useState(false);
-  const toggleDropdown = () => !open ? setOpen(true) : setOpen(false);
+  const toggleDropdown = () => setOpen((prevValue) => !prevValue);
 
   return (
     <section className="cities__places places">
       <VisuallyHidden tagName="h2">Places</VisuallyHidden>
       <b className="places__found">{countCities} places to stay in {nameCity}</b>
-      {/*TODO: Вынести сортировку в отдельный компанент*/}
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex={0} onClick={toggleDropdown}>

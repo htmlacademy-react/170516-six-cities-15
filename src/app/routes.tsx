@@ -1,6 +1,6 @@
 import {Footer} from '../widgets';
 import {Path} from '../shared/config';
-import {Main, Login, Favorites, Offer} from '../pages';
+import {Main, Login, Favorites, Offer, NotFound} from '../pages';
 
 //TODO: Подумать над расположением файла
 export const routes = [
@@ -28,7 +28,8 @@ export const routes = [
     path: `${Path.Offer}/:id`
   },
   {
-    tpl: <h1>404 Not Found</h1>,
+    className: 'page--gray page--login',
+    tpl: <NotFound/>,
     path: '*'
   },
 ];

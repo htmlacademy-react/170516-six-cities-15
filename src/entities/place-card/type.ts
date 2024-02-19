@@ -1,7 +1,7 @@
 export type PlaceCardProps = {
   id: number;
   title: string;
-  type: "Apartment" | "Room" | "House" | "Hotel";
+  type: 'Apartment' | 'Room' | 'House' | 'Hotel';
   price: number;
   isFavorite: boolean;
   isPremium: boolean;

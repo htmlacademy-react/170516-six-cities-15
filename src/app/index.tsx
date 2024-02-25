@@ -1,23 +1,18 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Helmet, HelmetProvider} from 'react-helmet-async';
+import {HelmetProvider} from 'react-helmet-async';
 import {routes} from './router';
-import {Page} from '../shared';
+import {Layout} from './layout';
+import {Path} from '../shared/config';
 
 export const App = () => (
   <HelmetProvider>
     <BrowserRouter>
       <Routes>
-        {routes.map(({className, tpl, path, helmetTitle}) => (
-          <Route key={path} path={path} element={
-            <Page className={className ?? ''}>
-              <Helmet>
-                <title>6 cities {helmetTitle}</title>
-              </Helmet>
-              {tpl}
-            </Page>
-          }
-          />)
-        )}
+        <Route path={Path.Main} element={<Layout />}>
+          {routes.map(({tpl, path, index}) => (
+            <Route key={path} path={path} element={tpl} index={index}/>)
+          )}
+        </Route>
       </Routes>
     </BrowserRouter>
   </HelmetProvider>

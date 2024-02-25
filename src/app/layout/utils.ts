@@ -1,7 +1,7 @@
 import {Path} from '../../shared/config';
 
 //TODO: Спросить на сколько хорошая данная конструкция?
-export const getLayoutState = (path, id) => {
+export const getLayoutState = (path: string, id: string) => {
   let pageClassName = '';
   let helmetTitle = '';
   let renderFooter = false;

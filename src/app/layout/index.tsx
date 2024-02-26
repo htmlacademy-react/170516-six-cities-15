@@ -1,7 +1,7 @@
 import {Outlet, useLocation, useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
-import {Footer, Header} from '../../widgets';
 import {getLayoutState} from './utils';
+import {Footer, Header} from '../../widgets';
 
 export const Layout = () => {
   const {pathname} = useLocation();

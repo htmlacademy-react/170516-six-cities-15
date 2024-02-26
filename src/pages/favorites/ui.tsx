@@ -21,10 +21,12 @@ export const Favorites = () => (
                 type="Apartment"
                 className="favorites"
                 price={180}
-                isFavorite={false}
+                isFavorite
                 isPremium
                 rating={3}
                 previewImage="img/apartment-small-03.jpg"
+                widthImg={150}
+                heightImg={110}
               />
             </div>
           </li>

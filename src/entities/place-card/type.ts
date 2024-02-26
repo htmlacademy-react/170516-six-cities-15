@@ -8,4 +8,6 @@ export type PlaceCardProps = {
   rating: number;
   previewImage: string;
   className?: string;
+  widthImg?: number;
+  heightImg?: number;
 }

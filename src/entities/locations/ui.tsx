@@ -1,3 +1,4 @@
+//TODO: ссылки сделать через link как табы с хешемо
 export const Locations = () => {
   const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
   return (

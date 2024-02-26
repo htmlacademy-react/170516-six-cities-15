@@ -13,7 +13,9 @@ export const PlaceCard:FC<PlaceCardProps> = ({
   isPremium,
   rating,
   previewImage,
-  className
+  className,
+  widthImg = 260,
+  heightImg = 200
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
@@ -25,7 +27,7 @@ export const PlaceCard:FC<PlaceCardProps> = ({
       )}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={linkPath}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width={widthImg} height={heightImg} alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">

@@ -16,7 +16,7 @@ export const Favorites = () => (
             </div>
             <div className="favorites__places">
               <PlaceCard
-                id={4}
+                id="4"
                 title="Nice, cozy, warm big bed apartment"
                 type="Apartment"
                 className="favorites"

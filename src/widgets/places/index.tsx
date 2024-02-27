@@ -5,7 +5,7 @@ import {PlaceCard} from '../../entities';
 type PlacesProps = {
   countCities: number;
   nameCity: string;
-  onListItemHover: string;
+  onListItemHover?: (title: string) => void;
   listCities: [];
 }
 

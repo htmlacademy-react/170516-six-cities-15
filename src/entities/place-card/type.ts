@@ -10,5 +10,5 @@ export type PlaceCardProps = {
   className?: string;
   widthImg?: number;
   heightImg?: number;
-  onListItemHover?: (title: string) => string;
+  onListItemHover?: (title: string) => void;
 }

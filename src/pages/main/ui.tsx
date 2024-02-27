@@ -7,7 +7,7 @@ import {Places} from '../../widgets';
 
 export const Main = () => {
   const [selectedPoint, setSelectedPoint] = useState('');
-  const handleListItemHover = (listItemName) => {
+  const handleListItemHover = (listItemName: string) => {
     const currentPoint = listCities.find(({id}) => id === listItemName).id;
     return setSelectedPoint(currentPoint);
   };

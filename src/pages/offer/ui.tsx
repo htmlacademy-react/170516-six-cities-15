@@ -84,7 +84,7 @@ export const Offer = () => {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
             <PlaceCard
-              id={2}
+              id="2"
               title="Beautiful & luxurious apartment at great location"
               previewImage="img/apartment-01.jpg"
               className="near-places"

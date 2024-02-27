@@ -12,7 +12,7 @@ type LocationProps = {
 };
 
 export type MainProps = {
-  title: string;
+  id: string;
   className?: string;
   selectedPoint?: string;
   city: LocationProps;

@@ -15,11 +15,12 @@ export const PlaceCard:FC<PlaceCardProps> = ({
   previewImage,
   className,
   widthImg = 260,
-  heightImg = 200
+  heightImg = 200,
+  onListItemHover,
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
-    <article className={`${className}__card place-card`}>
+    <article className={`${className}__card place-card`} onMouseEnter={() => !!onListItemHover && onListItemHover(id)}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

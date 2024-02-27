@@ -1,5 +1,5 @@
 export type PlaceCardProps = {
-  id: number;
+  id: string;
   title: string;
   type: 'Apartment' | 'Room' | 'House' | 'Hotel';
   price: number;
@@ -10,4 +10,5 @@ export type PlaceCardProps = {
   className?: string;
   widthImg?: number;
   heightImg?: number;
+  onListItemHover?: (title: string) => string;
 }

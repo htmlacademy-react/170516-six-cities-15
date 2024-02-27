@@ -1,8 +1,12 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {CardProps} from './type';
+import {PreviewCardProps} from '../../shared/types';
 import {Path} from '../../shared/config';
 import {Bookmark, Rating} from '../../shared';
+
+type CardProps = PreviewCardProps & {
+  onListItemHover?: (title: string) => void;
+}
 
 export const PlaceCard:FC<CardProps> = ({
   id,

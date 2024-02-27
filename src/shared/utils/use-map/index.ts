@@ -1,13 +1,13 @@
 import leaflet, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useState, useRef} from 'react';
-import {PreviewCardProps} from '../../types';
+import {LocationProps} from '../../types';
 
 type MapRefProps = {
   current: HTMLElement | null;
 };
 
-export const useMap = (mapRef: MapRefProps, city: PreviewCardProps['location']) => {
+export const useMap = (mapRef: MapRefProps, city: LocationProps) => {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 

@@ -1,9 +1,11 @@
-import {PlaceCard, Reviews} from '../../entities';
+import {listCities} from '../../shared/mock';
 import {Bookmark, Rating, User} from '../../shared';
+import {PlaceCard, Reviews} from '../../entities';
 
 export const Offer = () => {
   const photoStudio = ['room', 'apartment-01', 'apartment-02', 'apartment-03', 'studio-01', 'amsterdam'];
   const goods = ['Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'];
+  const {title, type, price, rating, isPremium, isFavorite} = listCities[0];
 
   return (
     <main className="page__main page__main--offer">
@@ -19,20 +21,23 @@ export const Offer = () => {
         </div>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <div className="offer__mark">
-              <span>Premium</span>
-            </div>
+            {isPremium && (
+              <div className="offer__mark">
+                <span>Premium</span>
+              </div>
+            )}
             <div className="offer__name-wrapper">
-              <h1 className="offer__name">Beautiful &amp; luxurious studio at great location</h1>
-              <Bookmark className="offer" />
+              <h1 className="offer__name">{title}</h1>
+              <Bookmark className="offer" isFavorite={isFavorite}/>
             </div>
             <Rating
-              rating={3}
+              rating={rating}
               className="offer"
             />
             <ul className="offer__features">
               <li className="offer__feature offer__feature--entire">
-                Apartment
+                {/*TODO: Сделай с большой буквой*/}
+                {type}
               </li>
               <li className="offer__feature offer__feature--bedrooms">
                 3 Bedrooms
@@ -42,7 +47,7 @@ export const Offer = () => {
               </li>
             </ul>
             <div className="offer__price">
-              <b className="offer__price-value">&euro;120</b>
+              <b className="offer__price-value">&euro;{price}</b>
               <span className="offer__price-text">&nbsp;night</span>
             </div>
             <div className="offer__inside">
@@ -83,17 +88,20 @@ export const Offer = () => {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            <PlaceCard
-              id="2"
-              title="Beautiful & luxurious apartment at great location"
-              previewImage="img/apartment-01.jpg"
-              className="near-places"
-              type="Room"
-              price={120}
-              rating={4}
-              isPremium
-              isFavorite
-            />
+            {listCities.map((elem) => (
+              <PlaceCard
+                id={elem.id}
+                key={elem.id}
+                title={title}
+                previewImage={elem.previewImage}
+                className="near-places"
+                type={elem.type}
+                price={elem.price}
+                rating={elem.rating}
+                isPremium={elem.isPremium}
+                isFavorite={elem.isFavorite}
+              />
+            ))}
           </div>
         </section>
       </div>

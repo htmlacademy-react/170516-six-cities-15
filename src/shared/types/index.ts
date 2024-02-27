@@ -1,4 +1,4 @@
-type LocationProps = {
+export type LocationProps = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -9,11 +9,10 @@ export type PreviewCardProps = {
   title: string;
   type: string; //TODO: 'apartment' | 'room' | 'house' | 'hotel'
   price: number;
-  city: {
+  city?: {
     name: string;
     location: LocationProps;
   };
-  location: LocationProps;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;

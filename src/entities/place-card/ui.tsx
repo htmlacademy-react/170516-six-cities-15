@@ -1,10 +1,10 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {PlaceCardProps} from './type';
+import {CardProps} from './type';
 import {Path} from '../../shared/config';
 import {Bookmark, Rating} from '../../shared';
 
-export const PlaceCard:FC<PlaceCardProps> = ({
+export const PlaceCard:FC<CardProps> = ({
   id,
   title,
   type,

@@ -1,13 +1,6 @@
-//TODO: Удалить
-export type PlaceCardProps = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  previewImage: string;
+import {PreviewCardProps} from "../../shared/types";
+
+export type CardProps = PreviewCardProps & {
   className?: string;
   widthImg?: number;
   heightImg?: number;

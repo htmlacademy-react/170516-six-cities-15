@@ -7,6 +7,6 @@ type PreviewCardLocationProps = PreviewCardProps & {
 export type MapProps = {
   points: PreviewCardLocationProps[];
   location: LocationProps;
+  selectedPoint: string;
   className?: string;
-  selectedPoint?: string;
 };

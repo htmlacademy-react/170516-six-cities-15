@@ -1,3 +1,4 @@
+// TODO: Спросить про типизацию, лучше сразу в PreviewCardProps?
 export type LocationProps = {
   latitude: number;
   longitude: number;

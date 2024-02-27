@@ -1,5 +1,5 @@
 import {listCities} from '../../shared/mock';
-import {Bookmark, Rating, User} from '../../shared';
+import {Bookmark, Map, Rating, User} from '../../shared';
 import {PlaceCard, Reviews} from '../../entities';
 
 export const Offer = () => {
@@ -82,7 +82,7 @@ export const Offer = () => {
             <Reviews className="offer__reviews"/>
           </div>
         </div>
-        <section className="offer__map map"></section>
+        <Map className="offer__map" location={listCities[0].location} points={listCities} selectedPoint={listCities[0].id}/>
       </section>
       <div className="container">
         <section className="near-places places">

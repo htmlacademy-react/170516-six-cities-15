@@ -1,28 +1,22 @@
-import leaflet from 'leaflet';
+import leaflet, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useState, useRef} from 'react';
-
-//TODO: Ооочень похожа типизация с LocationProps подумать как сделать более лаконично
-type CityProps = {
-  lat: number;
-  lng: number;
-  zoom: number;
-};
+import {PreviewCardProps} from '../../types';
 
 type MapRefProps = {
   current: HTMLElement | null;
 };
 
-export const useMap = (mapRef: MapRefProps, city: CityProps) => {
-  const [map, setMap] = useState(null);
+export const useMap = (mapRef: MapRefProps, city: PreviewCardProps['location']) => {
+  const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
   useEffect(() => {
     if (!!mapRef.current && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: city.latitude,
+          lng: city.longitude,
         },
         zoom: city.zoom,
       });

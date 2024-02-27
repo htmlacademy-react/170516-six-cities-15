@@ -1,15 +1,16 @@
 import {useState} from 'react';
 import {listCities} from './mock';
 import {VisuallyHidden} from '../../shared/utils';
+import {PreviewCardProps} from '../../shared/types';
 import {Map} from '../../shared';
 import {Locations} from '../../entities';
 import {Places} from '../../widgets';
 
 export const Main = () => {
-  const [selectedPoint, setSelectedPoint] = useState('');
-  const handleListItemHover = (listItemName: string) => {
-    const currentPoint = listCities.find(({id}) => id === listItemName).id;
-    return setSelectedPoint(currentPoint);
+  const [selectedPoint, setSelectedPoint] = useState<string>();
+  const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => {
+    const currentPoint: PreviewCardProps | undefined = listCities.find(({id}) => id === selectedCardId);
+    setSelectedPoint(currentPoint?.id);
   };
 
   return (
@@ -25,7 +26,7 @@ export const Main = () => {
             listCities={listCities}
           />
           <div className="cities__right-section">
-            <Map className="cities__map" city={listCities[0]} points={listCities} selectedPoint={selectedPoint}/>
+            <Map className="cities__map" location={listCities[0].location} points={listCities} selectedPoint={selectedPoint}/>
           </div>
         </div>
       </div>

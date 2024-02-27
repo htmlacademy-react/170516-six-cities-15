@@ -1,20 +1,12 @@
-//TODO: Может так лучше?
-// location: {
-//   [name: string]: number,
-// }
+import {PreviewCardProps} from '../../types';
 
-type LocationProps = {
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
-};
-
-export type MainProps = {
-  id: string;
+export type MapProps = {
+  points: PreviewCardProps[];
+  location: PreviewCardProps['location'];
   className?: string;
   selectedPoint?: string;
-  city: LocationProps;
-  points: LocationProps[];
+};
+
+export type SizeIconProps = {
+  [key: string]: number[];
 };

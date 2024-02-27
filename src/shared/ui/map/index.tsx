@@ -1,37 +1,35 @@
 import leaflet from 'leaflet';
 import {FC, useEffect, useRef} from 'react';
-import {MainProps} from './type';
+import {SizeIconProps, MapProps} from './type';
+import MAIN_PIN from '../../assets/icons/main-pin.svg';
+import PIN from '../../assets/icons/pin.svg';
 import {useMap} from '../../utils';
 
-export const Map:FC<MainProps> = ({className, city, points, selectedPoint}) => {
+export const Map:FC<MapProps> = ({className, location, points, selectedPoint}) => {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, {
-    lat: city.location.latitude,
-    lng: city.location.longitude,
-    zoom: 8
-  });
+  const map = useMap(mapRef, location);
 
   useEffect(() => {
-    const paramsIcons = {
+    const paramsIcons: SizeIconProps = {
       iconSize: [40, 40],
       iconAnchor: [20, 40],
     };
     const defaultCustomIcon = {
-      iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+      iconUrl: PIN,
       ...paramsIcons
     };
     const currentCustomIcon = {
-      iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg',
+      iconUrl: MAIN_PIN,
       ...paramsIcons
     };
     if (map) {
-      points.forEach(({id, location}) =>
+      points.forEach((elem) =>
         leaflet
           .marker({
-            lat: location.latitude,
-            lng: location.longitude,
+            lat: elem.location.latitude,
+            lng: elem.location.longitude,
           }, {
-            icon: (id === selectedPoint) ? leaflet.icon(currentCustomIcon) : leaflet.icon(defaultCustomIcon),
+            icon: (elem.id === selectedPoint) ? leaflet.icon(currentCustomIcon) : leaflet.icon(defaultCustomIcon),
           }).addTo(map)
       );
     }

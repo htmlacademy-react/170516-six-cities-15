@@ -1,7 +1,8 @@
+//TODO: Удалить
 export type PlaceCardProps = {
   id: string;
   title: string;
-  type: 'Apartment' | 'Room' | 'House' | 'Hotel';
+  type: string;
   price: number;
   isFavorite: boolean;
   isPremium: boolean;

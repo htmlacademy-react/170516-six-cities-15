@@ -1,13 +1,7 @@
 import {FC, useState} from 'react';
+import {PlacesProps} from './type';
 import {VisuallyHidden} from '../../shared/utils';
 import {PlaceCard} from '../../entities';
-
-type PlacesProps = {
-  countCities: number;
-  nameCity: string;
-  onListItemHover?: (title: string) => void;
-  listCities: [];
-}
 
 export const Places:FC<PlacesProps> = ({countCities, nameCity, onListItemHover, listCities}) => {
   const [open, setOpen] = useState(false);

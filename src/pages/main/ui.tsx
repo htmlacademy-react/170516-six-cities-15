@@ -8,10 +8,7 @@ import {Places} from '../../widgets';
 
 export const Main = () => {
   const [selectedPoint, setSelectedPoint] = useState<string>();
-  const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => {
-    const currentPoint: PreviewCardProps | undefined = listCities.find(({id}) => id === selectedCardId);
-    setSelectedPoint(currentPoint?.id);
-  };
+  const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
 
   return (
     <main className="page__main page__main--index">

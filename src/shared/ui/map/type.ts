@@ -1,11 +1,7 @@
 import {LocationProps, PreviewCardProps} from '../../types';
 
-type PreviewCardLocationProps = PreviewCardProps & {
-  location: LocationProps;
-}
-
 export type MapProps = {
-  points: PreviewCardLocationProps[];
+  points: PreviewCardProps[];
   location: LocationProps;
   className?: string;
   selectedPoint?: string;

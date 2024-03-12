@@ -5,7 +5,7 @@ import {Path} from '../../shared/config';
 import {Bookmark, Rating} from '../../shared';
 
 type CardProps = PreviewCardProps & {
-  onListItemHover?: (title: string) => void;
+  onListItemHover?: (id: string) => void;
 }
 
 export const PlaceCard:FC<CardProps> = ({
@@ -24,7 +24,7 @@ export const PlaceCard:FC<CardProps> = ({
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
-    <article className={`${className}__card place-card`} onMouseEnter={() => !!onListItemHover && onListItemHover(id)}>
+    <article className={`${className}__card place-card`} onMouseEnter={() => onListItemHover?.(id)}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

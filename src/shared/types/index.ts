@@ -1,4 +1,3 @@
-// TODO: Спросить про типизацию, лучше сразу в PreviewCardProps?
 export type LocationProps = {
   latitude: number;
   longitude: number;
@@ -8,12 +7,13 @@ export type LocationProps = {
 export type PreviewCardProps = {
   id: string;
   title: string;
-  type: string; //TODO: 'apartment' | 'room' | 'house' | 'hotel'
+  type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
   city?: {
     name: string;
     location: LocationProps;
   };
+  location?: LocationProps;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;

@@ -1,28 +1,36 @@
-import {Path} from '../../shared/config';
+import {createBrowserRouter} from 'react-router-dom';
+import {PrivateRoute} from '../private-route';
+import {Layout} from '../layout';
+import {Path, AuthorizationStatus} from '../../shared/config';
 import {Main, Login, Favorites, Offer, NotFound} from '../../pages';
 
-// Выполнить через https://reactrouter.com/en/main/routers/create-browser-router
-export const routes = [
+export const routes = createBrowserRouter([
   {
-    tpl: <Main/>,
-    path: Path.Main,
-    index: true
+    element: <Layout/>,
+    children: [
+      {
+        element: <Main/>,
+        path: Path.Main,
+      },
+      {
+        element: <Login/>,
+        path: Path.Login
+      },
+      {
+        element:
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <Favorites/>
+          </PrivateRoute>,
+        path: Path.Favorites
+      },
+      {
+        element: <Offer/>,
+        path: `${Path.Offer}/:id`
+      },
+      {
+        element: <NotFound/>,
+        path: '*'
+      },
+    ]
   },
-  {
-    tpl: <Login/>,
-    path: Path.Login
-  },
-  {
-    tpl:
-      <Favorites/>,
-    path: Path.Favorites
-  },
-  {
-    tpl: <Offer/>,
-    path: `${Path.Offer}/:id`
-  },
-  {
-    tpl: <NotFound/>,
-    path: '*'
-  },
-];
+]);

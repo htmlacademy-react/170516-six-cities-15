@@ -1,10 +1,14 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {PlaceCardProps} from './type';
+import {PreviewCardProps} from '../../shared/types';
 import {Path} from '../../shared/config';
 import {Bookmark, Rating} from '../../shared';
 
-export const PlaceCard:FC<PlaceCardProps> = ({
+type CardProps = PreviewCardProps & {
+  onListItemHover?: (title: string) => void;
+}
+
+export const PlaceCard:FC<CardProps> = ({
   id,
   title,
   type,
@@ -13,11 +17,14 @@ export const PlaceCard:FC<PlaceCardProps> = ({
   isPremium,
   rating,
   previewImage,
-  className
+  className,
+  widthImg = 260,
+  heightImg = 200,
+  onListItemHover,
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
-    <article className={`${className}__card place-card`}>
+    <article className={`${className}__card place-card`} onMouseEnter={() => !!onListItemHover && onListItemHover(id)}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -25,7 +32,7 @@ export const PlaceCard:FC<PlaceCardProps> = ({
       )}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={linkPath}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width={widthImg} height={heightImg} alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">

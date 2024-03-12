@@ -1,13 +1,9 @@
 import {FC, useState} from 'react';
+import {PlacesProps} from './type';
 import {VisuallyHidden} from '../../shared/utils';
 import {PlaceCard} from '../../entities';
 
-type PlacesProps = {
-  countCities: number;
-  nameCity: string;
-}
-
-export const Places:FC<PlacesProps> = ({countCities, nameCity}) => {
+export const Places:FC<PlacesProps> = ({countCities, nameCity, onListItemHover, listCities}) => {
   const [open, setOpen] = useState(false);
   const toggleDropdown = () => setOpen((prevValue) => !prevValue);
 
@@ -33,17 +29,21 @@ export const Places:FC<PlacesProps> = ({countCities, nameCity}) => {
         )}
       </form>
       <div className="cities__places-list places__list tabs__content">
-        <PlaceCard
-          id={1}
-          title="Beautiful & luxurious apartment at great location"
-          previewImage="img/apartment-01.jpg"
-          className="cities"
-          type="Room"
-          price={120}
-          rating={4}
-          isPremium
-          isFavorite
-        />
+        {listCities.map(({id, title, previewImage, type, price, rating, isPremium, isFavorite}) => (
+          <PlaceCard
+            id={id}
+            key={id}
+            title={title}
+            previewImage={previewImage}
+            className="cities"
+            type={type}
+            price={price}
+            rating={rating}
+            isPremium={isPremium}
+            isFavorite={isFavorite}
+            onListItemHover={onListItemHover}
+          />
+        ))}
       </div>
     </section>
   );

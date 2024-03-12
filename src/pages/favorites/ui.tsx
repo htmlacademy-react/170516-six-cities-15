@@ -1,3 +1,4 @@
+import {listCities} from '../../shared/mock';
 import {PlaceCard} from '../../entities';
 
 export const Favorites = () => (
@@ -15,17 +16,22 @@ export const Favorites = () => (
               </div>
             </div>
             <div className="favorites__places">
-              <PlaceCard
-                id={4}
-                title="Nice, cozy, warm big bed apartment"
-                type="Apartment"
-                className="favorites"
-                price={180}
-                isFavorite={false}
-                isPremium
-                rating={3}
-                previewImage="img/apartment-small-03.jpg"
-              />
+              {listCities.map(({id, title, previewImage, type, price, rating, isPremium, isFavorite}) => (
+                <PlaceCard
+                  id={id}
+                  key={id}
+                  title={title}
+                  previewImage={previewImage}
+                  className="favorites"
+                  type={type}
+                  price={price}
+                  rating={rating}
+                  isPremium={isPremium}
+                  isFavorite={isFavorite}
+                  widthImg={150}
+                  heightImg={110}
+                />
+              ))}
             </div>
           </li>
         </ul>

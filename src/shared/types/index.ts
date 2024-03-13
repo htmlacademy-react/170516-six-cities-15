@@ -4,13 +4,15 @@ export type LocationProps = {
   zoom: number;
 }
 
+export type NameCitiesProps = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+
 export type PreviewCardProps = {
   id: string;
   title: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
   city?: {
-    name: string;
+    name: NameCitiesProps;
     location: LocationProps;
   };
   location?: LocationProps;

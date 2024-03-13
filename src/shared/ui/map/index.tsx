@@ -12,18 +12,18 @@ export const Map:FC<MapProps> = ({className, location, points, selectedPoint}) =
   useEffect(() => {
     if (map) {
       /*
-        TODO: Спросить про конструкцию,
+        TODO:
         points - это превью города, в ней может быть location а может и нет
         lat и lng - обязательно должно быть число
         Вопрос: На сколько грамотно выполнено location?.latitude ?? 0 ?
       */
-      points.forEach(({location, id}) =>
+      points.forEach((elem) =>
         leaflet
           .marker({
-            lat: location?.latitude ?? 0,
-            lng: location?.longitude ?? 0,
+            lat: elem.location?.latitude ?? 0,
+            lng: elem.location?.longitude ?? 0,
           }, {
-            icon: (id === selectedPoint) ? leaflet.icon({iconUrl: MAIN_PIN}) : leaflet.icon({iconUrl: PIN}),
+            icon: (elem.id === selectedPoint) ? leaflet.icon({iconUrl: MAIN_PIN}) : leaflet.icon({iconUrl: PIN}),
           }).addTo(map)
       );
     }

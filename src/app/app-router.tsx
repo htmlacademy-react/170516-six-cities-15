@@ -1,8 +1,8 @@
 import {createBrowserRouter} from 'react-router-dom';
-import {PrivateRoute} from '../private-route';
-import {Layout} from '../layout';
-import {Path, AuthorizationStatus} from '../../shared/config';
-import {Main, Login, Favorites, Offer, NotFound} from '../../pages';
+import {PrivateRoute} from './private-route';
+import {Layout} from './layout';
+import {Path, AuthorizationStatus} from '../shared/config';
+import {Main, Login, Favorites, Offer, NotFound} from '../pages';
 
 export const routes = createBrowserRouter([
   {

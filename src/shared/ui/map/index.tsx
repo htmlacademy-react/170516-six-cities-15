@@ -12,7 +12,7 @@ export const Map:FC<MapProps> = ({className, location, points, selectedPoint}) =
   useEffect(() => {
     if (map) {
       /*
-        TODO:
+        TODO: Пересмотреть типизацию
         points - это превью города, в ней может быть location а может и нет
         lat и lng - обязательно должно быть число
         Вопрос: На сколько грамотно выполнено location?.latitude ?? 0 ?

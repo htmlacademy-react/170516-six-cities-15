@@ -1,16 +1,16 @@
 import {FC, useState} from 'react';
 import {PlacesProps} from './type';
-import {VisuallyHidden} from '../../shared/utils';
-import {PlaceCard} from '../../entities';
+import {VisuallyHidden} from '../../../../shared/utils';
+import {PlaceCard} from '../../../../entities';
 
-export const Places:FC<PlacesProps> = ({countCities, nameCity, onListItemHover, listCities}) => {
+export const Places:FC<PlacesProps> = ({numberPlacesToStay, nameCity, onListItemHover, listCities}) => {
   const [open, setOpen] = useState(false);
   const toggleDropdown = () => setOpen((prevValue) => !prevValue);
 
   return (
     <section className="cities__places places">
       <VisuallyHidden tagName="h2">Places</VisuallyHidden>
-      <b className="places__found">{countCities} places to stay in {nameCity}</b>
+      <b className="places__found">{numberPlacesToStay} places to stay in {nameCity}</b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex={0} onClick={toggleDropdown}>

@@ -33,6 +33,8 @@ export const listCities = [
       longitude: 4.911976,
       zoom: 16
     },
+    price: 100,
+    rating: 5,
     isPremium: false,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/5.jpg'
   }

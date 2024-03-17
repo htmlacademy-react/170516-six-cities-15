@@ -11,7 +11,6 @@ const initialState: InitialStateProp = {
   currentCity: cities[0].name,
 };
 
-//TODO: combineReducers ????
 export const appReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setCurrentCity, (state, action) => {

@@ -11,6 +11,7 @@ type LocationProps = {
 
 export const Locations:FC<LocationProps> = ({currentCity}) => {
   const dispatch = useAppDispatch();
+  //TODO: см. bindActionCreators
   const handleCityClick = (city: NameCitiesProps) => () => dispatch(setCurrentCity(city));
 
   const locationsItemClass = (city: string) => classNames(

@@ -1,19 +1,22 @@
 import {useState} from 'react';
 import classNames from 'classnames';
 import {Places, CitiesEmpty} from './ui';
-import {useAppSelector} from '../../app/app-store';
+import {appStore, useAppSelector} from '../../app/app-store';
 import {VisuallyHidden} from '../../shared/utils';
 import {PreviewCardProps} from '../../shared/types';
-import {listCities} from '../../shared/mock';
 import {Map} from '../../shared';
 import {Locations} from '../../entities';
+import {fetchOffersAction} from "./model";
 
+appStore.dispatch(fetchOffersAction());
 export const Main = () => {
   const currentCity = useAppSelector((state) => state.currentCity);
+  const offers = useAppSelector((state) => state.offers);
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterCities = listCities.filter(({city}) => city.name === currentCity);
-  const hasPlaces: boolean = !!filterCities.length;
+  const filterOffers = offers.filter(({city}) => city?.name === currentCity);
+  const hasPlaces: boolean = !!filterOffers.length;
+
   const classNamePage = classNames(
     'page__main page__main--index',
     {'page__main--index-empty': !hasPlaces}
@@ -31,13 +34,13 @@ export const Main = () => {
         <div className={classNameCities}>
           {hasPlaces ?
             <Places
-              numberPlacesToStay={filterCities.length}
+              numberPlacesToStay={filterOffers.length}
               nameCity={currentCity}
               onListItemHover={handleListItemHover}
-              listCities={filterCities}
+              listCities={filterOffers}
             /> : <CitiesEmpty />}
           <div className="cities__right-section">
-            {hasPlaces && <Map className="cities__map" location={listCities[0].location} points={listCities} selectedPoint={selectedPoint}/>}
+            {hasPlaces && <Map className="cities__map" location={filterOffers[0].city.location} points={filterOffers} selectedPoint={selectedPoint}/>}
           </div>
         </div>
       </div>

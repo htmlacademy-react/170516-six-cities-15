@@ -1,7 +1,14 @@
-import {createAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameCitiesProps} from '../../shared/types';
+import {cities} from '../../shared/mock';
 
-//TODO: createSlice
-export const setCurrentCity = createAction('entities/locations', (currentCityName: NameCitiesProps) => ({
-  payload: currentCityName
-}));
+export const currentCitySlice = createSlice({
+  name: 'currentCity',
+  initialState: cities[0].name,
+  reducers: {
+    setCurrentCity: (_, {payload}: PayloadAction<NameCitiesProps>) => payload
+  }
+});
+
+export const {setCurrentCity} = currentCitySlice.actions;
+export default currentCitySlice.reducer;

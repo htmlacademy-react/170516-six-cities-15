@@ -3,7 +3,7 @@ import {NameCitiesProps} from '../../shared/types';
 import {cities} from '../../shared/mock';
 
 export const currentCitySlice = createSlice({
-  name: 'currentCity',
+  name: 'entities/location',
   initialState: cities[0].name,
   reducers: {
     setCurrentCity: (_, {payload}: PayloadAction<NameCitiesProps>) => payload

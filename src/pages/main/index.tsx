@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import {useAppSelector} from '../../app/app-store';
 import {Places, CitiesEmpty} from './ui';
 import {useGetOffersQuery} from './api';
+import {cities} from '../../shared/mock';
 import {VisuallyHidden} from '../../shared/utils';
 import {PreviewCardProps} from '../../shared/types';
 import {Loader, Map} from '../../shared';
@@ -13,7 +14,7 @@ export const Main = () => {
   const currentCity = useAppSelector((state) => state.currentCity);
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = !!data && data.filter(({city}) => city?.name === currentCity);
+  const filterOffers = data?.filter(({city}) => city?.name === currentCity) ?? [];
   const hasPlaces: boolean = !!data;
 
   const classNamePage = classNames(
@@ -25,30 +26,31 @@ export const Main = () => {
     {'cities__places-container--empty': !hasPlaces}
   );
 
+  //TODO: много тернарников, надо проще
   return (
     <main className={classNamePage}>
       <VisuallyHidden tagName="h1">Cities</VisuallyHidden>
       <Locations currentCity={currentCity}/>
       <div className="cities">
-        <div className={classNameCities}>
-          {isLoading && <Loader/>}
-          {hasPlaces ?
-            <Places
-              numberPlacesToStay={filterOffers.length}
-              nameCity={currentCity}
-              onListItemHover={handleListItemHover}
-              listCities={filterOffers}
-            /> : <CitiesEmpty/>}
-          <div className="cities__right-section">
-            {hasPlaces &&
-              <Map
-                className="cities__map"
-                location={filterOffers[0].city.location}
-                points={filterOffers}
-                selectedPoint={selectedPoint}
-              />}
-          </div>
-        </div>
+        {isLoading ? <Loader/> :
+          <div className={classNameCities}>
+            {hasPlaces ?
+              <Places
+                numberPlacesToStay={filterOffers.length}
+                nameCity={currentCity}
+                onListItemHover={handleListItemHover}
+                listCities={filterOffers}
+              /> : <CitiesEmpty/>}
+            <div className="cities__right-section">
+              {hasPlaces &&
+                <Map
+                  className="cities__map"
+                  location={cities[0].location}
+                  points={filterOffers}
+                  selectedPoint={selectedPoint}
+                />}
+            </div>
+          </div>}
       </div>
     </main>
   );

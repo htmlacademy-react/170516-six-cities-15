@@ -1,8 +1,8 @@
 import {FC} from 'react';
 import classNames from 'classnames';
+import {useAppDispatch} from '../../app/app-store';
 import {cities} from '../../shared/mock';
 import {NameCitiesProps} from '../../shared/types';
-import {useAppDispatch} from '../../app/app-store';
 import {setCurrentCity} from './model';
 
 type LocationProps = {
@@ -11,6 +11,7 @@ type LocationProps = {
 
 export const Locations:FC<LocationProps> = ({currentCity}) => {
   const dispatch = useAppDispatch();
+  //TODO: см. bindActionCreators
   const handleCityClick = (city: NameCitiesProps) => () => dispatch(setCurrentCity(city));
 
   const locationsItemClass = (city: string) => classNames(

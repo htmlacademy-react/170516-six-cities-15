@@ -7,7 +7,6 @@ export enum SortingOptions {
   TopRating = 'Top rated first'
 }
 
-//TODO: На сколько правильно типизировать enum таким образом?
 export type SortingOptionsValuesType = `${SortingOptions}`;
 
 export const sortByType = (listCities: PreviewCardProps[], type: string) => {

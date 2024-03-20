@@ -1,21 +1,27 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import classNames from 'classnames';
-import {useAppSelector} from '../../app/app-store';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Places, CitiesEmpty} from './ui';
-import {useGetOffersQuery} from './api';
+import {fetchOffersAction} from './api';
 import {cities} from '../../shared/mock';
 import {VisuallyHidden} from '../../shared/utils';
 import {PreviewCardProps} from '../../shared/types';
+import {Status} from '../../shared/config';
 import {Loader, Map} from '../../shared';
 import {Locations} from '../../entities';
 
 export const Main = () => {
-  const { data, isLoading } = useGetOffersQuery();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
   const currentCity = useAppSelector((state) => state.currentCity);
+  const {offers, status} = useAppSelector((state) => state.offers);
+  const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = data?.filter(({city}) => city?.name === currentCity) ?? [];
-  const hasPlaces: boolean = !!data;
+  const filterOffers = offers?.filter(({city: {name}}) => name === currentCity) ?? [];
+  const hasPlaces: boolean = !!offers;
 
   const classNamePage = classNames(
     'page__main page__main--index',

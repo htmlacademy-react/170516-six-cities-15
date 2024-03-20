@@ -1,15 +1,21 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
+import {createAPI} from '../shared/utils';
 import currentCitySliceReducer from '../entities/locations/model';
-import {offersApi} from '../pages/main/api';
+import offersSliceReducer from '../pages/main/model';
+
+export const api = createAPI();
 
 export const appStore = configureStore({
   reducer: {
     currentCity: currentCitySliceReducer,
-    [offersApi.reducerPath]: offersApi.reducer,
+    offers: offersSliceReducer
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(offersApi.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+      extraArgument: api,
+    },
+  })
 });
 
 export type State = ReturnType<typeof appStore.getState>;

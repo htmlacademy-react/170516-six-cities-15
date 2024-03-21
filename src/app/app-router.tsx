@@ -15,7 +15,8 @@ export const AppRouter = () => (
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
             <Favorites/>
           </PrivateRoute>
-        }/>
+        }
+      />
       <Route path={`${Path.Offer}/:id`} element={<Offer/>} />
       <Route path={Path.NotFound} element={<NotFound/>} />
     </Route>

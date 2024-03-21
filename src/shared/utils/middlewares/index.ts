@@ -1,6 +1,6 @@
 import {PayloadAction} from '@reduxjs/toolkit';
 import {Middleware} from 'redux';
-import {browserHistory} from "../browser-history";
+import {browserHistory} from '../browser-history';
 
 export const redirect: Middleware =
   () =>

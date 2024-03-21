@@ -25,5 +25,5 @@ export const HistoryRouter = ({basename, children, history}: HistoryRouterProps)
     >
       {children}
     </Router>
-  )
+  );
 };

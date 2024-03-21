@@ -4,3 +4,7 @@ export * from './visually-hidden';
 export * from './use-map';
 export * from './create-api';
 export * from './check-auth-action';
+export * from './history-router';
+export * from './middlewares';
+export * from './browser-history';
+export * from './redirect-to-route';

@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {createAPI, requireAuthorizationSlice} from '../shared/utils';
+import {createAPI, redirect, requireAuthorizationSlice} from '../shared/utils';
 import currentCitySliceReducer from '../entities/locations/model';
 import offersSliceReducer from '../pages/main/model';
 
@@ -16,7 +16,7 @@ export const appStore = configureStore({
     thunk: {
       extraArgument: api,
     },
-  })
+  }).concat(redirect)
 });
 
 //TODO: Вынести в типы

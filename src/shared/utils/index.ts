@@ -3,3 +3,4 @@ export * from './tag-name';
 export * from './visually-hidden';
 export * from './use-map';
 export * from './create-api';
+export * from './check-auth-action';

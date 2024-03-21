@@ -3,15 +3,13 @@ import {Status} from '../../shared/config';
 import {fetchOffersAction} from './api';
 
 type initialState = {
-  offers: [];
+  offerList: [];
   status: null | string;
-  error: null;
 };
 
 const initialState: initialState = {
-  offers: [],
+  offerList: [],
   status: null,
-  error: null,
 };
 
 export const offersSlice = createSlice({
@@ -19,7 +17,7 @@ export const offersSlice = createSlice({
   initialState: initialState,
   reducers: {
     addOffers: (state, {payload}) => {
-      state.offers = payload as [];
+      state.offerList = payload as [];
     }
   },
   extraReducers: (builder) => {
@@ -28,7 +26,6 @@ export const offersSlice = createSlice({
     });
     builder.addCase(fetchOffersAction.pending, (state) => {
       state.status = Status.Loading;
-      state.error = null;
     });
   }
 });

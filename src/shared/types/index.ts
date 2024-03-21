@@ -1,3 +1,15 @@
+import {AxiosInstance} from 'axios';
+import {appStore} from '../../app/app-store';
+
+type TypeState = ReturnType<typeof appStore.getState>;
+type TypeAppDispatch = typeof appStore.dispatch;
+
+export type PromiseProps = {
+  dispatch: TypeAppDispatch;
+  state: TypeState;
+  extra: AxiosInstance;
+}
+
 export type LocationProps = {
   latitude: number;
   longitude: number;
@@ -24,3 +36,11 @@ export type PreviewCardProps = {
   widthImg?: number;
   heightImg?: number;
 }
+
+export type UserProps= {
+  avatarUrl: string;
+  email: string;
+  isPro: boolean;
+  name: string;
+  token: string;
+};

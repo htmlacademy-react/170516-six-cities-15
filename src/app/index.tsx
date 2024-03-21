@@ -5,6 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Provider} from 'react-redux';
 import {routes} from './app-router';
 import {appStore} from './app-store';
+import {checkAuthAction} from '../shared/utils';
+
+appStore.dispatch(checkAuthAction());
 
 export const App = () => (
   <Provider store={appStore}>

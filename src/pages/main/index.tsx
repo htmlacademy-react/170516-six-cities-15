@@ -16,12 +16,12 @@ export const Main = () => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const {offers, status} = useAppSelector((state) => state.offers);
+  const {offerList, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = offers?.filter(({city: {name}}) => name === currentCity) ?? [];
-  const hasPlaces: boolean = !!offers;
+  const filterOffers = offerList?.filter(({city: {name}}) => name === currentCity) ?? [];
+  const hasPlaces: boolean = !!offerList;
 
   const classNamePage = classNames(
     'page__main page__main--index',

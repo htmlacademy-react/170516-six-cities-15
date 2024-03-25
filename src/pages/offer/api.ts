@@ -16,6 +16,6 @@ export const fetchNearbyAction = createAsyncThunk<
   PreviewCardProps['id'],
   ExtraType
   >('offers/fetchNearby', async (id, {extra: api }) => {
-  const { data } = await api.get<OfferProp>(`/offers/${id}/nearby`);
+  const { data } = await api.get<PreviewCardProps[]>(`/offers/${id}/nearby`);
   return data;
 });

@@ -2,7 +2,7 @@ import {FormEvent, useRef} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {useAppDispatch} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {hasAuthStatus, VisuallyHidden} from '../../shared/utils';
+import {useAuthStatus, VisuallyHidden} from '../../shared/utils';
 import {loginAction} from './model';
 
 export const Login = () => {
@@ -11,7 +11,7 @@ export const Login = () => {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  if (hasAuthStatus()) {
+  if (useAuthStatus()) {
     return (
       <Navigate to={Path.Main} />
     );

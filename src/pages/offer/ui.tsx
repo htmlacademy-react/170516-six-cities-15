@@ -16,7 +16,7 @@ export const Offer = () => {
   const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   useEffect(() => {
-    if(!!id) {
+    if(id) {
       dispatch(fetchCurrentOfferAction(id));
       dispatch(fetchNearbyAction(id));
     }

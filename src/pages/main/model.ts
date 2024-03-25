@@ -18,7 +18,7 @@ export const offersSlice = createSlice({
   initialState,
   reducers: {
     addOffers: (state: InitialStateProps, {payload}) => {
-      state.offerList = payload;
+      state.offerList = payload as [];
     }
   },
   extraReducers: (builder) => {

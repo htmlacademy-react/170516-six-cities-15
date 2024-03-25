@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {ReviewsProps} from './type';
-import {hasAuthStatus} from '../../shared/utils';
+import {useAuthStatus} from '../../shared/utils';
 import {Rating} from '../../shared';
 
 export const Reviews:FC<ReviewsProps> = ({
@@ -26,7 +26,7 @@ export const Reviews:FC<ReviewsProps> = ({
         </div>
       </li>
     </ul>
-    {hasAuthStatus() &&
+    {useAuthStatus() &&
       <form className="reviews__form form" action="#" method="post">
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">

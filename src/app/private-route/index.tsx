@@ -1,6 +1,6 @@
 import {FC, ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
-import {hasAuthStatus} from '../../shared/utils';
+import {useAuthStatus} from '../../shared/utils';
 
 type PrivateRouteProps = {
   redirectTo: string;
@@ -8,7 +8,7 @@ type PrivateRouteProps = {
 }
 
 export const PrivateRoute:FC<PrivateRouteProps> = ({children, redirectTo}) => (
-  hasAuthStatus()
+  useAuthStatus()
     ? children
     : <Navigate to={redirectTo} />
 );

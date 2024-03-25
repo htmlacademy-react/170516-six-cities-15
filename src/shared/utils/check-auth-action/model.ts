@@ -14,16 +14,17 @@ const initialState: InitialStateProp = {
 };
 
 export const requireAuthorizationSlice = createSlice({
-  name: 'utils/requireAuthorization',
+  name: 'requireAuthorizationSlice',
   initialState,
   reducers: {
     setRequireAuth: (state, {payload}: PayloadAction<UserProps>) => {
       state.user = payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(checkAuthAction.fulfilled, (state, action) => {
-      state.user = action.payload;
+    builder.addCase(checkAuthAction.fulfilled, (state, {payload}) => {
+      state.user = payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
     });
     builder.addCase(checkAuthAction.pending, (state) => {

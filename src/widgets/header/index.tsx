@@ -1,7 +1,8 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {Path} from '../../shared/config';
 import {useAppSelector} from '../../app/app-store';
+import {Path} from '../../shared/config';
+import {useAuthStatus} from '../../shared/utils';
 
 type HeaderProps = {
   showRightContent?: boolean;
@@ -9,6 +10,8 @@ type HeaderProps = {
 
 export const Header:FC<HeaderProps> = ({showRightContent}) => {
   const user = useAppSelector((state) => state.client.user);
+  const hasAuthStatus = useAuthStatus();
+
   return (
     <header className="header">
       <div className="container">
@@ -21,20 +24,29 @@ export const Header:FC<HeaderProps> = ({showRightContent}) => {
           {showRightContent && (
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to={Path.Favorites}>
+                {hasAuthStatus ?
+                  <>
+                    <li className="header__nav-item user">
+                      <Link className="header__nav-link header__nav-link--profile" to={Path.Favorites}>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                          <img src={user?.avatarUrl} alt={user?.email}/>
+                        </div>
+                        <span className="header__user-name user__name">{user?.email}</span>
+                        <span className="header__favorite-count">3</span>
+                      </Link>
+                    </li>
+                    <li className="header__nav-item">
+                      <Link className="header__nav-link" to={Path.Main}>
+                        <span className="header__signout">Sign out</span>
+                      </Link>
+                    </li>
+                  </>
+                  :
+                  <Link className="header__nav-link header__nav-link--profile" to={Path.Login}>
                     <div className="header__avatar-wrapper user__avatar-wrapper">
-                      <img src={user?.avatarUrl} alt={user?.email}/>
                     </div>
-                    <span className="header__user-name user__name">{user?.email}</span>
-                    <span className="header__favorite-count">3</span>
-                  </Link>
-                </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to={Path.Main}>
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
+                    <span className="header__login">Sign in</span>
+                  </Link>}
               </ul>
             </nav>
           )}

@@ -28,5 +28,4 @@ export const offersSlice = createSlice({
   }
 });
 
-// export const {addOffers} = offersSlice.actions;
 export default offersSlice.reducer;

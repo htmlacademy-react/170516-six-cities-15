@@ -32,31 +32,37 @@ export const Main = () => {
     {'cities__places-container--empty': !hasPlaces}
   );
 
-  //TODO: много тернарников, надо проще
+  if (isLoading) {
+    return (
+      <main className={classNamePage}>
+        <Loader/>
+      </main>
+    );
+  }
+
   return (
     <main className={classNamePage}>
       <VisuallyHidden tagName="h1">Cities</VisuallyHidden>
       <Locations currentCity={currentCity}/>
       <div className="cities">
-        {isLoading ? <Loader/> :
-          <div className={classNameCities}>
-            {hasPlaces ?
-              <Places
-                numberPlacesToStay={filterOffers.length}
-                nameCity={currentCity}
-                onListItemHover={handleListItemHover}
-                listCities={filterOffers}
-              /> : <CitiesEmpty/>}
-            <div className="cities__right-section">
-              {hasPlaces &&
-                <Map
-                  className="cities__map"
-                  location={cities[0]}
-                  points={filterOffers}
-                  selectedPoint={selectedPoint}
-                />}
-            </div>
-          </div>}
+        <div className={classNameCities}>
+          {hasPlaces ?
+            <Places
+              numberPlacesToStay={filterOffers.length}
+              nameCity={currentCity}
+              onListItemHover={handleListItemHover}
+              listCities={filterOffers}
+            /> : <CitiesEmpty/>}
+          <div className="cities__right-section">
+            {hasPlaces &&
+              <Map
+                className="cities__map"
+                location={cities[0]}
+                points={filterOffers}
+                selectedPoint={selectedPoint}
+              />}
+          </div>
+        </div>
       </div>
     </main>
   );

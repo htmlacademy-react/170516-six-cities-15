@@ -16,14 +16,11 @@ const initialState: InitialStateProps = {
 export const offersSlice = createSlice({
   name: 'offersSlice',
   initialState,
-  reducers: {
-    addOffers: (state: InitialStateProps, {payload}) => {
-      state.offerList = payload as [];
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchOffersAction.fulfilled, (state) => {
+    builder.addCase(fetchOffersAction.fulfilled, (state, {payload}) => {
       state.status = Status.Resolved;
+      state.offerList = payload;
     });
     builder.addCase(fetchOffersAction.pending, (state) => {
       state.status = Status.Loading;
@@ -31,5 +28,5 @@ export const offersSlice = createSlice({
   }
 });
 
-export const {addOffers} = offersSlice.actions;
+// export const {addOffers} = offersSlice.actions;
 export default offersSlice.reducer;

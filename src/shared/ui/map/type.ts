@@ -4,5 +4,5 @@ export type MapProps = {
   points: PreviewCardProps[];
   location: LocationProps;
   className?: string;
-  selectedPoint?: string;
+  selectedPoint?: PreviewCardProps['id'];
 };

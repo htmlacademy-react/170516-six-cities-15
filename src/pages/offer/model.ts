@@ -16,15 +16,10 @@ const initialState: InitialStateProps = {
   nearPlaces: [],
 };
 
-//TODO: как написать без reducers??
 export const currentOfferSlice = createSlice({
   name: 'currentOfferSlice',
   initialState,
-  reducers: {
-    getCurrentOffer: (state, {payload}) => {
-      state.info = payload as [];
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentOfferAction.fulfilled, (state, {payload}) => {
       state.statusOffer = Status.Resolved;

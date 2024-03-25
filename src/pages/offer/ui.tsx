@@ -2,8 +2,6 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {OfferProp} from './type';
-import {Status} from '../../shared/config';
 import {Bookmark, Loader, Map, Rating, User} from '../../shared';
 import {PlaceCard, Reviews} from '../../entities';
 
@@ -13,7 +11,7 @@ export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
   const currentOffers = useAppSelector((state) => state.currentOffers);
   const nearPlaces = currentOffers.nearPlaces.slice(0, MAX_NEAR_PLACES);
-  const pointsNearPlaces = [...nearPlaces, currentOffers.info];
+  // const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   useEffect(() => {
     if(id) {
@@ -22,7 +20,7 @@ export const Offer = () => {
     }
   }, [id, dispatch]);
 
-  if (Status.Resolved !== currentOffers.statusOffer) {
+  if (currentOffers.info === null) {
     return (
       <div className="offer__gallery">
         <Loader/>
@@ -30,7 +28,7 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, location, description, bedrooms, maxAdults}: OfferProp = currentOffers.info;
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, location, description, bedrooms, maxAdults} = currentOffers.info;
 
   return (
     <main className="page__main page__main--offer">
@@ -99,7 +97,7 @@ export const Offer = () => {
             <Reviews className="offer__reviews"/>
           </div>
         </div>
-        <Map className="offer__map" location={location} points={pointsNearPlaces} selectedPoint={id}/>
+        <Map className="offer__map" location={location} points={nearPlaces} selectedPoint={id}/>
       </section>
       <div className="container">
         <section className="near-places places">

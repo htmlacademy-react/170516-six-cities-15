@@ -1,15 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PlacesProps} from './ui/places/type';
-import {ExtraType} from '../../shared/types';
-import {addOffers} from './model';
+import {ExtraType, PreviewCardProps} from '../../shared/types';
 
 export const fetchOffersAction = createAsyncThunk<
-  PlacesProps[],
+  PreviewCardProps[],
   void,
   ExtraType
->('pages/fetchOffers', async (_arg, { dispatch, extra: api }) => {
-  const { data } = await api.get<PlacesProps[]>('/offers');
-  dispatch(addOffers(data));
+>('pages/fetchOffers', async (_arg, { extra: api }) => {
+  const { data } = await api.get<PreviewCardProps[]>('/offers');
   return data;
 });
 

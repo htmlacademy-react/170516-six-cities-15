@@ -20,7 +20,7 @@ export const Main = () => {
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = offerList?.filter(({city: {name}}) => name === currentCity) ?? [];
+  const filterOffers = offerList?.filter(({city}) => city?.name === currentCity);
   const hasPlaces: boolean = !!offerList;
 
   const classNamePage = classNames(

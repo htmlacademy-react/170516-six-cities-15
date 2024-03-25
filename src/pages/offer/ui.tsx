@@ -1,23 +1,28 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
 import {Bookmark, Loader, Map, Rating, User} from '../../shared';
-import {PlaceCard, Reviews} from '../../entities';
+import {PlaceCard} from '../../entities';
+import {Reviews} from './ui/reviews';
+import {ReviewForm} from './ui/review-form';
 
 export const Offer = () => {
-  const {id} = useParams();
+  const {offerId} = useParams();
   const dispatch = useAppDispatch();
   const MAX_NEAR_PLACES = 3;
+  const MAX_COMMENTS = 10;
   const currentOffers = useAppSelector((state) => state.currentOffers);
   const nearPlaces = currentOffers.nearPlaces.slice(0, MAX_NEAR_PLACES);
+  const currentOffersComments = currentOffers.comments.slice(0, MAX_COMMENTS);
 
   useEffect(() => {
-    if(id) {
-      dispatch(fetchCurrentOfferAction(id));
-      dispatch(fetchNearbyAction(id));
+    if(offerId) {
+      dispatch(fetchCurrentOfferAction(offerId));
+      dispatch(fetchNearbyAction(offerId));
+      dispatch(fetchCommentsAction(offerId));
     }
-  }, [id, dispatch]);
+  }, [offerId, dispatch]);
 
   if (currentOffers.info === null) {
     return (
@@ -27,7 +32,7 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults} = currentOffers.info;
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffers.info;
   const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   return (
@@ -94,7 +99,9 @@ export const Offer = () => {
                 <p className="offer__text">{description}</p>
               </div>
             </div>
-            <Reviews className="offer__reviews"/>
+            <Reviews className="offer__reviews" comments={currentOffersComments}>
+              <ReviewForm offerId={id}/>
+            </Reviews>
           </div>
         </div>
         <Map className="offer__map" location={city} points={pointsNearPlaces} selectedPoint={id}/>

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {OfferProp} from './type';
-import {fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {CommentsProps, OfferProp} from './type';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 import {Status} from '../../shared/config';
 import {PreviewCardProps} from '../../shared/types';
 
@@ -8,12 +8,14 @@ type InitialStateProps = {
   statusOffer: null | Status;
   info: null | OfferProp;
   nearPlaces: PreviewCardProps[];
+  comments: CommentsProps[];
 }
 
 const initialState: InitialStateProps = {
   statusOffer: null,
   info: null,
   nearPlaces: [],
+  comments: []
 };
 
 export const currentOfferSlice = createSlice({
@@ -30,6 +32,12 @@ export const currentOfferSlice = createSlice({
     });
     builder.addCase(fetchNearbyAction.fulfilled, (state, {payload}) => {
       state.nearPlaces = payload;
+    });
+    builder.addCase(fetchCommentsAction.fulfilled, (state, {payload}) => {
+      state.comments = payload;
+    });
+    builder.addCase(postReviewAction.fulfilled, (state, {payload}) => {
+      state.comments.push(payload);
     });
   }
 });

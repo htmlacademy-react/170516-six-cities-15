@@ -5,8 +5,8 @@ import {Footer, Header} from '../../widgets';
 
 export const Layout = () => {
   const {pathname} = useLocation();
-  const {id} = useParams();
-  const {pageClassName, helmetTitle, renderFooter, showRightContent} = getLayoutState(pathname, id);
+  const {offerId} = useParams();
+  const {pageClassName, helmetTitle, renderFooter, showRightContent} = getLayoutState(pathname, offerId);
   return (
     <div className={`page ${pageClassName}`}>
       <Helmet>

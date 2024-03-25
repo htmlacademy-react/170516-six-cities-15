@@ -8,3 +8,11 @@ export type OfferProp = PreviewCardProps & {
   maxAdults: number;
   goods: string[];
 }
+
+export type CommentsProps = {
+  id: string;
+  date: string;
+  user: UserProps;
+  comment: string;
+  rating: number;
+}

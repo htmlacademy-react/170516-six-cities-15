@@ -1,8 +1,8 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {useAppSelector} from '../../app/app-store';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {useAuthStatus} from '../../shared/utils';
+import {logoutAction, useAuthStatus} from '../../shared/utils';
 
 type HeaderProps = {
   showRightContent?: boolean;
@@ -11,6 +11,7 @@ type HeaderProps = {
 export const Header:FC<HeaderProps> = ({showRightContent}) => {
   const user = useAppSelector((state) => state.client.user);
   const hasAuthStatus = useAuthStatus();
+  const dispatch = useAppDispatch();
 
   return (
     <header className="header">
@@ -36,7 +37,14 @@ export const Header:FC<HeaderProps> = ({showRightContent}) => {
                       </Link>
                     </li>
                     <li className="header__nav-item">
-                      <Link className="header__nav-link" to={Path.Main}>
+                      <Link
+                        className="header__nav-link"
+                        to={Path.Main}
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          dispatch(logoutAction());
+                        }}
+                      >
                         <span className="header__signout">Sign out</span>
                       </Link>
                     </li>

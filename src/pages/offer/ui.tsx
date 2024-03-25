@@ -11,7 +11,6 @@ export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
   const currentOffers = useAppSelector((state) => state.currentOffers);
   const nearPlaces = currentOffers.nearPlaces.slice(0, MAX_NEAR_PLACES);
-  // const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   useEffect(() => {
     if(id) {
@@ -28,7 +27,8 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, location, description, bedrooms, maxAdults} = currentOffers.info;
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults} = currentOffers.info;
+  const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   return (
     <main className="page__main page__main--offer">
@@ -97,7 +97,7 @@ export const Offer = () => {
             <Reviews className="offer__reviews"/>
           </div>
         </div>
-        <Map className="offer__map" location={location} points={nearPlaces} selectedPoint={id}/>
+        <Map className="offer__map" location={city} points={pointsNearPlaces} selectedPoint={id}/>
       </section>
       <div className="container">
         <section className="near-places places">

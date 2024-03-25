@@ -27,11 +27,11 @@ export type PreviewCardProps = {
   title: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
-  city: {
+  city?: {
     name: NameCitiesProps;
     location: LocationProps;
   };
-  location: LocationProps;
+  location?: LocationProps;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;

@@ -51,7 +51,7 @@ export const Main = () => {
               {hasPlaces &&
                 <Map
                   className="cities__map"
-                  location={cities[0].location}
+                  location={cities[0]}
                   points={filterOffers}
                   selectedPoint={selectedPoint}
                 />}

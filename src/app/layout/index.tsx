@@ -6,13 +6,13 @@ import {Footer, Header} from '../../widgets';
 export const Layout = () => {
   const {pathname} = useLocation();
   const {id} = useParams();
-  const {pageClassName, helmetTitle, renderFooter} = getLayoutState(pathname, id);
+  const {pageClassName, helmetTitle, renderFooter, showRightContent} = getLayoutState(pathname, id);
   return (
     <div className={`page ${pageClassName}`}>
       <Helmet>
         <title>6 cities {helmetTitle}</title>
       </Helmet>
-      <Header/>
+      <Header showRightContent={showRightContent}/>
       <Outlet/>
       {renderFooter && <Footer/>}
     </div>

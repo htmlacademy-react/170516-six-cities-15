@@ -1,11 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AxiosInstance} from 'axios';
 import {PlacesProps} from './ui/places/type';
+import {ExtraType} from "../../shared/types";
 import {addOffers} from './model';
-
-type ExtraType = {
-  extra: AxiosInstance;
-};
 
 export const fetchOffersAction = createAsyncThunk<
   PlacesProps[],

@@ -1,17 +1,17 @@
 import {FormEvent, useRef} from 'react';
 import {Link, Navigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {AuthorizationStatus, Path} from '../../shared/config';
-import {VisuallyHidden} from '../../shared/utils';
+import {useAppDispatch} from '../../app/app-store';
+import {Path} from '../../shared/config';
+import {hasAuthStatus, VisuallyHidden} from '../../shared/utils';
 import {loginAction} from './model';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
+  //TODO: переписать
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authorizationStatus = useAppSelector((state) => state.client.authorizationStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
+  if (hasAuthStatus()) {
     return (
       <Navigate to={Path.Main} />
     );

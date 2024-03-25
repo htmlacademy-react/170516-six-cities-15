@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {PromiseProps, UserProps} from '../../shared/types';
-import {redirectToRoute, Token} from '../../shared/utils';
+import {redirectToRoute, token} from '../../shared/utils';
 import {Path} from '../../shared/config';
 
 type AuthData = {
@@ -15,7 +15,7 @@ export const loginAction = createAsyncThunk<UserProps, AuthData, PromiseProps> (
       email,
       password,
     });
-    Token.Save(data.token);
+    token.save(data.token);
     dispatch(redirectToRoute(Path.Main));
     return data;
   }

@@ -4,6 +4,10 @@ import {appStore} from '../../app/app-store';
 type TypeState = ReturnType<typeof appStore.getState>;
 type TypeAppDispatch = typeof appStore.dispatch;
 
+export type ExtraType = {
+  extra: AxiosInstance;
+};
+
 export type PromiseProps = {
   dispatch: TypeAppDispatch;
   state: TypeState;

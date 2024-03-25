@@ -3,6 +3,7 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {createAPI, redirect, requireAuthorizationSlice} from '../shared/utils';
 import currentCitySliceReducer from '../entities/locations/model';
 import offersSliceReducer from '../pages/main/model';
+import {currentOfferSlice} from "../pages/offer/model";
 
 export const api = createAPI();
 
@@ -10,7 +11,8 @@ export const appStore = configureStore({
   reducer: {
     currentCity: currentCitySliceReducer,
     offers: offersSliceReducer,
-    client: requireAuthorizationSlice.reducer
+    client: requireAuthorizationSlice.reducer,
+    currentOffers: currentOfferSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {

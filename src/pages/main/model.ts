@@ -1,23 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '../../shared/config';
+import {PreviewCardProps} from "../../shared/types";
 import {fetchOffersAction} from './api';
 
-type initialState = {
-  offerList: [];
+type InitialStateProps = {
+  offerList: PreviewCardProps[];
   status: null | string;
 };
 
-const initialState: initialState = {
+const initialState: InitialStateProps = {
   offerList: [],
   status: null,
 };
 
 export const offersSlice = createSlice({
-  name: 'pages/main',
-  initialState: initialState,
+  name: 'offersSlice',
+  initialState,
   reducers: {
-    addOffers: (state, {payload}) => {
-      state.offerList = payload as [];
+    addOffers: (state: InitialStateProps, {payload}) => {
+      state.offerList = payload
     }
   },
   extraReducers: (builder) => {

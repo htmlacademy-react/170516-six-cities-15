@@ -3,12 +3,12 @@ import {UserProps} from '../../types';
 import {AuthorizationStatus} from '../../config';
 import {checkAuthAction} from './index';
 
-type initialStateProp = {
+type InitialStateProp = {
   user: UserProps | null;
   authorizationStatus: AuthorizationStatus;
 }
 
-const initialState: initialStateProp = {
+const initialState: InitialStateProp = {
   user: null,
   authorizationStatus: AuthorizationStatus.Unknown,
 };

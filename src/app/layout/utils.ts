@@ -5,6 +5,7 @@ export const getLayoutState = (path: string, id?: string) => {
   let pageClassName = '';
   let helmetTitle = '';
   let renderFooter = false;
+  let showRightContent = true;
 
   switch (path) {
     case Path.Main:
@@ -14,6 +15,7 @@ export const getLayoutState = (path: string, id?: string) => {
     case Path.Login:
       helmetTitle = 'login';
       pageClassName = 'page--gray page--login';
+      showRightContent = false;
       break;
     case Path.Favorites:
       helmetTitle = 'favorites';
@@ -27,5 +29,5 @@ export const getLayoutState = (path: string, id?: string) => {
       pageClassName = 'page--gray page--login';
   }
 
-  return {pageClassName, helmetTitle, renderFooter};
+  return {pageClassName, helmetTitle, renderFooter, showRightContent};
 };

@@ -1,14 +1,14 @@
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
 import {Path} from '../../shared/config';
-import {useAppSelector} from "../../app/app-store";
+import {useAppSelector} from '../../app/app-store';
 
 type HeaderProps = {
   showRightContent?: boolean;
 }
 
 export const Header:FC<HeaderProps> = ({showRightContent}) => {
-  const user = useAppSelector((state => state.client.user));
+  const user = useAppSelector((state) => state.client.user);
   return (
     <header className="header">
       <div className="container">
@@ -42,4 +42,4 @@ export const Header:FC<HeaderProps> = ({showRightContent}) => {
       </div>
     </header>
   );
-}
+};

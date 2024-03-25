@@ -1,26 +1,26 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {OfferProp} from "./type";
-import {fetchCurrentOfferAction, fetchNearbyAction} from "./api";
-import {Status} from "../../shared/config";
-import {PreviewCardProps} from "../../shared/types";
+import {OfferProp} from './type';
+import {fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {Status} from '../../shared/config';
+import {PreviewCardProps} from '../../shared/types';
 
 type InitialStateProps = {
   statusOffer: null | Status;
   info: null | OfferProp;
-  nearPlaces: PreviewCardProps[]
+  nearPlaces: PreviewCardProps[];
 }
 
 const initialState: InitialStateProps = {
   statusOffer: null,
   info: null,
   nearPlaces: [],
-}
+};
 
 export const currentOfferSlice = createSlice({
   name: 'currentOfferSlice',
   initialState,
   reducers: {
-    getCurrentOffer: (state, {payload}) => payload
+    getCurrentOffer: (_, {payload}) => payload
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentOfferAction.fulfilled, (state, {payload}) => {

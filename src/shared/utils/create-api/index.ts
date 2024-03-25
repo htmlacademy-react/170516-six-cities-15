@@ -2,7 +2,7 @@ import axios, {AxiosInstance, InternalAxiosRequestConfig, AxiosError} from 'axio
 import {StatusCodes} from 'http-status-codes';
 import { toast } from 'react-toastify';
 import {token} from '../token';
-import {browserHistory} from "../browser-history";
+import {browserHistory} from '../browser-history';
 import {Path} from '../../config';
 
 type DetailMessageType = {

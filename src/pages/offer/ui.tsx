@@ -1,8 +1,9 @@
-import {useEffect} from "react";
-import {useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../app/app-store";
-import {fetchCurrentOfferAction, fetchNearbyAction} from "./api";
-import {Status} from "../../shared/config";
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
+import {fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {OfferProp} from './type';
+import {Status} from '../../shared/config';
 import {Bookmark, Loader, Map, Rating, User} from '../../shared';
 import {PlaceCard, Reviews} from '../../entities';
 
@@ -19,17 +20,17 @@ export const Offer = () => {
       dispatch(fetchCurrentOfferAction(id));
       dispatch(fetchNearbyAction(id));
     }
-  }, [id, dispatch])
+  }, [id, dispatch]);
 
   if (Status.Resolved !== currentOffers.statusOffer) {
     return (
       <div className="offer__gallery">
         <Loader/>
       </div>
-    )
+    );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, location, description, bedrooms, maxAdults} = currentOffers.info;
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, location, description, bedrooms, maxAdults}: OfferProp = currentOffers.info;
 
   return (
     <main className="page__main page__main--offer">

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Status} from '../../shared/config';
-import {PreviewCardProps} from "../../shared/types";
 import {fetchOffersAction} from './api';
+import {Status} from '../../shared/config';
+import {PreviewCardProps} from '../../shared/types';
 
 type InitialStateProps = {
   offerList: PreviewCardProps[];
@@ -18,7 +18,7 @@ export const offersSlice = createSlice({
   initialState,
   reducers: {
     addOffers: (state: InitialStateProps, {payload}) => {
-      state.offerList = payload
+      state.offerList = payload;
     }
   },
   extraReducers: (builder) => {

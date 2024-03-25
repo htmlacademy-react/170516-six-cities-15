@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {PlacesProps} from './ui/places/type';
-import {ExtraType} from "../../shared/types";
+import {ExtraType} from '../../shared/types';
 import {addOffers} from './model';
 
 export const fetchOffersAction = createAsyncThunk<

@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {ReviewsProps} from './type';
-import {hasAuthStatus} from "../../shared/utils";
+import {hasAuthStatus} from '../../shared/utils';
 import {Rating} from '../../shared';
 
 export const Reviews:FC<ReviewsProps> = ({
@@ -69,7 +69,6 @@ export const Reviews:FC<ReviewsProps> = ({
           </p>
           <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
         </div>
-      </form>
-    }
+      </form>}
   </section>
 );

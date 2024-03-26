@@ -2,6 +2,14 @@ import {FC} from 'react';
 import {ReviewsProps} from './type';
 import {Rating} from '../../shared';
 
+const getDate = function(date: string) {
+  return `${new Date(date).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })}`;
+};
+
+
 export const Reviews:FC<ReviewsProps> = ({
   className
 }) => (
@@ -21,7 +29,7 @@ export const Reviews:FC<ReviewsProps> = ({
             A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
             building is green and from 18th century.
           </p>
-          <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+          <time className="reviews__time" dateTime="2019-04-24">{getDate(new Date())}</time>
         </div>
       </li>
     </ul>

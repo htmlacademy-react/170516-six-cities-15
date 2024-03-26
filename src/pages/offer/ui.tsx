@@ -1,20 +1,48 @@
-import {listCities} from '../../shared/mock';
-import {Bookmark, Map, Rating, User} from '../../shared';
-import {PlaceCard, Reviews} from '../../entities';
+import {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {Bookmark, Loader, Map, Rating, User} from '../../shared';
+import {PlaceCard} from '../../entities';
+import {Reviews} from './ui/reviews';
+import {ReviewForm} from './ui/review-form';
 
 export const Offer = () => {
-  const photoStudio = ['room', 'apartment-01', 'apartment-02', 'apartment-03', 'studio-01', 'amsterdam'];
-  const goods = ['Washing machine', 'Towels', 'Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'];
-  const {title, type, price, rating, isPremium, isFavorite} = listCities[0];
+  const {offerId} = useParams();
+  const dispatch = useAppDispatch();
+  const MAX_NEAR_PLACES = 3;
+  const MAX_COMMENTS = 10;
+  const currentOffers = useAppSelector((state) => state.currentOffers);
+  const nearPlaces = currentOffers.nearPlaces.slice(0, MAX_NEAR_PLACES);
+  const currentOffersComments = currentOffers.comments.slice(0, MAX_COMMENTS);
+
+  useEffect(() => {
+    if(offerId) {
+      dispatch(fetchCurrentOfferAction(offerId));
+      dispatch(fetchNearbyAction(offerId));
+      dispatch(fetchCommentsAction(offerId));
+    }
+  }, [offerId, dispatch]);
+
+  if (currentOffers.info === null) {
+    return (
+      <div className="offer__gallery">
+        <Loader/>
+      </div>
+    );
+  }
+
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffers.info;
+  const pointsNearPlaces = [...nearPlaces, currentOffers.info];
 
   return (
     <main className="page__main page__main--offer">
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {photoStudio.map((text) => (
+            {images.map((text) => (
               <div className="offer__image-wrapper" key={text}>
-                <img className="offer__image" src={`img/${text}.jpg`} alt="Photo studio"/>
+                <img className="offer__image" src={text} alt="Photo studio"/>
               </div>
             ))}
           </div>
@@ -34,16 +62,15 @@ export const Offer = () => {
               rating={rating}
               className="offer"
             />
-            <ul className="offer__features">
+            <ul className="offer__features" style={{textTransform: 'capitalize'}}>
               <li className="offer__feature offer__feature--entire">
-                {/*TODO: Сделай с большой буквой*/}
                 {type}
               </li>
               <li className="offer__feature offer__feature--bedrooms">
-                3 Bedrooms
+                {bedrooms} Bedrooms
               </li>
               <li className="offer__feature offer__feature--adults">
-                Max 4 adults
+                Max {maxAdults} adults
               </li>
             </ul>
             <div className="offer__price">
@@ -63,36 +90,31 @@ export const Offer = () => {
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <User
-                name="Angelina"
-                avatarUrl="img/avatar-angelina.jpg"
-                isPro
+                name={host.name}
+                avatarUrl={host.avatarUrl}
+                isPro={host.isPro}
                 className="offer"
               />
               <div className="offer__description">
-                <p className="offer__text">
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                  building is green and from 18th century.
-                </p>
-                <p className="offer__text">
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the
-                  bustle of the city comes to rest in this alley flowery and colorful.
-                </p>
+                <p className="offer__text">{description}</p>
               </div>
             </div>
-            <Reviews className="offer__reviews"/>
+            <Reviews className="offer__reviews" comments={currentOffersComments}>
+              <ReviewForm offerId={id}/>
+            </Reviews>
           </div>
         </div>
-        <Map className="offer__map" location={listCities[0].location} points={listCities} selectedPoint={listCities[0].id}/>
+        <Map className="offer__map" location={city} points={pointsNearPlaces} selectedPoint={id}/>
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {listCities.map((elem) => (
+            {nearPlaces.map((elem) => (
               <PlaceCard
                 id={elem.id}
                 key={elem.id}
-                title={title}
+                title={elem.title}
                 previewImage={elem.previewImage}
                 className="near-places"
                 type={elem.type}

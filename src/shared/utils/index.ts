@@ -8,3 +8,4 @@ export * from './history-router';
 export * from './middlewares';
 export * from './browser-history';
 export * from './redirect-to-route';
+export * from './use-auth-status';

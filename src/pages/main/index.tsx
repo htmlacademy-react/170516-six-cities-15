@@ -20,7 +20,7 @@ export const Main = () => {
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = offerList?.filter(({city: {name}}) => name === currentCity) ?? [];
+  const filterOffers = offerList?.filter(({city}) => city?.name === currentCity);
   const hasPlaces: boolean = !!offerList;
 
   const classNamePage = classNames(
@@ -32,31 +32,37 @@ export const Main = () => {
     {'cities__places-container--empty': !hasPlaces}
   );
 
-  //TODO: много тернарников, надо проще
+  if (isLoading) {
+    return (
+      <main className={classNamePage}>
+        <Loader/>
+      </main>
+    );
+  }
+
   return (
     <main className={classNamePage}>
       <VisuallyHidden tagName="h1">Cities</VisuallyHidden>
       <Locations currentCity={currentCity}/>
       <div className="cities">
-        {isLoading ? <Loader/> :
-          <div className={classNameCities}>
-            {hasPlaces ?
-              <Places
-                numberPlacesToStay={filterOffers.length}
-                nameCity={currentCity}
-                onListItemHover={handleListItemHover}
-                listCities={filterOffers}
-              /> : <CitiesEmpty/>}
-            <div className="cities__right-section">
-              {hasPlaces &&
-                <Map
-                  className="cities__map"
-                  location={cities[0].location}
-                  points={filterOffers}
-                  selectedPoint={selectedPoint}
-                />}
-            </div>
-          </div>}
+        <div className={classNameCities}>
+          {hasPlaces ?
+            <Places
+              numberPlacesToStay={filterOffers.length}
+              nameCity={currentCity}
+              onListItemHover={handleListItemHover}
+              listCities={filterOffers}
+            /> : <CitiesEmpty/>}
+          <div className="cities__right-section">
+            {hasPlaces &&
+              <Map
+                className="cities__map"
+                location={cities[0]}
+                points={filterOffers}
+                selectedPoint={selectedPoint}
+              />}
+          </div>
+        </div>
       </div>
     </main>
   );

@@ -8,9 +8,10 @@ import {loginAction} from './model';
 export const Login = () => {
   const dispatch = useAppDispatch();
   const [login, setLogin] = useState({
-    email: null,
-    password: null,
+    email: '',
+    password: '',
   });
+  const hasValid = !!login.email && !!login.password;
 
   if (useAuthStatus()) {
     return (
@@ -29,7 +30,7 @@ export const Login = () => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
 
-    if (!!login.email && !!login.password) {
+    if (hasValid) {
       dispatch(loginAction({
         email: login.email,
         password: login.password
@@ -61,7 +62,7 @@ export const Login = () => {
                 <input className="login__input form__input" type={type} name={type} placeholder={placeholder} required onChange={handleInputChange} />
               </label>
             ))}
-            <button className="login__submit form__submit button" type="submit">Sign in</button>
+            <button className="login__submit form__submit button" type="submit" disabled={!hasValid}>Sign in</button>
           </form>
         </section>
         <section className="locations locations--login locations--current">

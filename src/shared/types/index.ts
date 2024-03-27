@@ -1,8 +1,8 @@
 import {AxiosInstance} from 'axios';
 import {appStore} from '../../app/app-store';
 
-type TypeState = ReturnType<typeof appStore.getState>;
 type TypeAppDispatch = typeof appStore.dispatch;
+export type TypeState = ReturnType<typeof appStore.getState>;
 
 export type ExtraType = {
   extra: AxiosInstance;

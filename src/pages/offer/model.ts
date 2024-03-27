@@ -1,8 +1,8 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSelector, createSlice} from '@reduxjs/toolkit';
 import {CommentsProps, OfferProp} from './type';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 import {Status} from '../../shared/config';
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewCardProps, TypeState} from '../../shared/types';
 
 type InitialStateProps = {
   statusOffer: null | Status;
@@ -41,5 +41,12 @@ export const currentOfferSlice = createSlice({
     });
   }
 });
+
+export const getOffer = createSelector(
+  (state: TypeState) => state.currentOffers.info,
+  (state) => state
+);
+export const getNearPlaces = state => state.currentOffers.nearPlaces;
+export const getComments = state => state.currentOffers.comments;
 
 export default currentOfferSlice.reducer;

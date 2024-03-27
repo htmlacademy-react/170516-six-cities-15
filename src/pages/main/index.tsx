@@ -21,7 +21,7 @@ export const Main = () => {
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
   const filterOffers = offerList?.filter(({city}) => city?.name === currentCity);
-  const hasPlaces: boolean = !!offerList;
+  const hasPlaces: boolean = !!offerList.length;
 
   const classNamePage = classNames(
     'page__main page__main--index',

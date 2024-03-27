@@ -6,15 +6,16 @@ import {Bookmark, Loader, Map, Rating, User} from '../../shared';
 import {PlaceCard} from '../../entities';
 import {Reviews} from './ui/reviews';
 import {ReviewForm} from './ui/review-form';
+import {getNearPlaces, getOffer, getComments} from "./model";
 
 export const Offer = () => {
-  const {offerId} = useParams();
-  const dispatch = useAppDispatch();
   const MAX_NEAR_PLACES = 3;
   const MAX_COMMENTS = 10;
-  const currentOffers = useAppSelector((state) => state.currentOffers);
-  const nearPlaces = currentOffers.nearPlaces.slice(0, MAX_NEAR_PLACES);
-  const currentOffersComments = currentOffers.comments.slice(0, MAX_COMMENTS);
+  const {offerId} = useParams();
+  const dispatch = useAppDispatch();
+  const currentOffersInfo = useAppSelector(getOffer)
+  const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
+  const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
 
   useEffect(() => {
     if(offerId) {
@@ -24,7 +25,7 @@ export const Offer = () => {
     }
   }, [offerId, dispatch]);
 
-  if (currentOffers.info === null) {
+  if (currentOffersInfo === null) {
     return (
       <div className="offer__gallery">
         <Loader/>
@@ -32,8 +33,8 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffers.info;
-  const pointsNearPlaces = [...nearPlaces, currentOffers.info];
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffersInfo;
+  const pointsNearPlaces = [...nearPlaces, currentOffersInfo];
 
   return (
     <main className="page__main page__main--offer">

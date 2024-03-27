@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, memo, useState} from 'react';
+import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';

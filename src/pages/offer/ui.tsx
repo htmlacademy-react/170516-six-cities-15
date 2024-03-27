@@ -100,7 +100,7 @@ export const Offer = () => {
               </div>
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
-              <ReviewForm offerId={id}/>
+              <ReviewForm id={offerId}/>
             </Reviews>
           </div>
         </div>

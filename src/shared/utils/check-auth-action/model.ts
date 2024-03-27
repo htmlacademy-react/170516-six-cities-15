@@ -1,29 +1,25 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {UserProps} from '../../types';
 import {AuthorizationStatus} from '../../config';
-import {checkAuthAction} from './index';
+import {checkAuthAction, logoutAction} from './index';
 
-type initialStateProp = {
+type InitialStateProp = {
   user: UserProps | null;
   authorizationStatus: AuthorizationStatus;
 }
 
-const initialState: initialStateProp = {
+const initialState: InitialStateProp = {
   user: null,
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const requireAuthorizationSlice = createSlice({
-  name: 'utils/requireAuthorization',
+  name: 'requireAuthorizationSlice',
   initialState,
-  reducers: {
-    setRequireAuth: (state, {payload}: PayloadAction<UserProps>) => {
-      state.user = payload;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(checkAuthAction.fulfilled, (state, action) => {
-      state.user = action.payload;
+    builder.addCase(checkAuthAction.fulfilled, (state, {payload}) => {
+      state.user = payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
     });
     builder.addCase(checkAuthAction.pending, (state) => {
@@ -34,8 +30,11 @@ export const requireAuthorizationSlice = createSlice({
       state.user = null;
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     });
+    builder.addCase(logoutAction.pending, (state) => {
+      state.user = null;
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    });
   }
 });
 
-export const {setRequireAuth} = requireAuthorizationSlice.actions;
 export default requireAuthorizationSlice.reducer;

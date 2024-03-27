@@ -1,7 +1,8 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {Path} from '../../shared/config';
 
-export const NotFound = () => (
+export const NotFound = memo(() => (
   <main className="page__main page__main--login">
     <div className="page__login-container container">
       <section className="login form">
@@ -12,4 +13,6 @@ export const NotFound = () => (
       </section>
     </div>
   </main>
-);
+));
+
+NotFound.displayName = 'NotFound';

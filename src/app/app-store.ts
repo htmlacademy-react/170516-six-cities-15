@@ -1,16 +1,18 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {createAPI, redirect, requireAuthorizationSlice} from '../shared/utils';
-import currentCitySliceReducer from '../entities/locations/model';
-import offersSliceReducer from '../pages/main/model';
+import {currentCitySlice} from '../entities/locations/model';
+import {offersSlice} from '../pages/main/model';
+import {currentOfferSlice} from '../pages/offer/model';
 
 export const api = createAPI();
 
 export const appStore = configureStore({
   reducer: {
-    currentCity: currentCitySliceReducer,
-    offers: offersSliceReducer,
-    client: requireAuthorizationSlice.reducer
+    currentCity: currentCitySlice.reducer,
+    offers: offersSlice.reducer,
+    client: requireAuthorizationSlice.reducer,
+    currentOffers: currentOfferSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {

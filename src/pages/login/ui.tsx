@@ -1,29 +1,40 @@
-import {FormEvent, useRef} from 'react';
+import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {AuthorizationStatus, Path} from '../../shared/config';
-import {VisuallyHidden} from '../../shared/utils';
+import {Path} from '../../shared/config';
+import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
 import {loginAction} from './model';
 
-export const Login = () => {
+export const Login = memo(() => {
   const dispatch = useAppDispatch();
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authorizationStatus = useAppSelector((state) => state.client.authorizationStatus);
+  const isAuth = useAppSelector(getAuthCheckedStatus);
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
+  const hasValid = !!login.email && !!login.password;
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
+  if (isAuth) {
     return (
       <Navigate to={Path.Main} />
     );
   }
 
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = evt.target;
+    setLogin({
+      ...login,
+      [name]: value
+    });
+  };
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
 
-    if (!!loginRef.current && !!passwordRef.current) {
+    if (hasValid) {
       dispatch(loginAction({
-        email: loginRef.current.value,
-        password: passwordRef.current.value
+        email: login.email,
+        password: login.password
       }));
     }
   };
@@ -32,13 +43,11 @@ export const Login = () => {
       id: 1,
       type: 'email',
       placeholder: 'Email',
-      ref: loginRef,
     },
     {
       id: 2,
       type: 'password',
       placeholder: 'Password',
-      ref: passwordRef,
     },
   ];
 
@@ -48,13 +57,13 @@ export const Login = () => {
         <section className="login">
           <h1 className="login__title">Sign in</h1>
           <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
-            {formFields.map(({ref, type, placeholder, id}) => (
+            {formFields.map(({type, placeholder, id}) => (
               <label className="login__input-wrapper form__input-wrapper" key={id}>
                 <VisuallyHidden>{placeholder}</VisuallyHidden>
-                <input ref={ref} className="login__input form__input" type={type} name={type} placeholder={placeholder} required />
+                <input className="login__input form__input" type={type} name={type} placeholder={placeholder} required onChange={handleInputChange} />
               </label>
             ))}
-            <button className="login__submit form__submit button" type="submit">Sign in</button>
+            <button className="login__submit form__submit button" type="submit" disabled={!hasValid}>Sign in</button>
           </form>
         </section>
         <section className="locations locations--login locations--current">
@@ -67,4 +76,6 @@ export const Login = () => {
       </div>
     </main>
   );
-};
+});
+
+Login.displayName = 'Login';

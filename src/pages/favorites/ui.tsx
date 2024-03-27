@@ -1,7 +1,8 @@
+import {memo} from 'react';
 import {listCities} from '../../shared/mock';
 import {PlaceCard} from '../../entities';
 
-export const Favorites = () => (
+export const Favorites = memo(() => (
   <main className="page__main page__main--favorites">
     <div className="page__favorites-container container">
       <section className="favorites">
@@ -38,4 +39,6 @@ export const Favorites = () => (
       </section>
     </div>
   </main>
-);
+));
+
+Favorites.displayName = 'Favorites';

@@ -103,7 +103,7 @@ export const Offer = () => {
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
               {(isAuth && !!offerId) &&
-              <ReviewForm id={offerId}/>
+                <ReviewForm id={offerId}/>
               }
             </Reviews>
           </div>

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Places, CitiesEmpty} from './ui';
 import {fetchOffersAction} from './api';
-import {cities} from '../../shared/mock';
 import {VisuallyHidden} from '../../shared/utils';
 import {PreviewCardProps} from '../../shared/types';
 import {Status} from '../../shared/config';
@@ -57,7 +56,7 @@ export const Main = () => {
             {hasPlaces &&
               <Map
                 className="cities__map"
-                location={cities[0]}
+                location={offerList[0].city}
                 points={filterOffers}
                 selectedPoint={selectedPoint}
               />}

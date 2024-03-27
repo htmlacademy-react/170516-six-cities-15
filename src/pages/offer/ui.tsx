@@ -1,18 +1,20 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {getAuthCheckedStatus} from "../../shared/utils";
 import {Bookmark, Loader, Map, Rating, User} from '../../shared';
 import {PlaceCard} from '../../entities';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
+import {getNearPlaces, getOffer, getComments} from "./model";
 import {Reviews} from './ui/reviews';
 import {ReviewForm} from './ui/review-form';
-import {getNearPlaces, getOffer, getComments} from "./model";
 
 export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
   const MAX_COMMENTS = 10;
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   const currentOffersInfo = useAppSelector(getOffer)
   const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
   const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
@@ -23,9 +25,9 @@ export const Offer = () => {
       dispatch(fetchNearbyAction(offerId));
       dispatch(fetchCommentsAction(offerId));
     }
-  }, [offerId, dispatch]);
+  }, [dispatch]);
 
-  if (currentOffersInfo === null) {
+  if (!currentOffersInfo) {
     return (
       <div className="offer__gallery">
         <Loader/>
@@ -101,7 +103,9 @@ export const Offer = () => {
               </div>
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
-              <ReviewForm id={offerId}/>
+              {(isAuth && !!offerId) &&
+                <ReviewForm id={offerId}/>
+              }
             </Reviews>
           </div>
         </div>

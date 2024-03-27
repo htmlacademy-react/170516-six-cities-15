@@ -31,7 +31,7 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
     evt.preventDefault();
     dispatch(
       postReviewAction({
-        id: id ?? '',
+        id,
         rating: Number(review.rating),
         comment: review.review,
       })

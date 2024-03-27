@@ -46,7 +46,7 @@ export const getOffer = createSelector(
   (state: TypeState) => state.currentOffers.info,
   (state) => state
 );
-export const getNearPlaces = state => state.currentOffers.nearPlaces;
-export const getComments = state => state.currentOffers.comments;
+export const getNearPlaces = (state: TypeState) => state.currentOffers.nearPlaces;
+export const getComments = (state: TypeState) => state.currentOffers.comments;
 
 export default currentOfferSlice.reducer;

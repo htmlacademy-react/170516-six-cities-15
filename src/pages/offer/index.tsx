@@ -6,8 +6,7 @@ import {Bookmark, Loader, Map, Rating, User} from '../../shared';
 import {PlaceCard} from '../../entities';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
 import {getNearPlaces, getOffer, getComments} from "./model";
-import {Reviews} from './ui/reviews';
-import {ReviewForm} from './ui/review-form';
+import {Reviews, ReviewForm} from "./ui";
 
 export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
@@ -104,7 +103,7 @@ export const Offer = () => {
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
               {(isAuth && !!offerId) &&
-                <ReviewForm id={offerId}/>
+              <ReviewForm id={offerId}/>
               }
             </Reviews>
           </div>

@@ -1,8 +1,8 @@
 import axios, {AxiosInstance, InternalAxiosRequestConfig, AxiosError} from 'axios';
 import {StatusCodes} from 'http-status-codes';
-import { createBrowserHistory } from 'history';
 import { toast } from 'react-toastify';
-import {Token} from '../token';
+import {token} from '../token';
+import {browserHistory} from '../browser-history';
 import {Path} from '../../config';
 
 type DetailMessageType = {
@@ -21,10 +21,8 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-      const token = Token.Get();
-
       if (token && config.headers) {
-        config.headers['x-token'] = token;
+        config.headers['x-token'] = token.get();
       }
 
       return config;
@@ -37,7 +35,7 @@ export const createAPI = (): AxiosInstance => {
       if (error.response?.status === StatusCodes.NOT_FOUND) {
         const detailMessage = (error.response.data);
         toast.warn(detailMessage.message);
-        createBrowserHistory().push(Path.NotFound);
+        browserHistory.push(Path.NotFound);
       }
 
       if (error.response?.status === StatusCodes.UNAUTHORIZED) {

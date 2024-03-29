@@ -1,13 +1,13 @@
 import leaflet, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useState, useRef} from 'react';
-import {LocationProps} from '../../types';
+import {PreviewCardProps} from '../../types';
 
 type MapRefProps = {
   current: HTMLElement | null;
 };
 
-export const useMap = (mapRef: MapRefProps, city: LocationProps) => {
+export const useMap = (mapRef: MapRefProps, city: PreviewCardProps['city']) => {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
 
@@ -15,10 +15,10 @@ export const useMap = (mapRef: MapRefProps, city: LocationProps) => {
     if (!!mapRef.current && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.latitude,
-          lng: city.longitude,
+          lat: city?.location.latitude ?? 0,
+          lng: city?.location.longitude ?? 0,
         },
-        zoom: city.zoom,
+        zoom: city?.location.zoom ?? 0,
       });
 
       leaflet

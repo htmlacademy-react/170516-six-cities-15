@@ -1,28 +1,26 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Status} from '../../shared/config';
 import {fetchOffersAction} from './api';
+import {Status} from '../../shared/config';
+import {PreviewCardProps} from '../../shared/types';
 
-type initialState = {
-  offerList: [];
+type InitialStateProps = {
+  offerList: PreviewCardProps[];
   status: null | string;
 };
 
-const initialState: initialState = {
+const initialState: InitialStateProps = {
   offerList: [],
   status: null,
 };
 
 export const offersSlice = createSlice({
-  name: 'pages/main',
-  initialState: initialState,
-  reducers: {
-    addOffers: (state, {payload}) => {
-      state.offerList = payload as [];
-    }
-  },
+  name: 'offersSlice',
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchOffersAction.fulfilled, (state) => {
+    builder.addCase(fetchOffersAction.fulfilled, (state, {payload}) => {
       state.status = Status.Resolved;
+      state.offerList = payload;
     });
     builder.addCase(fetchOffersAction.pending, (state) => {
       state.status = Status.Loading;
@@ -30,5 +28,4 @@ export const offersSlice = createSlice({
   }
 });
 
-export const {addOffers} = offersSlice.actions;
 export default offersSlice.reducer;

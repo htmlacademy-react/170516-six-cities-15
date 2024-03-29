@@ -1,7 +1,8 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {PromiseProps, UserProps} from '../../shared/types';
-import {redirectToRoute, checkAuthAction, token} from '../../shared/utils';
+import {redirectToRoute, token} from '../../shared/utils';
 import {Path} from '../../shared/config';
+import {checkAuthAction} from "../../shared/api";
 
 type AuthData = {
   email: string;

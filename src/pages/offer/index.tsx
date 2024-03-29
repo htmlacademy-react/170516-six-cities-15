@@ -60,7 +60,7 @@ export const Offer = () => {
             )}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
-              <Bookmark className="offer" isFavorite={isFavorite} offerId={id}/>
+              <Bookmark className="offer" isFavorite={isFavorite} offerId={id} isAuth={isAuth}/>
             </div>
             <Rating
               rating={rating}

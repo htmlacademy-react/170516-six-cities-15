@@ -1,36 +1,34 @@
 import { useNavigate } from "react-router-dom";
-import {FC, memo, MouseEvent, useState} from 'react';
+import {FC, memo, MouseEvent} from 'react';
 import classNames from 'classnames';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
+import {useAppDispatch} from '../../app/app-store';
 import {Path} from "../../shared/config";
 import {PreviewCardProps} from "../../shared/types";
-import {getAuthCheckedStatus, VisuallyHidden} from "../../shared/utils";
-import {postFavoriteStatusAction} from "./api";
+import {VisuallyHidden} from "../../shared/utils";
+import {postFavoriteStatusAction} from "../../shared/api";
 
 type BookmarkType = {
   isFavorite: boolean;
   className?: string;
   offerId: PreviewCardProps['id'];
+  isAuth: boolean;
 }
 
 export const Bookmark:FC<BookmarkType> = memo(({
   isFavorite,
   className,
-  offerId
+  offerId,
+  isAuth
 }) => {
-  const isAuth = useAppSelector(getAuthCheckedStatus);
-  const [isFavorites, setFavorites] = useState(isFavorite);
-
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
   const bookmarkClass = classNames(`button ${className}__bookmark-button`, {
-    [`${className}__bookmark-button--active`]: isFavorites
+    [`${className}__bookmark-button--active`]: isFavorite
   });
 
   const handleBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(isAuth) {
-      setFavorites(((prevState) => !prevState));
 
       dispatch(postFavoriteStatusAction({
         id: offerId,

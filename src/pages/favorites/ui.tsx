@@ -34,7 +34,7 @@ export const Favorites = memo(() => {
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
             {Object.entries(favoritesByCity).map(([city, groupedFavorites]) => (
-              <li className="favorites__locations-items">
+              <li className="favorites__locations-items" key={city}>
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
                     <Link className="locations__item-link" to={Path.Main}>

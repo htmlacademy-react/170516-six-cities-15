@@ -3,6 +3,7 @@ import {CommentsProps} from './type';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 import {Status} from '../../shared/config';
 import {PreviewCardProps, OfferProp, TypeState} from '../../shared/types';
+import {postFavoriteStatusAction} from "../../shared/api";
 
 type InitialStateProps = {
   statusOffer: null | Status;
@@ -38,6 +39,13 @@ export const currentOfferSlice = createSlice({
     });
     builder.addCase(postReviewAction.fulfilled, (state, {payload}) => {
       state.comments.push(payload);
+    });
+    builder.addCase(postFavoriteStatusAction.fulfilled, (state, action) => {
+      const {isFavorite} = action.payload;
+
+      if (state.info) {
+        state.info.isFavorite = isFavorite;
+      }
     });
   }
 });

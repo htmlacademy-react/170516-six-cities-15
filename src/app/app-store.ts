@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {createAPI, redirect, requireAuthorizationSlice} from '../shared/utils';
+import {redirect} from '../shared/utils';
+import {createAPI, requireAuthorizationSlice} from "../shared/api";
 import {currentCitySlice} from '../entities/locations/model';
 import {offersSlice} from '../pages/main/model';
 import {currentOfferSlice} from '../pages/offer/model';

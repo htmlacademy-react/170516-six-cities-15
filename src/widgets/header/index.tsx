@@ -2,7 +2,8 @@ import {FC, memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {logoutAction, getAuthCheckedStatus} from '../../shared/utils';
+import {getAuthCheckedStatus} from '../../shared/utils';
+import {logoutAction} from "../../shared/api";
 
 type HeaderProps = {
   showRightContent?: boolean;

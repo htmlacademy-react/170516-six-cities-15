@@ -13,7 +13,6 @@ type BookmarkType = {
   offerId: PreviewCardProps['id'];
 }
 
-//TODO: Проблема синхронизации
 export const Bookmark:FC<BookmarkType> = memo(({
   isFavorite,
   className,
@@ -35,7 +34,7 @@ export const Bookmark:FC<BookmarkType> = memo(({
 
       dispatch(postFavoriteStatusAction({
         id: offerId,
-        status: Number(!isFavorites),
+        status: Number(!isFavorite),
       }));
     } else {
       navigation(Path.Login);

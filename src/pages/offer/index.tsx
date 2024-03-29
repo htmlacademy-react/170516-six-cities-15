@@ -128,6 +128,9 @@ export const Offer = () => {
                 rating={elem.rating}
                 isPremium={elem.isPremium}
                 isFavorite={elem.isFavorite}
+                btnBookmark={
+                  <Bookmark className='place-card' isFavorite={elem.isFavorite} offerId={elem.id} isAuth={isAuth} />
+                }
               />
             ))}
           </div>

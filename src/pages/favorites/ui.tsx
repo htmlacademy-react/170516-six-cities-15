@@ -5,6 +5,7 @@ import {PreviewCardProps} from "../../shared/types";
 import {PlaceCard} from '../../entities';
 import {useAppDispatch, useAppSelector} from "../../app/app-store";
 import {fetchFavoriteAction, getFavoritesOffers} from "./model";
+import {Bookmark} from "../../feature";
 
 function getFavoritesByCity(favorites: PreviewCardProps[]){
   return favorites.reduce<{[key: string]: PreviewCardProps[]}>((acc, curr) => {
@@ -57,6 +58,9 @@ export const Favorites = memo(() => {
                       isFavorite={isFavorite}
                       widthImg={150}
                       heightImg={110}
+                      btnBookmark={
+                        <Bookmark className='place-card' isFavorite={isFavorite} offerId={id} isAuth />
+                      }
                     />
                   ))}
                 </div>

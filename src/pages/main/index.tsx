@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Places, CitiesEmpty} from './ui';
 import {fetchOffersAction} from './api';
-import {VisuallyHidden} from '../../shared/utils';
+import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
 import {PreviewCardProps} from '../../shared/types';
 import {Status} from '../../shared/config';
 import {Loader, Map} from '../../shared';
@@ -15,6 +15,7 @@ export const Main = () => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
   const currentCity = useAppSelector((state) => state.currentCity);
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   const {offerList, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
@@ -50,7 +51,8 @@ export const Main = () => {
               numberPlacesToStay={filterOffers.length}
               nameCity={currentCity}
               onListItemHover={handleListItemHover}
-              listCities={filterOffers}
+              offers={filterOffers}
+              isAuth={isAuth}
             /> : <CitiesEmpty/>}
           <div className="cities__right-section">
             {hasPlaces &&

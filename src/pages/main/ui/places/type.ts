@@ -5,5 +5,5 @@ export type PlacesProps = {
   numberPlacesToStay: number;
   nameCity: CityName;
   onListItemHover?: (id: string) => void;
-  listCities: PreviewCardProps[];
+  offers: PreviewCardProps[];
 };

@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ExtraType, PreviewCardProps, TypeState} from "../../shared/types";
 import {Status} from "../../shared/config";
+import {postFavoriteStatusAction} from "../../shared/api";
 
 type InitialState = {
   list: PreviewCardProps[],
@@ -32,6 +33,20 @@ export const favoriteSlice = createSlice({
       .addCase(fetchFavoriteAction.fulfilled, (state, action) => {
         state.list = action.payload;
       })
+      builder.addCase(postFavoriteStatusAction.fulfilled, (state, action) => {
+        const {id, isFavorite} = action.payload;
+
+        state.list = state.list.map((offer) => {
+          if (offer.id === id) {
+            return {
+              ...offer,
+              isFavorite
+            };
+          }
+
+          return offer;
+        });
+      });
   }
 });
 

@@ -1,11 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {redirect} from '../shared/utils';
-import {createAPI, requireAuthorizationSlice} from "../shared/api";
+import {createAPI, requireAuthorizationSlice} from '../shared/api';
 import {currentCitySlice} from '../entities/locations/model';
 import {offersSlice} from '../pages/main/model';
 import {currentOfferSlice} from '../pages/offer/model';
-import {favoriteSlice} from "../pages/favorites/model";
+import {favoriteSlice} from '../pages/favorites/model';
 
 export const api = createAPI();
 

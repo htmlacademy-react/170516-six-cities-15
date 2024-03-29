@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import {FC, memo, MouseEvent} from 'react';
+import { useNavigate } from 'react-router-dom';
+import {memo, MouseEvent} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch} from '../../app/app-store';
-import {Path} from "../../shared/config";
-import {PreviewCardProps} from "../../shared/types";
-import {VisuallyHidden} from "../../shared/utils";
-import {postFavoriteStatusAction} from "../../shared/api";
+import {Path} from '../../shared/config';
+import {PreviewCardProps} from '../../shared/types';
+import {VisuallyHidden} from '../../shared/utils';
+import {postFavoriteStatusAction} from '../../shared/api';
 
 type BookmarkType = {
   isFavorite: boolean;
@@ -14,12 +14,7 @@ type BookmarkType = {
   isAuth: boolean;
 }
 
-export const Bookmark:FC<BookmarkType> = memo(({
-  isFavorite,
-  className,
-  offerId,
-  isAuth
-}) => {
+export const Bookmark = memo(({isFavorite, className, offerId, isAuth}: BookmarkType) => {
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
   const bookmarkClass = classNames(`button ${className}__bookmark-button`, {
@@ -48,3 +43,5 @@ export const Bookmark:FC<BookmarkType> = memo(({
     </button>
   );
 });
+
+Bookmark.displayName = 'Bookmark';

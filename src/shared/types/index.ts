@@ -1,6 +1,6 @@
 import {AxiosInstance} from 'axios';
 import {appStore} from '../../app/app-store';
-import {CityName} from "../config";
+import {CityName} from '../config';
 
 type TypeAppDispatch = typeof appStore.dispatch;
 export type TypeState = ReturnType<typeof appStore.getState>;

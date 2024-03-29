@@ -43,4 +43,4 @@ export const Reviews:FC<ReviewsProps> = ({
       {children}
     </section>
   );
-}
+};

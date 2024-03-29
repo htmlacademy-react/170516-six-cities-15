@@ -1,11 +1,11 @@
 import {memo, useEffect} from 'react';
-import {Link} from "react-router-dom";
-import {Path} from "../../shared/config";
-import {PreviewCardProps} from "../../shared/types";
+import {Link} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
+import {Path} from '../../shared/config';
+import {PreviewCardProps} from '../../shared/types';
 import {PlaceCard} from '../../entities';
-import {useAppDispatch, useAppSelector} from "../../app/app-store";
-import {fetchFavoriteAction, getFavoritesOffers} from "./model";
-import {Bookmark} from "../../feature";
+import {Bookmark} from '../../feature';
+import {fetchFavoriteAction, getFavoritesOffers} from './model';
 
 function getFavoritesByCity(favorites: PreviewCardProps[]){
   return favorites.reduce<{[key: string]: PreviewCardProps[]}>((acc, curr) => {
@@ -27,7 +27,7 @@ export const Favorites = memo(() => {
 
   useEffect(() => {
     dispatch(fetchFavoriteAction());
-  }, [dispatch])
+  }, [dispatch]);
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
@@ -55,7 +55,6 @@ export const Favorites = memo(() => {
                       price={price}
                       rating={rating}
                       isPremium={isPremium}
-                      isFavorite={isFavorite}
                       widthImg={150}
                       heightImg={110}
                       btnBookmark={
@@ -70,7 +69,7 @@ export const Favorites = memo(() => {
         </section>
       </div>
     </main>
-  )
+  );
 });
 
 Favorites.displayName = 'Favorites';

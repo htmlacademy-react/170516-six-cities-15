@@ -14,7 +14,6 @@ export const PlaceCard:FC<CardProps> = ({
   title,
   type,
   price,
-  isFavorite,
   isPremium,
   rating,
   previewImage,

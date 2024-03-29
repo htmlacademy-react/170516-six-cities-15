@@ -1,15 +1,15 @@
-import {FC, memo} from 'react';
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
 import {getAuthCheckedStatus} from '../../shared/utils';
-import {logoutAction} from "../../shared/api";
+import {logoutAction} from '../../shared/api';
 
 type HeaderProps = {
   showRightContent?: boolean;
 }
 
-export const Header:FC<HeaderProps> = memo(({showRightContent}) => {
+export const Header = memo(({showRightContent}: HeaderProps) => {
   const user = useAppSelector((state) => state.client.user);
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const dispatch = useAppDispatch();

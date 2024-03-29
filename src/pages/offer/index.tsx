@@ -1,14 +1,14 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {getAuthCheckedStatus} from "../../shared/utils";
-import {OfferProp} from "../../shared/types";
+import {getAuthCheckedStatus} from '../../shared/utils';
+import {OfferProp} from '../../shared/types';
 import {Loader, Map, Rating, User} from '../../shared';
 import {Bookmark} from '../../feature';
 import {PlaceCard} from '../../entities';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {getComments, getNearPlaces, getOffer} from "./model";
-import {ReviewForm, Reviews} from "./ui";
+import {getComments, getNearPlaces, getOffer} from './model';
+import {ReviewForm, Reviews} from './ui';
 
 export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
@@ -104,9 +104,7 @@ export const Offer = () => {
               </div>
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
-              {(isAuth && !!offerId) &&
-                <ReviewForm id={offerId}/>
-              }
+              {(isAuth && !!offerId) && <ReviewForm id={offerId}/>}
             </Reviews>
           </div>
         </div>
@@ -127,7 +125,6 @@ export const Offer = () => {
                 price={elem.price}
                 rating={elem.rating}
                 isPremium={elem.isPremium}
-                isFavorite={elem.isFavorite}
                 btnBookmark={
                   <Bookmark className='place-card' isFavorite={elem.isFavorite} offerId={elem.id} isAuth={isAuth} />
                 }

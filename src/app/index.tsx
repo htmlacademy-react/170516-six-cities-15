@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {appStore} from './app-store';
 import {AppRouter} from './app-router';
 import {browserHistory, HistoryRouter} from '../shared/utils';
-import {checkAuthAction} from "../shared/api";
+import {checkAuthAction} from '../shared/api';
 
 appStore.dispatch(checkAuthAction());
 

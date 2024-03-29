@@ -47,3 +47,12 @@ export type UserProps= {
   name: string;
   token: string;
 };
+
+export type OfferProp = PreviewCardProps & {
+  bedrooms: number;
+  description: string;
+  host: UserProps;
+  images: string[];
+  maxAdults: number;
+  goods: string[];
+}

@@ -1,8 +1,8 @@
 import {createSelector, createSlice} from '@reduxjs/toolkit';
-import {CommentsProps, OfferProp} from './type';
+import {CommentsProps} from './type';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 import {Status} from '../../shared/config';
-import {PreviewCardProps, TypeState} from '../../shared/types';
+import {PreviewCardProps, OfferProp, TypeState} from '../../shared/types';
 
 type InitialStateProps = {
   statusOffer: null | Status;

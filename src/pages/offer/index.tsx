@@ -2,11 +2,13 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {getAuthCheckedStatus} from "../../shared/utils";
-import {Bookmark, Loader, Map, Rating, User} from '../../shared';
+import {OfferProp} from "../../shared/types";
+import {Loader, Map, Rating, User} from '../../shared';
+import {Bookmark} from '../../feature';
 import {PlaceCard} from '../../entities';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {getNearPlaces, getOffer, getComments} from "./model";
-import {Reviews, ReviewForm} from "./ui";
+import {getComments, getNearPlaces, getOffer} from "./model";
+import {ReviewForm, Reviews} from "./ui";
 
 export const Offer = () => {
   const MAX_NEAR_PLACES = 3;
@@ -14,7 +16,7 @@ export const Offer = () => {
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const currentOffersInfo = useAppSelector(getOffer)
+  const currentOffersInfo = useAppSelector(getOffer);
   const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
   const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
 
@@ -24,7 +26,7 @@ export const Offer = () => {
       dispatch(fetchNearbyAction(offerId));
       dispatch(fetchCommentsAction(offerId));
     }
-  }, [dispatch]);
+  }, [offerId, dispatch]);
 
   if (!currentOffersInfo) {
     return (
@@ -34,7 +36,7 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffersInfo;
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = currentOffersInfo;
   const pointsNearPlaces = [...nearPlaces, currentOffersInfo];
 
   return (
@@ -58,7 +60,7 @@ export const Offer = () => {
             )}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
-              <Bookmark className="offer" isFavorite={isFavorite}/>
+              <Bookmark className="offer" isFavorite={isFavorite} offerId={id}/>
             </div>
             <Rating
               rating={rating}

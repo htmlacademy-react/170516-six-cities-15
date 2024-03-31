@@ -20,7 +20,7 @@ export const Main = () => {
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewOfferProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = list?.filter(({city}) => city?.name === currentCity);
+  const filterOffers = list.filter(({city}) => city.name === currentCity);
   const hasPlaces: boolean = !!list.length;
 
   const classNamePage = classNames(
@@ -58,7 +58,7 @@ export const Main = () => {
             {hasPlaces &&
               <Map
                 className="cities__map"
-                location={list[0].city}
+                city={filterOffers[0].city}
                 points={filterOffers}
                 selectedPoint={selectedPoint}
               />}

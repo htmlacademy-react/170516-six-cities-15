@@ -107,7 +107,7 @@ export const Offer = () => {
             </Reviews>
           </div>
         </div>
-        <Map className="offer__map" location={city} points={pointsNearPlaces} selectedPoint={id}/>
+        <Map className="offer__map" city={city} points={pointsNearPlaces} selectedPoint={id}/>
       </section>
       <div className="container">
         <section className="near-places places">

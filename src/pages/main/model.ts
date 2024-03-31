@@ -1,11 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchOffersAction} from './api';
 import {Status} from '../../shared/config';
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewOfferProps} from '../../shared/types';
 import {postFavoriteStatusAction} from '../../shared/api';
 
 type InitialStateProps = {
-  offerList: PreviewCardProps[];
+  offerList: PreviewOfferProps[];
   status: null | string;
 };
 

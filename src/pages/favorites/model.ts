@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {ExtraType, PreviewCardProps, TypeState} from '../../shared/types';
+import {ExtraType, PreviewOfferProps, TypeState} from '../../shared/types';
 import {Status} from '../../shared/config';
 import {postFavoriteStatusAction} from '../../shared/api';
 
 type InitialState = {
-  list: PreviewCardProps[];
+  list: PreviewOfferProps[];
   status: Status | null;
 }
 
@@ -13,10 +13,10 @@ const initialState:InitialState = {
   status: null
 };
 
-export const fetchFavoriteAction = createAsyncThunk<PreviewCardProps[], undefined, ExtraType>(
+export const fetchFavoriteAction = createAsyncThunk<PreviewOfferProps[], undefined, ExtraType>(
   'favorite/fetchOffers',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<PreviewCardProps[]>('/favorite');
+    const {data} = await api.get<PreviewOfferProps[]>('/favorite');
     return data;
   },
 );
@@ -49,6 +49,6 @@ export const favoriteSlice = createSlice({
   }
 });
 
-export const getFavoritesOffers = (state: TypeState): PreviewCardProps[] => state.favorite.list;
+export const getFavoritesOffers = (state: TypeState): PreviewOfferProps[] => state.favorite.list;
 
 export default favoriteSlice.reducer;

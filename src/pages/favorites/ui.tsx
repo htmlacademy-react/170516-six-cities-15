@@ -2,13 +2,13 @@ import {memo, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewOfferProps} from '../../shared/types';
 import {PlaceCard} from '../../entities';
 import {Bookmark} from '../../feature';
 import {fetchFavoriteAction, getFavoritesOffers} from './model';
 
-function getFavoritesByCity(favorites: PreviewCardProps[]){
-  return favorites.reduce<{[key: string]: PreviewCardProps[]}>((acc, curr) => {
+function getFavoritesByCity(favorites: PreviewOfferProps[]){
+  return favorites.reduce<{[key: string]: PreviewOfferProps[]}>((acc, curr) => {
     const city = curr.city.name;
 
     if(!(city in acc)) {

@@ -14,8 +14,8 @@ export const Map:FC<MapProps> = ({className, location, points, selectedPoint}) =
       points.forEach((elem) =>
         leaflet
           .marker({
-            lat: elem.location?.latitude ?? 0,
-            lng: elem.location?.longitude ?? 0,
+            lat: elem.location.latitude,
+            lng: elem.location.longitude,
           }, {
             icon: (elem.id === selectedPoint) ? leaflet.icon({iconUrl: MAIN_PIN}) : leaflet.icon({iconUrl: PIN}),
           }).addTo(map)

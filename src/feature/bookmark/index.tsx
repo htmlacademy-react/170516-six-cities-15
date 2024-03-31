@@ -3,14 +3,14 @@ import {memo, MouseEvent} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewOfferProps} from '../../shared/types';
 import {VisuallyHidden} from '../../shared/utils';
 import {postFavoriteStatusAction} from '../../shared/api';
 
 type BookmarkType = {
   isFavorite: boolean;
   className?: string;
-  offerId: PreviewCardProps['id'];
+  offerId: PreviewOfferProps['id'];
   isAuth: boolean;
 }
 

@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Places, CitiesEmpty} from './ui';
 import {fetchOffersAction} from './api';
 import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewOfferProps} from '../../shared/types';
 import {Status} from '../../shared/config';
 import {Loader, Map} from '../../shared';
 import {Locations} from '../../entities';
@@ -19,7 +19,7 @@ export const Main = () => {
   const {offerList, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
-  const handleListItemHover = (selectedCardId: PreviewCardProps['id']) => setSelectedPoint(selectedCardId);
+  const handleListItemHover = (selectedCardId: PreviewOfferProps['id']) => setSelectedPoint(selectedCardId);
   const filterOffers = offerList?.filter(({city}) => city?.name === currentCity);
   const hasPlaces: boolean = !!offerList.length;
 

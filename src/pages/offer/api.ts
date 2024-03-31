@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {CommentsProps} from './type';
-import {ExtraType, OfferProp, PreviewCardProps} from '../../shared/types';
+import {ExtraType, OfferProp, PreviewOfferProps} from '../../shared/types';
 
 type PostCommentsProps = {
   id: string;
@@ -13,8 +13,8 @@ export const fetchCurrentOfferAction = createAsyncThunk<OfferProp, OfferProp['id
   return data;
 });
 
-export const fetchNearbyAction = createAsyncThunk<PreviewCardProps[], PreviewCardProps['id'], ExtraType>('offers/fetchNearby', async (id, {extra: api }) => {
-  const { data } = await api.get<PreviewCardProps[]>(`/offers/${id}/nearby`);
+export const fetchNearbyAction = createAsyncThunk<PreviewOfferProps[], PreviewOfferProps['id'], ExtraType>('offers/fetchNearby', async (id, {extra: api }) => {
+  const { data } = await api.get<PreviewOfferProps[]>(`/offers/${id}/nearby`);
   return data;
 });
 

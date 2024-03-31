@@ -26,18 +26,21 @@ export type PreviewCardProps = {
   title: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
-  city?: {
-    name: CityName;
-    location: LocationProps;
-  };
-  location?: LocationProps;
-  isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;
   className?: string;
   widthImg?: number;
   heightImg?: number;
+}
+
+export type PreviewOfferProps = PreviewCardProps & {
+  city: {
+    name: CityName;
+    location: LocationProps;
+  };
+  location: LocationProps;
+  isFavorite: boolean;
 }
 
 export type UserProps= {
@@ -48,7 +51,7 @@ export type UserProps= {
   token: string;
 };
 
-export type OfferProp = PreviewCardProps & {
+export type OfferProp = PreviewOfferProps & {
   bedrooms: number;
   description: string;
   host: UserProps;

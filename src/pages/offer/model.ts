@@ -2,13 +2,13 @@ import {createSelector, createSlice} from '@reduxjs/toolkit';
 import {CommentsProps} from './type';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 import {Status} from '../../shared/config';
-import {PreviewCardProps, OfferProp, TypeState} from '../../shared/types';
+import {PreviewOfferProps, OfferProp, TypeState} from '../../shared/types';
 import {postFavoriteStatusAction} from '../../shared/api';
 
 type InitialStateProps = {
   statusOffer: null | Status;
   info: null | OfferProp;
-  nearPlaces: PreviewCardProps[];
+  nearPlaces: PreviewOfferProps[];
   comments: CommentsProps[];
 }
 

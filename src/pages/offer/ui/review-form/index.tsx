@@ -15,8 +15,6 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
     isValid: false,
   });
 
-
-
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(

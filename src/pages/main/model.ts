@@ -2,17 +2,17 @@ import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
 import {PreviewOfferProps} from '@/shared/types';
 import {fetchFavoriteAction} from '@/shared/api';
-import {postFavoriteStatusAction} from "@/feature";
+import {postFavoriteStatusAction} from '@/feature';
 import {fetchOffersAction} from './api';
 
 type InitialStateProps = {
-  offerList: PreviewOfferProps[];
+  list: PreviewOfferProps[];
   status: null | string;
   favorites: PreviewOfferProps[];
 };
 
 const initialState: InitialStateProps = {
-  offerList: [],
+  list: [],
   status: null,
   favorites: [],
 };
@@ -24,7 +24,7 @@ export const offersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchOffersAction.fulfilled, (state, {payload}) => {
       state.status = Status.Resolved;
-      state.offerList = payload;
+      state.list = payload;
     });
     builder.addCase(fetchOffersAction.pending, (state) => {
       state.status = Status.Loading;
@@ -35,7 +35,7 @@ export const offersSlice = createSlice({
     builder.addCase(postFavoriteStatusAction.fulfilled, (state, action) => {
       const {id, isFavorite} = action.payload;
 
-      state.offerList = state.offerList.map((offer) => {
+      state.list = state.list.map((offer) => {
         if (offer.id === id) {
           return {
             ...offer,

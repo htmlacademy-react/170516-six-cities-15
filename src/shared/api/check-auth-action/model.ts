@@ -13,8 +13,8 @@ const initialState: InitialStateProp = {
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
-export const requireAuthorizationSlice = createSlice({
-  name: 'requireAuthorizationSlice',
+export const clientSlice = createSlice({
+  name: 'client',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -37,4 +37,4 @@ export const requireAuthorizationSlice = createSlice({
   }
 });
 
-export default requireAuthorizationSlice.reducer;
+export default clientSlice.reducer;

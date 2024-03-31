@@ -15,7 +15,7 @@ export const Offer = () => {
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const currentOffersInfo = useAppSelector(getOffer);
+  const offer = useAppSelector(getOffer);
   const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
   const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
 
@@ -27,7 +27,7 @@ export const Offer = () => {
     }
   }, [offerId, dispatch]);
 
-  if (!currentOffersInfo) {
+  if (!offer) {
     return (
       <div className="offer__gallery">
         <Loader/>
@@ -35,8 +35,8 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = currentOffersInfo;
-  const pointsNearPlaces = [...nearPlaces, currentOffersInfo];
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = offer;
+  const pointsNearPlaces = [...nearPlaces, offer];
 
   return (
     <main className="page__main page__main--offer">

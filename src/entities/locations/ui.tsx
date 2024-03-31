@@ -2,7 +2,7 @@ import {FC} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch} from '@/app/app-store';
 import {CityName} from '@/shared/config';
-import {setCurrentCity} from './model';
+import {setCity} from './model';
 
 type LocationProps = {
   currentCity: `${CityName}`;
@@ -11,7 +11,7 @@ type LocationProps = {
 export const Locations:FC<LocationProps> = ({currentCity}) => {
   const dispatch = useAppDispatch();
   //TODO: см. bindActionCreators
-  const handleCityClick = (city: CityName) => () => dispatch(setCurrentCity(city));
+  const handleCityClick = (city: CityName) => () => dispatch(setCity(city));
   const CityNameValues: CityName[] = Object.values(CityName);
 
   const locationsItemClass = (city: string) => classNames(

@@ -15,13 +15,13 @@ export const Main = () => {
   useEffect(() => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
-  const currentCity = useAppSelector((state) => state.currentCity);
-  const {offerList, status} = useAppSelector((state) => state.offers);
+  const currentCity = useAppSelector((state) => state.city);
+  const {list, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewOfferProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = offerList?.filter(({city}) => city?.name === currentCity);
-  const hasPlaces: boolean = !!offerList.length;
+  const filterOffers = list?.filter(({city}) => city?.name === currentCity);
+  const hasPlaces: boolean = !!list.length;
 
   const classNamePage = classNames(
     'page__main page__main--index',
@@ -58,7 +58,7 @@ export const Main = () => {
             {hasPlaces &&
               <Map
                 className="cities__map"
-                location={offerList[0].city}
+                location={list[0].city}
                 points={filterOffers}
                 selectedPoint={selectedPoint}
               />}

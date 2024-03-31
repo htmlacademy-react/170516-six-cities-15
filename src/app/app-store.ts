@@ -5,7 +5,6 @@ import {createAPI, requireAuthorizationSlice} from '../shared/api';
 import {currentCitySlice} from '../entities/locations/model';
 import {offersSlice} from '../pages/main/model';
 import {currentOfferSlice} from '../pages/offer/model';
-import {favoriteSlice} from '../pages/favorites/model';
 
 export const api = createAPI();
 
@@ -15,7 +14,6 @@ export const appStore = configureStore({
     offers: offersSlice.reducer,
     client: requireAuthorizationSlice.reducer,
     currentOffers: currentOfferSlice.reducer,
-    favorite: favoriteSlice.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {

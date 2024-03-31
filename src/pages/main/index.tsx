@@ -1,21 +1,21 @@
 import {useEffect, useState} from 'react';
 import classNames from 'classnames';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {Places, CitiesEmpty} from './ui';
+import {useAppDispatch, useAppSelector} from '@/app/app-store';
+import {getAuthCheckedStatus, VisuallyHidden} from '@/shared/utils';
+import {PreviewOfferProps} from '@/shared/types';
+import {Status} from '@/shared/config';
+import {Loader, Map} from '@/shared';
+import {Locations} from '@/entities';
 import {fetchOffersAction} from './api';
-import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
-import {PreviewOfferProps} from '../../shared/types';
-import {Status} from '../../shared/config';
-import {Loader, Map} from '../../shared';
-import {Locations} from '../../entities';
+import {Places, CitiesEmpty} from './ui';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   useEffect(() => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
   const currentCity = useAppSelector((state) => state.currentCity);
-  const isAuth = useAppSelector(getAuthCheckedStatus);
   const {offerList, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();

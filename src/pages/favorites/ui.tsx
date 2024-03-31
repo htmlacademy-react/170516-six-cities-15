@@ -1,11 +1,10 @@
-import {memo, useEffect} from 'react';
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {Path} from '../../shared/config';
-import {PreviewOfferProps} from '../../shared/types';
-import {PlaceCard} from '../../entities';
-import {Bookmark} from '../../feature';
-import {fetchFavoriteAction, getFavoritesOffers} from './model';
+import {useAppSelector} from '@/app/app-store';
+import {Path} from '@/shared/config';
+import {PreviewOfferProps, TypeState} from '@/shared/types';
+import {PlaceCard} from '@/entities';
+import {Bookmark} from '@/feature';
 
 function getFavoritesByCity(favorites: PreviewOfferProps[]){
   return favorites.reduce<{[key: string]: PreviewOfferProps[]}>((acc, curr) => {
@@ -21,13 +20,9 @@ function getFavoritesByCity(favorites: PreviewOfferProps[]){
 }
 
 export const Favorites = memo(() => {
-  const dispatch = useAppDispatch();
-  const favorites = useAppSelector(getFavoritesOffers);
+  const favorites = useAppSelector( (state: TypeState): PreviewOfferProps[] => state.offers.favorites);
   const favoritesByCity = getFavoritesByCity(favorites);
 
-  useEffect(() => {
-    dispatch(fetchFavoriteAction());
-  }, [dispatch]);
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">

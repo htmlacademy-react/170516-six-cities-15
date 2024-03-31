@@ -5,7 +5,7 @@ import {useAppDispatch} from '@/app/app-store';
 import {Path} from '@/shared/config';
 import {PreviewOfferProps} from '@/shared/types';
 import {VisuallyHidden} from '@/shared/utils';
-import {postFavoriteStatusAction} from '@/shared/api';
+import {postFavoriteStatusAction} from './modal';
 
 type BookmarkType = {
   isFavorite: boolean;

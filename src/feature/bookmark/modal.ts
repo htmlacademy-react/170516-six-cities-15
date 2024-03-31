@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {ExtraType, OfferProp} from '../../types';
+import {ExtraType, OfferProp} from '@/shared/types';
 
 type FavoriteData = {
   id: string;

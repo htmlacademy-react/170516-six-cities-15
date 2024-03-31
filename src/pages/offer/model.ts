@@ -1,7 +1,7 @@
 import {createSelector, createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
 import {PreviewOfferProps, OfferProp, TypeState} from '@/shared/types';
-import {postFavoriteStatusAction} from '@/shared/api';
+import {postFavoriteStatusAction} from '@/feature';
 import {CommentsProps} from './type';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
 

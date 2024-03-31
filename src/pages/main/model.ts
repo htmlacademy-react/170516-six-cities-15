@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
 import {PreviewOfferProps} from '@/shared/types';
-import {fetchFavoriteAction, postFavoriteStatusAction} from '@/shared/api';
+import {fetchFavoriteAction} from '@/shared/api';
+import {postFavoriteStatusAction} from "@/feature";
 import {fetchOffersAction} from './api';
 
 type InitialStateProps = {

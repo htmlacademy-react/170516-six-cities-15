@@ -1,4 +1,4 @@
-import {UserProps} from '../../shared/types';
+import {UserProps} from '@/shared/types';
 
 export type CommentsProps = {
   id: string;

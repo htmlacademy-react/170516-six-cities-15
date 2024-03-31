@@ -1,6 +1,6 @@
 import {ChangeEvent, useState, Fragment, FormEvent} from 'react';
-import {useAppDispatch} from '../../../../app/app-store';
-import {ratingReview, ReviewLength} from "../../const";
+import {useAppDispatch} from '@/app/app-store';
+import {ratingReview, ReviewLength} from '../../const';
 import {postReviewAction} from '../../api';
 
 type RatingFormProps = {

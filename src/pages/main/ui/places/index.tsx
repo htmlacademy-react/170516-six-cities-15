@@ -1,10 +1,10 @@
 import {FC, useState} from 'react';
+import {VisuallyHidden} from '@/shared/utils';
+import {PlaceCard} from '@/entities';
+import {Bookmark} from '@/feature';
+import {SortingOptions, sortByType, SortingOptionsValuesType} from '@/pages/main/utils';
 import {PlacesProps} from './type';
-import {sortByType, SortingOptions, SortingOptionsValuesType} from '../../utils';
 import {Sorting} from '../sorting';
-import {VisuallyHidden} from '../../../../shared/utils';
-import {PlaceCard} from '../../../../entities';
-import {Bookmark} from '../../../../feature';
 
 export const Places:FC<PlacesProps> = ({numberPlacesToStay, nameCity, onListItemHover, offers, isAuth}) => {
   const [activeSorting, setActiveSorting] = useState<SortingOptionsValuesType>(SortingOptions.Popular);

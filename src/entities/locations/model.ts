@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CityName} from '../../shared/config';
+import {CityName} from '@/shared/config';
 
 export const currentCitySlice = createSlice({
   name: 'currentCitySlice',

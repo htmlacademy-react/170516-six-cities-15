@@ -1,4 +1,4 @@
-import {PreviewOfferProps} from '../../shared/types';
+import {PreviewOfferProps} from '@/shared/types';
 
 export enum SortingOptions {
   Popular = 'Popular',

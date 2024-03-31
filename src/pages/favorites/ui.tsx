@@ -5,22 +5,10 @@ import {Path} from '@/shared/config';
 import {PreviewOfferProps, TypeState} from '@/shared/types';
 import {PlaceCard} from '@/entities';
 import {Bookmark} from '@/feature';
-
-function getFavoritesByCity(favorites: PreviewOfferProps[]){
-  return favorites.reduce<{[key: string]: PreviewOfferProps[]}>((acc, curr) => {
-    const city = curr.city.name;
-
-    if(!(city in acc)) {
-      acc[city] = [];
-    }
-
-    acc[city].push(curr);
-    return acc;
-  }, {});
-}
+import {getFavoritesByCity} from './utils';
 
 export const Favorites = memo(() => {
-  const favorites = useAppSelector( (state: TypeState): PreviewOfferProps[] => state.offers.favorites);
+  const favorites = useAppSelector((state: TypeState): PreviewOfferProps[] => state.offers.favorites);
   const favoritesByCity = getFavoritesByCity(favorites);
 
   return (

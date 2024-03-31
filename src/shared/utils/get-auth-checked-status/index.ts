@@ -1,6 +1,6 @@
 import {createSelector} from '@reduxjs/toolkit';
-import {TypeState} from '../../types';
-import {AuthorizationStatus} from '../../config';
+import {TypeState} from '@/shared/types';
+import {AuthorizationStatus} from '@/shared/config';
 
 const getAuthStatus = (state: TypeState): AuthorizationStatus => (
   state.client.authorizationStatus

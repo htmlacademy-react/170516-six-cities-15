@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PromiseProps, UserProps} from '../../types';
-import {Path} from '../../config';
+import {PromiseProps, UserProps} from '@/shared/types';
+import {Path} from '@/shared/config';
 import {redirectToRoute} from '../../utils/redirect-to-route';
 import {token} from '../../utils/token';
 

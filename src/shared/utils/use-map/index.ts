@@ -1,7 +1,7 @@
 import leaflet, {Map} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useState, useRef} from 'react';
-import {PreviewOfferProps} from '../../types';
+import {PreviewOfferProps} from '@/shared/types';
 
 type MapRefProps = {
   current: HTMLElement | null;
@@ -15,10 +15,10 @@ export const useMap = (mapRef: MapRefProps, city: PreviewOfferProps['city']) => 
     if (!!mapRef.current && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city?.location.latitude,
-          lng: city?.location.longitude,
+          lat: city.location.latitude,
+          lng: city.location.longitude,
         },
-        zoom: city?.location.zoom,
+        zoom: city.location.zoom,
       });
 
       leaflet

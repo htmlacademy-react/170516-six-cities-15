@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import {memo, MouseEvent} from 'react';
 import classNames from 'classnames';
-import {useAppDispatch} from '../../app/app-store';
-import {Path} from '../../shared/config';
-import {PreviewOfferProps} from '../../shared/types';
-import {VisuallyHidden} from '../../shared/utils';
-import {postFavoriteStatusAction} from '../../shared/api';
+import {useAppDispatch} from '@/app/app-store';
+import {Path} from '@/shared/config';
+import {PreviewOfferProps} from '@/shared/types';
+import {VisuallyHidden} from '@/shared/utils';
+import {postFavoriteStatusAction} from '@/shared/api';
 
 type BookmarkType = {
   isFavorite: boolean;

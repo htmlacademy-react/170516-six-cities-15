@@ -1,4 +1,4 @@
-import {PreviewOfferProps} from '../../types';
+import {PreviewOfferProps} from '@/shared/types';
 
 export type MapProps = {
   points: PreviewOfferProps[];

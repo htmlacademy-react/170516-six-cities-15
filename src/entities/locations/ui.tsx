@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import classNames from 'classnames';
-import {useAppDispatch} from '../../app/app-store';
-import {CityName} from '../../shared/config';
+import {useAppDispatch} from '@/app/app-store';
+import {CityName} from '@/shared/config';
 import {setCurrentCity} from './model';
 
 type LocationProps = {

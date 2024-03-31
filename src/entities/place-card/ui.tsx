@@ -1,8 +1,8 @@
 import {FC, ReactNode} from 'react';
 import {Link} from 'react-router-dom';
-import {PreviewCardProps} from '../../shared/types';
-import {Path} from '../../shared/config';
-import {Rating} from '../../shared';
+import {PreviewCardProps} from '@/shared/types';
+import {Path} from '@/shared/config';
+import {Rating} from '@/shared';
 
 type CardProps = PreviewCardProps & {
   onListItemHover?: (id: string) => void;

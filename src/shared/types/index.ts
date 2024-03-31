@@ -2,7 +2,8 @@ import {AxiosInstance} from 'axios';
 import {appStore} from '@/app/app-store';
 import {CityName} from '../config';
 
-type TypeAppDispatch = typeof appStore.dispatch;
+export type State = ReturnType<typeof appStore.getState>;
+export type AppDispatch = typeof appStore.dispatch;
 export type TypeState = ReturnType<typeof appStore.getState>;
 
 export type ExtraType = {
@@ -10,7 +11,7 @@ export type ExtraType = {
 };
 
 export type PromiseProps = {
-  dispatch: TypeAppDispatch;
+  dispatch: AppDispatch;
   state: TypeState;
   extra: AxiosInstance;
 }

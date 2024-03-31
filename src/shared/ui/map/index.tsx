@@ -1,9 +1,9 @@
 import leaflet from 'leaflet';
 import {FC, useEffect, useRef} from 'react';
 import {MapProps} from './type';
-import MAIN_PIN from '../../assets/icons/main-pin.svg';
-import PIN from '../../assets/icons/pin.svg';
-import {useMap} from '../../utils';
+import MAIN_PIN from '@/shared/assets/icons/main-pin.svg';
+import PIN from '@/shared/assets/icons/pin.svg';
+import {useMap} from '@/shared/utils';
 
 export const Map:FC<MapProps> = ({className, location, points, selectedPoint}) => {
   const mapRef = useRef(null);

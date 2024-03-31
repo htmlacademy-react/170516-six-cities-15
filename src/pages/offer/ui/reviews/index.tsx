@@ -1,5 +1,5 @@
 import {FC, ReactNode} from 'react';
-import {Rating} from '../../../../shared';
+import {Rating} from '@/shared';
 import {CommentsProps} from '../../type';
 
 type ReviewsProps = {

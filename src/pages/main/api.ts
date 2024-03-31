@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {ExtraType, PreviewOfferProps} from '../../shared/types';
+import {ExtraType, PreviewOfferProps} from '@/shared/types';
 
 export const fetchOffersAction = createAsyncThunk<
   PreviewOfferProps[],

@@ -1,10 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {redirect} from '../shared/utils';
-import {createAPI, requireAuthorizationSlice} from '../shared/api';
-import {currentCitySlice} from '../entities/locations/model';
-import {offersSlice} from '../pages/main/model';
-import {currentOfferSlice} from '../pages/offer/model';
+import {redirect} from '@/shared/utils';
+import {createAPI, requireAuthorizationSlice} from '@/shared/api';
+import {AppDispatch, State} from '@/shared/types';
+//TODO: Не верный импорты modal.ts
+
+import {currentCitySlice} from '@/entities/locations/model';
+import {offersSlice} from '@/pages/main/model';
+import {currentOfferSlice} from '@/pages/offer/model';
 
 export const api = createAPI();
 
@@ -21,10 +24,6 @@ export const appStore = configureStore({
     },
   }).concat(redirect)
 });
-
-//TODO: Вынести в типы
-export type State = ReturnType<typeof appStore.getState>;
-export type AppDispatch = typeof appStore.dispatch;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;

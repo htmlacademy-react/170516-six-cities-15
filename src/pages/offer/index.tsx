@@ -6,13 +6,12 @@ import {OfferProp} from '../../shared/types';
 import {Loader, Map, Rating, User} from '../../shared';
 import {Bookmark} from '../../feature';
 import {PlaceCard} from '../../entities';
+import {MAX_NEAR_PLACES, MAX_COMMENTS} from "./const";
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
 import {getComments, getNearPlaces, getOffer} from './model';
 import {ReviewForm, Reviews} from './ui';
 
 export const Offer = () => {
-  const MAX_NEAR_PLACES = 3;
-  const MAX_COMMENTS = 10;
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);

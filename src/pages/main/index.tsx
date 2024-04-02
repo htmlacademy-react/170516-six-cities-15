@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
 import {getAuthCheckedStatus, VisuallyHidden} from '@/shared/utils';
 import {PreviewOfferProps} from '@/shared/types';
-import {Status} from '@/shared/config';
+import {CityName, Status} from '@/shared/config';
 import {Loader, Map} from '@/shared';
 import {Locations} from '@/entities';
 import {fetchOffersAction} from './api';
@@ -14,7 +14,7 @@ export const Main = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const locationParams = searchParams.get('location');
+  const locationParams = searchParams.get('location') ?? CityName.Paris;
 
   useEffect(() => {
     dispatch(fetchOffersAction());

@@ -3,7 +3,7 @@ import {Link, useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
 import {getAuthCheckedStatus} from '@/shared/utils';
 import {OfferProp} from '@/shared/types';
-import {Path, Status} from "@/shared/config";
+import {Path, Status} from '@/shared/config';
 import {Loader, Map, Rating, User} from '@/shared';
 import {Bookmark} from '@/feature';
 import {PlaceCard} from '@/entities';
@@ -46,7 +46,7 @@ export const Offer = () => {
           <Link className="login__submit form__submit button" to={Path.Main}>To main</Link>
         </div>
       </section>
-    )
+    );
   }
 
   const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = offer;

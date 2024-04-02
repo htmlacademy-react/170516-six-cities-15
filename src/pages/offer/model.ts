@@ -1,4 +1,4 @@
-import {createSelector, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
 import {PreviewOfferProps, OfferProp, TypeState} from '@/shared/types';
 import {postFavoriteStatusAction} from '@/feature';
@@ -7,6 +7,7 @@ import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postRev
 
 type InitialStateProps = {
   status: null | Status;
+  nearPlacesStatus: null | Status;
   info: null | OfferProp;
   nearPlaces: PreviewOfferProps[];
   comments: CommentsProps[];
@@ -14,6 +15,7 @@ type InitialStateProps = {
 
 const initialState: InitialStateProps = {
   status: null,
+  nearPlacesStatus: null,
   info: null,
   nearPlaces: [],
   comments: []
@@ -32,7 +34,11 @@ export const offerSlice = createSlice({
       state.status = Status.Loading;
     });
     builder.addCase(fetchNearbyAction.fulfilled, (state, {payload}) => {
+      state.nearPlacesStatus = Status.Resolved;
       state.nearPlaces = payload;
+    });
+    builder.addCase(fetchNearbyAction.pending, (state) => {
+      state.nearPlacesStatus = Status.Loading;
     });
     builder.addCase(fetchCommentsAction.fulfilled, (state, {payload}) => {
       state.comments = payload;
@@ -50,10 +56,9 @@ export const offerSlice = createSlice({
   }
 });
 
-export const getOffer = createSelector(
-  (state: TypeState) => state.offer.info,
-  (state) => state
-);
+export const getOffer = (state: TypeState) => state.offer.info;
+export const getStatus = (state: TypeState) => state.offer.status;
+export const getNearPlacesStatus = (state: TypeState) => state.offer.nearPlacesStatus;
 export const getNearPlaces = (state: TypeState) => state.offer.nearPlaces;
 export const getComments = (state: TypeState) => state.offer.comments;
 

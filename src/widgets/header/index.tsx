@@ -1,7 +1,7 @@
 import {memo, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
-import {Path, PATH_MAIN_PAGE} from '@/shared/config';
+import {Path} from '@/shared/config';
 import {getAuthCheckedStatus} from '@/shared/utils';
 import {fetchFavoriteAction, logoutAction} from '@/shared/api';
 
@@ -26,7 +26,7 @@ export const Header = memo(({showRightContent}: HeaderProps) => {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link className="header__logo-link" to={PATH_MAIN_PAGE}>
+            <Link className="header__logo-link" to={Path.Main}>
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>

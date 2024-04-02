@@ -1,14 +1,15 @@
 import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
 import {getAuthCheckedStatus} from '@/shared/utils';
 import {OfferProp} from '@/shared/types';
+import {Path, Status} from "@/shared/config";
 import {Loader, Map, Rating, User} from '@/shared';
 import {Bookmark} from '@/feature';
 import {PlaceCard} from '@/entities';
-import {MAX_NEAR_PLACES, MAX_COMMENTS} from './const';
+import {MaxQuantity} from './const';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {getComments, getNearPlaces, getOffer} from './model';
+import {getComments, getNearPlaces, getOffer, getStatus} from './model';
 import {ReviewForm, Reviews} from './ui';
 
 export const Offer = () => {
@@ -16,8 +17,10 @@ export const Offer = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const offer = useAppSelector(getOffer);
-  const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
-  const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
+  const status = useAppSelector(getStatus);
+  const nearPlaces = useAppSelector(getNearPlaces).slice(0, MaxQuantity.NearPlaces);
+  const currentOffersComments = useAppSelector(getComments).slice(0, MaxQuantity.Comments);
+  const isLoadingOffer = Status.Resolved !== status;
 
   useEffect(() => {
     if(offerId) {
@@ -27,12 +30,23 @@ export const Offer = () => {
     }
   }, [offerId, dispatch]);
 
-  if (!offer) {
+  if (isLoadingOffer) {
     return (
       <div className="offer__gallery">
         <Loader/>
       </div>
     );
+  }
+
+  if (!offer) {
+    return (
+      <section className="form container">
+        <h1 className="login__title">404. Page not found</h1>
+        <div className="login__form form">
+          <Link className="login__submit form__submit button" to={Path.Main}>To main</Link>
+        </div>
+      </section>
+    )
   }
 
   const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = offer;
@@ -43,7 +57,7 @@ export const Offer = () => {
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {images.map((text) => (
+            {images.slice(0, MaxQuantity.Images).map((text) => (
               <div className="offer__image-wrapper" key={text}>
                 <img className="offer__image" src={text} alt="Photo studio"/>
               </div>
@@ -64,6 +78,7 @@ export const Offer = () => {
             <Rating
               rating={rating}
               className="offer"
+              visibleNumberRating
             />
             <ul className="offer__features" style={{textTransform: 'capitalize'}}>
               <li className="offer__feature offer__feature--entire">
@@ -103,7 +118,7 @@ export const Offer = () => {
               </div>
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
-              {(isAuth && !!offerId) && <ReviewForm id={offerId}/>}
+              {isAuth && <ReviewForm id={id}/>}
             </Reviews>
           </div>
         </div>

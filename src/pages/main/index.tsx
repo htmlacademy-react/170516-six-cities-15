@@ -57,7 +57,7 @@ export const Main = () => {
               onListItemHover={handleListItemHover}
               offers={filterOffers}
               isAuth={isAuth}
-            /> : <CitiesEmpty/>}
+            /> : <CitiesEmpty currentCity={locationParams}/>}
           <div className="cities__right-section">
             {hasPlaces &&
               <Map

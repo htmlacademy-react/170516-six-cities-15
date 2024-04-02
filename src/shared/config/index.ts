@@ -26,3 +26,5 @@ export enum CityName {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf'
 }
+
+export const PATH_MAIN_PAGE = `${Path.Main}?location=${CityName.Paris}`;

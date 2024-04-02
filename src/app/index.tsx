@@ -7,6 +7,7 @@ import {AppRouter} from './app-router';
 import {browserHistory, HistoryRouter} from '@/shared/utils';
 import {checkAuthAction} from '@/shared/api';
 
+//TODO: Добавь в Хедер
 appStore.dispatch(checkAuthAction());
 
 export const App = () => (

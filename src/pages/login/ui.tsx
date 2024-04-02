@@ -1,7 +1,7 @@
 import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
-import {Path} from '@/shared/config';
+import {CityName, PATH_MAIN_PAGE} from '@/shared/config';
 import {getAuthCheckedStatus, VisuallyHidden} from '@/shared/utils';
 import {formFields} from './const';
 import {loginAction} from './model';
@@ -17,7 +17,7 @@ export const Login = memo(() => {
 
   if (isAuth) {
     return (
-      <Navigate to={Path.Main} />
+      <Navigate to={PATH_MAIN_PAGE} />
     );
   }
 
@@ -57,8 +57,8 @@ export const Login = memo(() => {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <Link className="locations__item-link" to={Path.Main}>
-              <span>Amsterdam</span>
+            <Link className="locations__item-link" to={PATH_MAIN_PAGE}>
+              <span>{CityName.Paris}</span>
             </Link>
           </div>
         </section>

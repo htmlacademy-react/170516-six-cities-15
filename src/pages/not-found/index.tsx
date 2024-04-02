@@ -1,6 +1,6 @@
 import {memo} from 'react';
 import {Link} from 'react-router-dom';
-import {Path} from '@/shared/config';
+import {PATH_MAIN_PAGE} from '@/shared/config';
 
 export const NotFound = memo(() => (
   <main className="page__main page__main--login">
@@ -8,7 +8,7 @@ export const NotFound = memo(() => (
       <section className="login form">
         <h1 className="login__title">404. Page not found</h1>
         <div className="login__form form">
-          <Link className="login__submit form__submit button" to={Path.Main}>To main</Link>
+          <Link className="login__submit form__submit button" to={PATH_MAIN_PAGE}>To main</Link>
         </div>
       </section>
     </div>

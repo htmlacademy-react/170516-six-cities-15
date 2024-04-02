@@ -21,7 +21,7 @@ export const Favorites = memo(() => {
               <li className="favorites__locations-items" key={city}>
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <Link className="locations__item-link" to={Path.Main}>
+                    <Link className="locations__item-link" to={`${Path.Main}?location=${city}`}>
                       <span>{city}</span>
                     </Link>
                   </div>

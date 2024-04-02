@@ -1,3 +1,4 @@
+import {useSearchParams} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
@@ -11,17 +12,20 @@ import {Places, CitiesEmpty} from './ui';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
   const isAuth = useAppSelector(getAuthCheckedStatus);
+  const locationParams = searchParams.get("location");
+
   useEffect(() => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
-  const currentCity = useAppSelector((state) => state.city);
+
   const {list, status} = useAppSelector((state) => state.offers);
   const isLoading = Status.Resolved !== status;
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewOfferProps['id']) => setSelectedPoint(selectedCardId);
-  const filterOffers = list.filter(({city}) => city.name === currentCity);
-  const hasPlaces: boolean = !!list.length;
+  const filterOffers = list.filter(({city}) => city.name === locationParams);
+  const hasPlaces: boolean = !!list.length && !!filterOffers.length;
 
   const classNamePage = classNames(
     'page__main page__main--index',
@@ -43,13 +47,13 @@ export const Main = () => {
   return (
     <main className={classNamePage}>
       <VisuallyHidden tagName="h1">Cities</VisuallyHidden>
-      <Locations currentCity={currentCity}/>
+      <Locations currentCity={locationParams}/>
       <div className="cities">
         <div className={classNameCities}>
           {hasPlaces ?
             <Places
               numberPlacesToStay={filterOffers.length}
-              nameCity={currentCity}
+              nameCity={locationParams}
               onListItemHover={handleListItemHover}
               offers={filterOffers}
               isAuth={isAuth}

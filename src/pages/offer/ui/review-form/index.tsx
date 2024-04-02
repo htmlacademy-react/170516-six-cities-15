@@ -1,5 +1,6 @@
 import {ChangeEvent, useState, Fragment, FormEvent} from 'react';
-import {useAppDispatch} from '../../../../app/app-store';
+import {useAppDispatch} from '@/app/app-store';
+import {ratingReview, ReviewLength} from '../../const';
 import {postReviewAction} from '../../api';
 
 type RatingFormProps = {
@@ -13,19 +14,6 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
     review: '',
     isValid: false,
   });
-
-  const ReviewLength = {
-    Max: 300,
-    Min: 50
-  };
-
-  const ratingReview = [
-    {title: 'perfect', value: '5'},
-    {title: 'good', value: '4'},
-    {title: 'not bad', value: '3'},
-    {title: 'badly', value: '2'},
-    {title: 'terribly', value: '1'},
-  ];
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

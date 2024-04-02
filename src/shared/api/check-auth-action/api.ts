@@ -1,8 +1,8 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PromiseProps, UserProps} from '../../types';
-import {Path} from '../../config';
-import {redirectToRoute} from '../redirect-to-route';
-import {token} from '../token';
+import {PromiseProps, UserProps} from '@/shared/types';
+import {Path} from '@/shared/config';
+import {redirectToRoute} from '../../utils/redirect-to-route';
+import {token} from '../../utils/token';
 
 export const checkAuthAction = createAsyncThunk<UserProps, undefined, PromiseProps>
 ('user/checkAuth', async (_arg, {extra: api }) => {

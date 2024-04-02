@@ -1,17 +1,25 @@
-import {FC, memo} from 'react';
+import {memo, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {Path} from '../../shared/config';
-import {logoutAction, getAuthCheckedStatus} from '../../shared/utils';
+import {useAppDispatch, useAppSelector} from '@/app/app-store';
+import {Path} from '@/shared/config';
+import {getAuthCheckedStatus} from '@/shared/utils';
+import {fetchFavoriteAction, logoutAction} from '@/shared/api';
 
 type HeaderProps = {
   showRightContent?: boolean;
 }
 
-export const Header:FC<HeaderProps> = memo(({showRightContent}) => {
+export const Header = memo(({showRightContent}: HeaderProps) => {
   const user = useAppSelector((state) => state.client.user);
   const isAuth = useAppSelector(getAuthCheckedStatus);
+  const numberAddedFavorites = useAppSelector((state) => state.offers.favorites).length;
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(isAuth) {
+      dispatch(fetchFavoriteAction());
+    }
+  }, [dispatch, isAuth]);
 
   return (
     <header className="header">
@@ -33,7 +41,7 @@ export const Header:FC<HeaderProps> = memo(({showRightContent}) => {
                           <img src={user?.avatarUrl} alt={user?.email}/>
                         </div>
                         <span className="header__user-name user__name">{user?.email}</span>
-                        <span className="header__favorite-count">3</span>
+                        {!!numberAddedFavorites && <span className="header__favorite-count">{numberAddedFavorites}</span>}
                       </Link>
                     </li>
                     <li className="header__nav-item">

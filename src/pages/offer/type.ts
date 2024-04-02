@@ -1,13 +1,4 @@
-import {PreviewCardProps, UserProps} from '../../shared/types';
-
-export type OfferProp = PreviewCardProps & {
-  bedrooms: number;
-  description: string;
-  host: UserProps;
-  images: string[];
-  maxAdults: number;
-  goods: string[];
-}
+import {UserProps} from '@/shared/types';
 
 export type CommentsProps = {
   id: string;

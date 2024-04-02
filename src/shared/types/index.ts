@@ -1,8 +1,9 @@
 import {AxiosInstance} from 'axios';
-import {appStore} from '../../app/app-store';
-import {CityName} from "../config";
+import {appStore} from '@/app/app-store';
+import {CityName} from '../config';
 
-type TypeAppDispatch = typeof appStore.dispatch;
+export type State = ReturnType<typeof appStore.getState>;
+export type AppDispatch = typeof appStore.dispatch;
 export type TypeState = ReturnType<typeof appStore.getState>;
 
 export type ExtraType = {
@@ -10,7 +11,7 @@ export type ExtraType = {
 };
 
 export type PromiseProps = {
-  dispatch: TypeAppDispatch;
+  dispatch: AppDispatch;
   state: TypeState;
   extra: AxiosInstance;
 }
@@ -26,18 +27,21 @@ export type PreviewCardProps = {
   title: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
-  city?: {
-    name: CityName;
-    location: LocationProps;
-  };
-  location?: LocationProps;
-  isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;
   className?: string;
   widthImg?: number;
   heightImg?: number;
+}
+
+export type PreviewOfferProps = PreviewCardProps & {
+  city: {
+    name: CityName;
+    location: LocationProps;
+  };
+  location: LocationProps;
+  isFavorite: boolean;
 }
 
 export type UserProps= {
@@ -47,3 +51,12 @@ export type UserProps= {
   name: string;
   token: string;
 };
+
+export type OfferProp = PreviewOfferProps & {
+  bedrooms: number;
+  description: string;
+  host: UserProps;
+  images: string[];
+  maxAdults: number;
+  goods: string[];
+}

@@ -1,8 +1,8 @@
 import {Route, Routes} from 'react-router-dom';
+import {Path} from '@/shared/config';
+import {Main, Login, Favorites, Offer, NotFound} from '@/pages';
 import {PrivateRoute} from './private-route';
 import {Layout} from './layout';
-import {Path} from '../shared/config';
-import {Main, Login, Favorites, Offer, NotFound} from '../pages';
 
 export const AppRouter = () => (
   <Routes>

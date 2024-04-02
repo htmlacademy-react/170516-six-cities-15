@@ -1,11 +1,12 @@
-import {FC} from 'react';
+import {FC, ReactNode} from 'react';
 import {Link} from 'react-router-dom';
-import {PreviewCardProps} from '../../shared/types';
-import {Path} from '../../shared/config';
-import {Bookmark, Rating} from '../../shared';
+import {PreviewCardProps} from '@/shared/types';
+import {Path} from '@/shared/config';
+import {Rating} from '@/shared';
 
 type CardProps = PreviewCardProps & {
   onListItemHover?: (id: string) => void;
+  btnBookmark: ReactNode;
 }
 
 export const PlaceCard:FC<CardProps> = ({
@@ -13,7 +14,6 @@ export const PlaceCard:FC<CardProps> = ({
   title,
   type,
   price,
-  isFavorite,
   isPremium,
   rating,
   previewImage,
@@ -21,6 +21,7 @@ export const PlaceCard:FC<CardProps> = ({
   widthImg = 260,
   heightImg = 200,
   onListItemHover,
+  btnBookmark
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
@@ -41,10 +42,7 @@ export const PlaceCard:FC<CardProps> = ({
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <Bookmark
-            isFavorite={isFavorite}
-            className="place-card"
-          />
+          {btnBookmark}
         </div>
         <Rating
           rating={rating}

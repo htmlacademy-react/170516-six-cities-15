@@ -1,4 +1,4 @@
-import {PreviewCardProps} from '../../shared/types';
+import {PreviewOfferProps} from '@/shared/types';
 
 export enum SortingOptions {
   Popular = 'Popular',
@@ -9,7 +9,7 @@ export enum SortingOptions {
 
 export type SortingOptionsValuesType = `${SortingOptions}`;
 
-export const sortByType = (listCities: PreviewCardProps[], type: string) => {
+export const sortByType = (listCities: PreviewOfferProps[], type: string) => {
   switch (type) {
     case SortingOptions.TopRating:
       return listCities.toSorted((itemA, itemB) => itemB.rating - itemA.rating);

@@ -1,6 +1,6 @@
 import {memo} from 'react';
 import {Link} from 'react-router-dom';
-import {Path} from '../../shared/config';
+import {Path} from '@/shared/config';
 
 export const NotFound = memo(() => (
   <main className="page__main page__main--login">

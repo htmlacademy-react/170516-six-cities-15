@@ -1,4 +1,4 @@
-import {Path} from '../../shared/config';
+import {Path} from '@/shared/config';
 
 //TODO: Спросить на сколько хорошая данная конструкция?
 export const getLayoutState = (path: string, id?: string) => {

@@ -1,8 +1,8 @@
-import {PreviewCardProps} from '../../types';
+import {PreviewOfferProps} from '@/shared/types';
 
 export type MapProps = {
-  points: PreviewCardProps[];
-  location: PreviewCardProps['city'];
+  points: PreviewOfferProps[];
+  city: PreviewOfferProps['city'];
   className?: string;
-  selectedPoint?: PreviewCardProps['id'];
+  selectedPoint?: PreviewOfferProps['id'];
 };

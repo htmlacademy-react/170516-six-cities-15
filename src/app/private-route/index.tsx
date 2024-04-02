@@ -1,7 +1,7 @@
 import {FC, ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
+import {getAuthCheckedStatus} from '@/shared/utils';
 import {useAppSelector} from '../app-store';
-import {getAuthCheckedStatus} from '../../shared/utils';
 
 type PrivateRouteProps = {
   redirectTo: string;

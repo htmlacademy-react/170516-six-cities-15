@@ -1,8 +1,9 @@
 import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {Path} from '../../shared/config';
-import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
+import {useAppDispatch, useAppSelector} from '@/app/app-store';
+import {Path} from '@/shared/config';
+import {getAuthCheckedStatus, VisuallyHidden} from '@/shared/utils';
+import {formFields} from './const';
 import {loginAction} from './model';
 
 export const Login = memo(() => {
@@ -38,18 +39,6 @@ export const Login = memo(() => {
       }));
     }
   };
-  const formFields = [
-    {
-      id: 1,
-      type: 'email',
-      placeholder: 'Email',
-    },
-    {
-      id: 2,
-      type: 'password',
-      placeholder: 'Password',
-    },
-  ];
 
   return (
     <main className="page__main page__main--login">

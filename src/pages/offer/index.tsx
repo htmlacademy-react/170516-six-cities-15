@@ -1,20 +1,21 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../app/app-store';
-import {getAuthCheckedStatus} from "../../shared/utils";
-import {Bookmark, Loader, Map, Rating, User} from '../../shared';
-import {PlaceCard} from '../../entities';
+import {useAppDispatch, useAppSelector} from '@/app/app-store';
+import {getAuthCheckedStatus} from '@/shared/utils';
+import {OfferProp} from '@/shared/types';
+import {Loader, Map, Rating, User} from '@/shared';
+import {Bookmark} from '@/feature';
+import {PlaceCard} from '@/entities';
+import {MAX_NEAR_PLACES, MAX_COMMENTS} from './const';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {getNearPlaces, getOffer, getComments} from "./model";
-import {Reviews, ReviewForm} from "./ui";
+import {getComments, getNearPlaces, getOffer} from './model';
+import {ReviewForm, Reviews} from './ui';
 
 export const Offer = () => {
-  const MAX_NEAR_PLACES = 3;
-  const MAX_COMMENTS = 10;
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const currentOffersInfo = useAppSelector(getOffer)
+  const offer = useAppSelector(getOffer);
   const nearPlaces = useAppSelector(getNearPlaces).slice(0, MAX_NEAR_PLACES);
   const currentOffersComments = useAppSelector(getComments).slice(0, MAX_COMMENTS);
 
@@ -24,9 +25,9 @@ export const Offer = () => {
       dispatch(fetchNearbyAction(offerId));
       dispatch(fetchCommentsAction(offerId));
     }
-  }, [dispatch]);
+  }, [offerId, dispatch]);
 
-  if (!currentOffersInfo) {
+  if (!offer) {
     return (
       <div className="offer__gallery">
         <Loader/>
@@ -34,8 +35,8 @@ export const Offer = () => {
     );
   }
 
-  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id} = currentOffersInfo;
-  const pointsNearPlaces = [...nearPlaces, currentOffersInfo];
+  const {title, type, price, rating, isPremium, isFavorite, goods, images, host, city, description, bedrooms, maxAdults, id}: OfferProp = offer;
+  const pointsNearPlaces = [...nearPlaces, offer];
 
   return (
     <main className="page__main page__main--offer">
@@ -58,7 +59,7 @@ export const Offer = () => {
             )}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
-              <Bookmark className="offer" isFavorite={isFavorite}/>
+              <Bookmark className="offer" isFavorite={isFavorite} offerId={id} isAuth={isAuth}/>
             </div>
             <Rating
               rating={rating}
@@ -102,13 +103,11 @@ export const Offer = () => {
               </div>
             </div>
             <Reviews className="offer__reviews" comments={currentOffersComments}>
-              {(isAuth && !!offerId) &&
-                <ReviewForm id={offerId}/>
-              }
+              {(isAuth && !!offerId) && <ReviewForm id={offerId}/>}
             </Reviews>
           </div>
         </div>
-        <Map className="offer__map" location={city} points={pointsNearPlaces} selectedPoint={id}/>
+        <Map className="offer__map" city={city} points={pointsNearPlaces} selectedPoint={id}/>
       </section>
       <div className="container">
         <section className="near-places places">
@@ -125,7 +124,9 @@ export const Offer = () => {
                 price={elem.price}
                 rating={elem.rating}
                 isPremium={elem.isPremium}
-                isFavorite={elem.isFavorite}
+                btnBookmark={
+                  <Bookmark className='place-card' isFavorite={elem.isFavorite} offerId={elem.id} isAuth={isAuth} />
+                }
               />
             ))}
           </div>

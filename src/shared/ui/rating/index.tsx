@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {VisuallyHidden} from '../../utils';
+import {VisuallyHidden} from '@/shared/utils';
 
 type RatingProps = {
   rating: number;

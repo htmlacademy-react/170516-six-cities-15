@@ -1,18 +1,18 @@
 import {FC} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch} from '../../app/app-store';
-import {cities} from '../../shared/mock';
-import {NameCitiesProps} from '../../shared/types';
+import {CityName} from "../../shared/config";
 import {setCurrentCity} from './model';
 
 type LocationProps = {
-  currentCity: NameCitiesProps;
+  currentCity: CityName;
 };
 
 export const Locations:FC<LocationProps> = ({currentCity}) => {
   const dispatch = useAppDispatch();
   //TODO: см. bindActionCreators
-  const handleCityClick = (city: NameCitiesProps) => () => dispatch(setCurrentCity(city));
+  const handleCityClick = (city: CityName) => () => dispatch(setCurrentCity(city));
+  const CityNameValues: CityName[] = Object.values(CityName);
 
   const locationsItemClass = (city: string) => classNames(
     'locations__item-link tabs__item',
@@ -24,7 +24,7 @@ export const Locations:FC<LocationProps> = ({currentCity}) => {
     <div className='tabs'>
       <section className='locations container'>
         <ul className='locations__list tabs__list'>
-          {cities.map(({name}) => (
+          {CityNameValues.map((name) => (
             <li className='locations__item' key={name}>
               <span
                 style={{cursor: 'pointer'}}

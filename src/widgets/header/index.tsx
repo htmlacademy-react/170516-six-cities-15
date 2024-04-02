@@ -1,16 +1,16 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {logoutAction, useAuthStatus} from '../../shared/utils';
+import {logoutAction, getAuthCheckedStatus} from '../../shared/utils';
 
 type HeaderProps = {
   showRightContent?: boolean;
 }
 
-export const Header:FC<HeaderProps> = ({showRightContent}) => {
+export const Header:FC<HeaderProps> = memo(({showRightContent}) => {
   const user = useAppSelector((state) => state.client.user);
-  const hasAuthStatus = useAuthStatus();
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,7 +25,7 @@ export const Header:FC<HeaderProps> = ({showRightContent}) => {
           {showRightContent && (
             <nav className="header__nav">
               <ul className="header__nav-list">
-                {hasAuthStatus ?
+                {isAuth ?
                   <>
                     <li className="header__nav-item user">
                       <Link className="header__nav-link header__nav-link--profile" to={Path.Favorites}>
@@ -62,4 +62,6 @@ export const Header:FC<HeaderProps> = ({showRightContent}) => {
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';

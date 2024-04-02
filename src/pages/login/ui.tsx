@@ -1,19 +1,20 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
-import {useAppDispatch} from '../../app/app-store';
+import {useAppDispatch, useAppSelector} from '../../app/app-store';
 import {Path} from '../../shared/config';
-import {useAuthStatus, VisuallyHidden} from '../../shared/utils';
+import {getAuthCheckedStatus, VisuallyHidden} from '../../shared/utils';
 import {loginAction} from './model';
 
-export const Login = () => {
+export const Login = memo(() => {
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(getAuthCheckedStatus);
   const [login, setLogin] = useState({
     email: '',
     password: '',
   });
   const hasValid = !!login.email && !!login.password;
 
-  if (useAuthStatus()) {
+  if (isAuth) {
     return (
       <Navigate to={Path.Main} />
     );
@@ -75,4 +76,6 @@ export const Login = () => {
       </div>
     </main>
   );
-};
+});
+
+Login.displayName = 'Login';

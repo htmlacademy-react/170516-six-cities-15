@@ -3,10 +3,10 @@ import {useAppDispatch} from '../../../../app/app-store';
 import {postReviewAction} from '../../api';
 
 type RatingFormProps = {
-  offerId: string;
+  id: string;
 };
 
-export const ReviewForm = ({ offerId }: RatingFormProps) => {
+export const ReviewForm = ({ id }: RatingFormProps) => {
   const dispatch = useAppDispatch();
   const [review, setReview] = useState({
     rating: '',
@@ -31,7 +31,7 @@ export const ReviewForm = ({ offerId }: RatingFormProps) => {
     evt.preventDefault();
     dispatch(
       postReviewAction({
-        id: offerId ?? '',
+        id,
         rating: Number(review.rating),
         comment: review.review,
       })

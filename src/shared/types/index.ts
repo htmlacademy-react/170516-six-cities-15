@@ -1,8 +1,9 @@
 import {AxiosInstance} from 'axios';
 import {appStore} from '../../app/app-store';
+import {CityName} from "../config";
 
-type TypeState = ReturnType<typeof appStore.getState>;
 type TypeAppDispatch = typeof appStore.dispatch;
+export type TypeState = ReturnType<typeof appStore.getState>;
 
 export type ExtraType = {
   extra: AxiosInstance;
@@ -20,15 +21,13 @@ export type LocationProps = {
   zoom: number;
 }
 
-export type NameCitiesProps = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
-
 export type PreviewCardProps = {
   id: string;
   title: string;
   type: 'apartment' | 'room' | 'house' | 'hotel';
   price: number;
   city?: {
-    name: NameCitiesProps;
+    name: CityName;
     location: LocationProps;
   };
   location?: LocationProps;

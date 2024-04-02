@@ -1,8 +1,9 @@
-import {NameCitiesProps, PreviewCardProps} from '../../../../shared/types';
+import {PreviewCardProps} from '../../../../shared/types';
+import {CityName} from "../../../../shared/config";
 
 export type PlacesProps = {
   numberPlacesToStay: number;
-  nameCity: NameCitiesProps;
+  nameCity: CityName;
   onListItemHover?: (id: string) => void;
   listCities: PreviewCardProps[];
 };

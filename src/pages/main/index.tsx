@@ -1,4 +1,4 @@
-import {useSearchParams} from "react-router-dom";
+import {useSearchParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
@@ -14,7 +14,7 @@ export const Main = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const locationParams = searchParams.get("location");
+  const locationParams = searchParams.get('location');
 
   useEffect(() => {
     dispatch(fetchOffersAction());
@@ -25,7 +25,7 @@ export const Main = () => {
   const [selectedPoint, setSelectedPoint] = useState<string>();
   const handleListItemHover = (selectedCardId: PreviewOfferProps['id']) => setSelectedPoint(selectedCardId);
   const filterOffers = list.filter(({city}) => city.name === locationParams);
-  const hasPlaces: boolean = !!list.length && !!filterOffers.length;
+  const hasPlaces: boolean = !!filterOffers.length;
 
   const classNamePage = classNames(
     'page__main page__main--index',

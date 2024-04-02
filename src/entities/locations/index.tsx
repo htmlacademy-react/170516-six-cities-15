@@ -1,13 +1,13 @@
 import {FC} from 'react';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import {CityName, Path} from '@/shared/config';
 
-type LocationProps = {
-  currentCity: `${CityName}`;
+type LocationsProps = {
+  currentCity: string | null;
 };
 
-export const Locations:FC<LocationProps> = ({currentCity}) => {
+export const Locations:FC<LocationsProps> = ({currentCity}) => {
   const CityNameValues: CityName[] = Object.values(CityName);
 
   const locationsItemClass = (city: string) => classNames(

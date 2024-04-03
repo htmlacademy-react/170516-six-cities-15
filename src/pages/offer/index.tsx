@@ -7,7 +7,7 @@ import {Path, Status} from '@/shared/config';
 import {Loader, Map, Rating, User} from '@/shared';
 import {Bookmark} from '@/feature';
 import {PlaceCard} from '@/entities';
-import {MaxQuantity} from './const';
+import {MaxQuantity, sortedComments} from './const';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
 import {getComments, getNearPlaces, getOffer, getStatus} from './model';
 import {ReviewForm, Reviews} from './ui';
@@ -18,8 +18,9 @@ export const Offer = () => {
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const offer = useAppSelector(getOffer);
   const status = useAppSelector(getStatus);
+  const getOfferComments = useAppSelector(getComments);
   const nearPlaces = useAppSelector(getNearPlaces).slice(0, MaxQuantity.NearPlaces);
-  const currentOffersComments = useAppSelector(getComments).slice(0, MaxQuantity.Comments);
+  const comments = sortedComments(getOfferComments).slice(0, MaxQuantity.Comments);
   const isLoadingOffer = Status.Resolved !== status;
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export const Offer = () => {
   if (!offer) {
     return (
       <section className="form container">
-        <h1 className="login__title">404. Page not found</h1>
+        <h1 className="login__title">Not found</h1>
         <div className="login__form form">
           <Link className="login__submit form__submit button" to={Path.Main}>To main</Link>
         </div>
@@ -117,7 +118,7 @@ export const Offer = () => {
                 <p className="offer__text">{description}</p>
               </div>
             </div>
-            <Reviews className="offer__reviews" comments={currentOffersComments}>
+            <Reviews className="offer__reviews" comments={comments} allReviews={getOfferComments}>
               {isAuth && <ReviewForm id={id}/>}
             </Reviews>
           </div>

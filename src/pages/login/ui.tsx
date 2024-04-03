@@ -9,6 +9,10 @@ import {loginAction} from './model';
 export const Login = memo(() => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
+
+  const cities = Object.values(CityName);
+  const randomLink = cities[Math.floor(Math.random() * cities.length)];
+
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -57,8 +61,8 @@ export const Login = memo(() => {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <Link className="locations__item-link" to={Path.Main}>
-              <span>{CityName.Paris}</span>
+            <Link className="locations__item-link" to={`${Path.Main}?location=${randomLink}`}>
+              <span>{randomLink}</span>
             </Link>
           </div>
         </section>

@@ -14,7 +14,8 @@ export const Main = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const isAuth = useAppSelector(getAuthCheckedStatus);
-  const locationParams = searchParams.get('location') ?? CityName.Paris;
+  const hasSearchParams:boolean = !!searchParams.get('location');
+  const locationParams = hasSearchParams ? searchParams.get('location') : CityName.Paris;
 
   useEffect(() => {
     dispatch(fetchOffersAction());

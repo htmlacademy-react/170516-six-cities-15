@@ -1,7 +1,7 @@
 import {FC, ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
-import {AuthorizationStatus} from "@/shared/config";
-import {Loader} from "@/shared";
+import {AuthorizationStatus} from '@/shared/config';
+import {Loader} from '@/shared';
 import {useAppSelector} from '../app-store';
 
 type PrivateRouteProps = {

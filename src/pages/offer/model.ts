@@ -43,10 +43,10 @@ export const offerSlice = createSlice({
       state.statusComment = Status.Resolved;
       state.comments.push(payload);
     });
-    builder.addCase(postReviewAction.pending, (state, {payload}) => {
+    builder.addCase(postReviewAction.pending, (state) => {
       state.statusComment = Status.Loading;
     });
-    builder.addCase(postReviewAction.rejected, (state, {payload}) => {
+    builder.addCase(postReviewAction.rejected, (state) => {
       state.statusComment = Status.Rejected;
     });
     builder.addCase(postFavoriteStatusAction.fulfilled, (state, action) => {

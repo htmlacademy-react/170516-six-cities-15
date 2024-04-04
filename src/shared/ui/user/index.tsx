@@ -16,7 +16,6 @@ export const User:FC<UserProps> = ({
   isPro,
   countFavorites,
 }) => {
-  //TODO: USER есть и в хедере, но классы вроде сильно отличаются(Нужно повторно перепроверить)
   const hasPro = classNames({
     [`${className}__avatar-wrapper--pro`]: isPro
   });

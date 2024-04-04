@@ -1,9 +1,9 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppSelector} from '@/app/app-store';
 import {Path} from '@/shared/config';
-import {VisuallyHidden} from "@/shared/utils";
+import {VisuallyHidden} from '@/shared/utils';
 import {PreviewOfferProps, TypeState} from '@/shared/types';
 import {PlaceCard} from '@/entities';
 import {Bookmark} from '@/feature';
@@ -13,7 +13,7 @@ export const Favorites = memo(() => {
   const favorites = useAppSelector((state: TypeState): PreviewOfferProps[] => state.offers.favorites);
   const favoritesByCity = getFavoritesByCity(favorites);
   const hasEmpty = !favorites.length;
-  const emptyClass = classNames( {
+  const emptyClass = classNames({
     'page__main--favorites-empty': hasEmpty
   });
 

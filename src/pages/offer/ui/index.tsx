@@ -7,10 +7,11 @@ import {Path, Status} from '@/shared/config';
 import {Loader, Map, Rating, User} from '@/shared';
 import {Bookmark} from '@/feature';
 import {PlaceCard} from '@/entities';
-import {MaxQuantity, sortedComments} from './const';
-import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './api';
-import {getComments, getNearPlaces, getOffer, getStatus} from './model';
-import {ReviewForm, Reviews} from './ui';
+import {MaxQuantity, sortedComments} from './../const';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './../api';
+import {getComments, getNearPlaces, getOffer, getStatus} from './../model';
+import {Reviews} from './reviews';
+import {ReviewForm} from './review-form';
 
 export const Offer = () => {
   const {offerId} = useParams();

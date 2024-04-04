@@ -7,8 +7,9 @@ import {PreviewOfferProps} from '@/shared/types';
 import {CityName, Status} from '@/shared/config';
 import {Loader, Map} from '@/shared';
 import {Locations} from '@/entities';
-import {fetchOffersAction} from './api';
-import {Places, CitiesEmpty} from './ui';
+import {fetchOffersAction} from './../api';
+import {Places} from './places';
+import {CitiesEmpty} from './сities-empty';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -61,12 +62,12 @@ export const Main = () => {
             /> : <CitiesEmpty currentCity={locationParams}/>}
           <div className="cities__right-section">
             {hasPlaces &&
-              <Map
-                className="cities__map"
-                city={filterOffers[0].city}
-                points={filterOffers}
-                selectedPoint={selectedPoint}
-              />}
+            <Map
+              className="cities__map"
+              city={filterOffers[0].city}
+              points={filterOffers}
+              selectedPoint={selectedPoint}
+            />}
           </div>
         </div>
       </div>

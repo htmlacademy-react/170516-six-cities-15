@@ -19,6 +19,10 @@ export const Sorting = ({activeOptionSorting, onSortingOptionClick}: SortingProp
     'places__option--active': activeOptionSorting === option,
   });
 
+  const classNamesListDropdown = classNames('places__options places__options--custom', {
+    'places__options--opened': open,
+  });
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -28,20 +32,18 @@ export const Sorting = ({activeOptionSorting, onSortingOptionClick}: SortingProp
           <use href="#icon-arrow-select"></use>
         </svg>
       </span>
-      {open && (
-        <ul className="places__options places__options--custom places__options--opened">
-          {sortingOptionsEntries.map((value) => (
-            <li
-              key={value}
-              className={classNamesOption(value)}
-              tabIndex={0}
-              onClick={() => handleSortingOptionClick(value)}
-            >
-              {value}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className={classNamesListDropdown}>
+        {sortingOptionsEntries.map((value) => (
+          <li
+            key={value}
+            className={classNamesOption(value)}
+            tabIndex={0}
+            onClick={() => handleSortingOptionClick(value)}
+          >
+            {value}
+          </li>
+        ))}
+      </ul>
     </form>
   );
 };

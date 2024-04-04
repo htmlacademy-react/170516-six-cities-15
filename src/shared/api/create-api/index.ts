@@ -32,14 +32,11 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
+
       if (error.response?.status === StatusCodes.NOT_FOUND) {
         const detailMessage = (error.response.data);
         toast.warn(detailMessage.message);
         browserHistory.push(Path.NotFound);
-      }
-
-      if (error.response?.status === StatusCodes.UNAUTHORIZED) {
-        toast.warn('unauthorized!');
       }
 
       if (error.response?.status === StatusCodes.BAD_REQUEST) {

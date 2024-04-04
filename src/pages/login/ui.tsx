@@ -1,7 +1,7 @@
 import {ChangeEvent, FormEvent, memo, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '@/app/app-store';
-import {Path} from '@/shared/config';
+import {CityName, Path} from '@/shared/config';
 import {getAuthCheckedStatus, VisuallyHidden} from '@/shared/utils';
 import {formFields} from './const';
 import {loginAction} from './model';
@@ -9,6 +9,10 @@ import {loginAction} from './model';
 export const Login = memo(() => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(getAuthCheckedStatus);
+
+  const cities = Object.values(CityName);
+  const randomLink = cities[Math.floor(Math.random() * cities.length)];
+
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -57,8 +61,8 @@ export const Login = memo(() => {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <Link className="locations__item-link" to={Path.Main}>
-              <span>Amsterdam</span>
+            <Link className="locations__item-link" to={`${Path.Main}?location=${randomLink}`}>
+              <span>{randomLink}</span>
             </Link>
           </div>
         </section>

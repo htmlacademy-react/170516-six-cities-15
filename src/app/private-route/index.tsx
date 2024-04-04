@@ -1,6 +1,7 @@
 import {FC, ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
-import {getAuthCheckedStatus} from '@/shared/utils';
+import {AuthorizationStatus} from '@/shared/config';
+import {Loader} from '@/shared';
 import {useAppSelector} from '../app-store';
 
 type PrivateRouteProps = {
@@ -9,10 +10,12 @@ type PrivateRouteProps = {
 }
 
 export const PrivateRoute:FC<PrivateRouteProps> = ({children, redirectTo}) => {
-  const isAuth = useAppSelector(getAuthCheckedStatus);
+  const authorizationStatus = useAppSelector((state) => state.client.authorizationStatus);
   return (
-    isAuth
-      ? children
-      : <Navigate to={redirectTo} />
+    <>
+      {authorizationStatus === AuthorizationStatus.Auth && children}
+      {authorizationStatus === AuthorizationStatus.NoAuth && <Navigate to={redirectTo} />}
+      {authorizationStatus === AuthorizationStatus.Unknown && <Loader />}
+    </>
   );
 };

@@ -41,13 +41,13 @@ export const Header = memo(({showRightContent}: HeaderProps) => {
                           <img src={user?.avatarUrl} alt={user?.email}/>
                         </div>
                         <span className="header__user-name user__name">{user?.email}</span>
-                        {!!numberAddedFavorites && <span className="header__favorite-count">{numberAddedFavorites}</span>}
+                        <span className="header__favorite-count">{numberAddedFavorites}</span>
                       </Link>
                     </li>
                     <li className="header__nav-item">
                       <Link
                         className="header__nav-link"
-                        to={Path.Main}
+                        to={Path.Login}
                         onClick={(evt) => {
                           evt.preventDefault();
                           dispatch(logoutAction());

@@ -1,5 +1,10 @@
-export const MAX_NEAR_PLACES = 3;
-export const MAX_COMMENTS = 10;
+import {CommentsProps} from './type';
+
+export const MaxQuantity = {
+  NearPlaces: 3,
+  Comments: 10,
+  Images: 6
+};
 
 export const ReviewLength = {
   Max: 300,
@@ -13,3 +18,17 @@ export const ratingReview = [
   {title: 'badly', value: '2'},
   {title: 'terribly', value: '1'},
 ];
+
+export const getDate = (date: string) =>
+  `${new Date(date).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })}`;
+
+export const sortedComments = (comments: CommentsProps[]) => comments.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+export const defaultFormState = {
+  rating: '',
+  review: '',
+  isValid: false,
+};

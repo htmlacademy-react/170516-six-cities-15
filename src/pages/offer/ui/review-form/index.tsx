@@ -1,6 +1,8 @@
-import {ChangeEvent, useState, Fragment, FormEvent} from 'react';
-import {useAppDispatch} from '@/app/app-store';
-import {ratingReview, ReviewLength} from '../../const';
+import {ChangeEvent, FormEvent, Fragment, useEffect, useState} from 'react';
+import {useAppDispatch, useAppSelector} from '@/app/app-store';
+import {Status} from '@/shared/config';
+import {postStatusComment} from '../../model';
+import {defaultFormState, ratingReview, ReviewLength} from '../../const';
 import {postReviewAction} from '../../api';
 
 type RatingFormProps = {
@@ -9,11 +11,17 @@ type RatingFormProps = {
 
 export const ReviewForm = ({ id }: RatingFormProps) => {
   const dispatch = useAppDispatch();
-  const [review, setReview] = useState({
-    rating: '',
-    review: '',
-    isValid: false,
-  });
+  const [review, setReview] = useState(defaultFormState);
+  const statusComment = useAppSelector(postStatusComment);
+  const statusCommentComplete = statusComment === Status.Resolved;
+  const statusCommentLoading = statusComment === Status.Loading;
+  const statusCommentError = statusComment === Status.Rejected;
+  const hasReviewLength = review.review.length >= ReviewLength.Min && review.review.length <= ReviewLength.Max;
+  const hasBtnDisabled = statusCommentLoading || !review.rating || !hasReviewLength;
+
+  useEffect(() => {
+    setReview(defaultFormState);
+  }, [statusCommentComplete]);
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -27,24 +35,26 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
   };
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, tagName } = evt.target;
-    const isValid =
-      (tagName === 'TEXTAREA') && value.length >= ReviewLength.Min && value.length <= ReviewLength.Max;
+    const { name, value } = evt.target;
 
     setReview({
       ...review,
       [name]: value,
-      isValid,
     });
   };
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+      {statusCommentError && (
+        <div className="reviews__error">
+          <p style={{color: 'red'}}>Failed to post review. Please try again!</p>
+        </div>
+      )}
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratingReview.map(({title, value}) => (
           <Fragment key={`${title}-${value}`}>
-            <input className="form__rating-input visually-hidden" name="rating" value={value} id={`${value}-stars`} type="radio" onChange={handleInputChange} />
+            <input className="form__rating-input visually-hidden" name="rating" value={value} id={`${value}-stars`} type="radio" checked={value === review.rating} disabled={statusCommentLoading} onChange={handleInputChange} />
             <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
               <svg className="form__star-image" width="37" height="33">
                 <use href="#icon-star"></use>
@@ -53,13 +63,13 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
           </Fragment>
         ))}
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.review} onChange={handleInputChange}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={review.review} disabled={statusCommentLoading} onChange={handleInputChange}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe
           your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!review.isValid}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={hasBtnDisabled}>{statusCommentLoading ? 'loading...' : 'Submit'}</button>
       </div>
     </form>
   );

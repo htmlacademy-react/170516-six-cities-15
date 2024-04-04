@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 type CitiesEmptyProps = {
-  currentCity: string;
+  currentCity: string | null;
 };
 
 export const CitiesEmpty:FC<CitiesEmptyProps> = ({currentCity}) => (

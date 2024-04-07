@@ -1,4 +1,4 @@
-import leaflet, {layerGroup} from 'leaflet';
+import leaflet from 'leaflet';
 import {FC, useEffect, useRef} from 'react';
 import {MapProps} from './type';
 import MAIN_PIN from '@/shared/assets/icons/main-pin.svg';
@@ -17,7 +17,8 @@ export const Map:FC<MapProps> = ({className, city, points, selectedPoint}) => {
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
+      map.eachLayer((layer: leaflet.Layer & { _icon?: unknown}) => layer._icon && layer.remove());
+
       points.forEach((elem) =>
         leaflet
           .marker({
@@ -27,10 +28,6 @@ export const Map:FC<MapProps> = ({className, city, points, selectedPoint}) => {
             icon: (elem.id === selectedPoint) ? leaflet.icon({iconUrl: MAIN_PIN}) : leaflet.icon({iconUrl: PIN}),
           }).addTo(map)
       );
-
-      return () => {
-        map.removeLayer(markerLayer);
-      };
     }
   }, [map, points, selectedPoint]);
 

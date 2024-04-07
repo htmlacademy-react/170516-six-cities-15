@@ -9,11 +9,12 @@ import {Sorting} from '../sorting';
 export const Places:FC<PlacesProps> = ({numberPlacesToStay, nameCity, onListItemHover, offers, isAuth}) => {
   const [activeSorting, setActiveSorting] = useState<SortingOptionsValuesType>(SortingOptions.Popular);
   const sortedPlaceCard = sortByType(offers, activeSorting);
+  const textPlacesToStay = numberPlacesToStay === 1 ? 'place' : 'places';
 
   return (
     <section className="cities__places places">
       <VisuallyHidden tagName="h2">Places</VisuallyHidden>
-      <b className="places__found">{numberPlacesToStay} places to stay in {nameCity}</b>
+      <b className="places__found">{numberPlacesToStay} {textPlacesToStay} to stay in {nameCity}</b>
       <Sorting activeOptionSorting={activeSorting} onSortingOptionClick={setActiveSorting}/>
       <div className="cities__places-list places__list tabs__content">
         {sortedPlaceCard.map(({id, title, previewImage, type, price, rating, isPremium, isFavorite}) => (

@@ -1,7 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {PromiseProps, UserProps} from '@/shared/types';
-import {Path} from '@/shared/config';
-import {redirectToRoute} from '../../utils/redirect-to-route';
 import {token} from '../../utils/token';
 
 export const checkAuthAction = createAsyncThunk<UserProps, undefined, PromiseProps>
@@ -12,8 +10,7 @@ export const checkAuthAction = createAsyncThunk<UserProps, undefined, PromisePro
 
 export const logoutAction = createAsyncThunk<void, void, PromiseProps> (
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(redirectToRoute(Path.Login));
+  async (_arg, {extra: api}) => {
     await api.delete('/logout');
     token.drop();
   }

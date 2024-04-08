@@ -8,7 +8,7 @@ type LocationsProps = {
 };
 
 export const Locations:FC<LocationsProps> = ({currentCity}) => {
-  const CityNameValues: CityName[] = Object.values(CityName);
+  const cityNameValues: CityName[] = Object.values(CityName);
 
   const locationsItemClass = (city: string) => classNames(
     'locations__item-link tabs__item',
@@ -16,10 +16,10 @@ export const Locations:FC<LocationsProps> = ({currentCity}) => {
   );
 
   return (
-    <div className='tabs'>
+    <div className='tabs' data-testid='locations'>
       <section className='locations container'>
         <ul className='locations__list tabs__list'>
-          {CityNameValues.map((name) => (
+          {cityNameValues.map((name) => (
             <li className='locations__item' key={name}>
               <Link
                 className={locationsItemClass(name)}

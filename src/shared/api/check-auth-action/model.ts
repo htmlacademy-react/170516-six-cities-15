@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {UserProps} from '@/shared/types';
+import {UserLoginProps} from '@/shared/types';
 import {AuthorizationStatus} from '@/shared/config';
 import {checkAuthAction, logoutAction} from './api';
 
 type InitialStateProp = {
-  user: UserProps | null;
+  user: UserLoginProps | null;
   authorizationStatus: AuthorizationStatus;
 }
 

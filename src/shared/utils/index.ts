@@ -7,3 +7,4 @@ export * from './middlewares';
 export * from './browser-history';
 export * from './redirect-to-route';
 export * from './get-auth-checked-status';
+export * from './mock-component';

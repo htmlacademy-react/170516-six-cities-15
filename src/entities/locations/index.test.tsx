@@ -1,14 +1,10 @@
-import {MemoryRouter } from 'react-router-dom';
 import {render, screen} from '@testing-library/react';
-import {CityName, Path} from '@/shared/config';
+import {CityName} from '@/shared/config';
+import {withHistory} from "@/shared/utils";
 import {Locations} from './index';
 
 const renderTabLocation = (city: string) => {
-  render(
-    <MemoryRouter initialEntries={[Path.Main]}>
-      <Locations currentCity={city} />
-    </MemoryRouter>,
-  );
+  render(withHistory(<Locations currentCity={city} />));
   const locations = screen.getByTestId('locations');
   expect(locations).toBeInTheDocument();
 };

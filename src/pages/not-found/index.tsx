@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Path} from '@/shared/config';
 
 export const NotFound = memo(() => (
-  <main className="page__main page__main--login">
+  <main className="page__main page__main--login" data-testid='not-found'>
     <div className="page__login-container container">
       <section className="login form">
         <h1 className="login__title">404. Page not found</h1>

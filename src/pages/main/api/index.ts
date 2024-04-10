@@ -9,5 +9,3 @@ export const fetchOffersAction = createAsyncThunk<
   const { data } = await api.get<PreviewOfferProps[]>('/offers');
   return data;
 });
-
-

@@ -5,7 +5,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {AppDispatch, TypeState} from '@/shared/types';
 import {Action} from 'redux';
 import {extractActionsTypes, getRandomNumber, makeFakeOffer} from '@/shared/mocks';
-import {fetchOffersAction} from '../api';
+import {fetchOffersAction} from './';
 
 
 describe('fetchOffersAction', () => {

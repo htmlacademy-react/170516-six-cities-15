@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import {Rating} from './';
-import {getRandomNumber} from "@/shared/mocks";
+import {getRandomNumber} from '@/shared/mocks';
 
 describe('UI component: Rating', () => {
   const randomNumber = getRandomNumber(0, 100);

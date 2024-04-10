@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
-import {Rating, User} from './';
-import {getRandomNumber, makeFakeOffer} from "@/shared/mocks";
+import {makeFakeOffer} from '@/shared/mocks';
+import {User} from './';
 
 describe('UI component: User', () => {
   const mockName = makeFakeOffer().host.name;

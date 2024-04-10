@@ -53,7 +53,7 @@ export const Login = memo(() => {
             {formFields.map(({type, placeholder, id}) => (
               <label className="login__input-wrapper form__input-wrapper" key={id}>
                 <VisuallyHidden>{placeholder}</VisuallyHidden>
-                <input className="login__input form__input" type={type} name={type} placeholder={placeholder} required onChange={handleInputChange} />
+                <input className="login__input form__input" type={type} name={type} placeholder={placeholder} required onChange={handleInputChange} data-testid={type}/>
               </label>
             ))}
             <button className="login__submit form__submit button" type="submit" disabled={!hasValid}>Sign in</button>

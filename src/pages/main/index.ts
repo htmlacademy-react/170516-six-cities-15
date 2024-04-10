@@ -1,2 +1,2 @@
-export { Main } from './ui/index';
+export * from './ui/index';
 export { offersSlice } from './model';

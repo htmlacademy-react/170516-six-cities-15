@@ -3,7 +3,7 @@ import {Status} from '@/shared/config';
 import {PreviewOfferProps} from '@/shared/types';
 import {fetchFavoriteAction} from '@/shared/api';
 import {postFavoriteStatusAction} from '@/feature';
-import {fetchOffersAction} from './api';
+import {fetchOffersAction} from '../api';
 
 type InitialStateProps = {
   list: PreviewOfferProps[];
@@ -54,5 +54,3 @@ export const offersSlice = createSlice({
     });
   }
 });
-
-export default offersSlice.reducer;

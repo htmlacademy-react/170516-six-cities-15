@@ -10,7 +10,7 @@ const goods = Array.from({length: Math.floor(Math.random() * 6) + 1}, () => lore
 const cities = Object.values(CityName);
 const randomCity = cities[Math.floor(Math.random() * cities.length)];
 
-const DEFAULT_STATE = {
+export const DEFAULT_STATE = {
   offers: {
     list: [],
     status: null,

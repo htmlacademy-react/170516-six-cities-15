@@ -8,6 +8,7 @@ export const checkAuthAction = createAsyncThunk<UserLoginProps, undefined, Promi
   return data;
 });
 
+//TODO вынеси в отдельный файл
 export const logoutAction = createAsyncThunk<void, void, PromiseProps> (
   'user/logout',
   async (_arg, {extra: api}) => {

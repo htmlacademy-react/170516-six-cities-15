@@ -2,7 +2,7 @@ import {FC, useState} from 'react';
 import {VisuallyHidden} from '@/shared/utils';
 import {PlaceCard} from '@/entities';
 import {Bookmark} from '@/feature';
-import {SortingOptions, sortByType, SortingOptionsValuesType} from '@/pages/main/utils';
+import {SortingOptions, sortByType, SortingOptionsValuesType} from '../../utils';
 import {PlacesProps} from './type';
 import {Sorting} from '../sorting';
 
@@ -12,7 +12,7 @@ export const Places:FC<PlacesProps> = ({numberPlacesToStay, nameCity, onListItem
   const textPlacesToStay = numberPlacesToStay === 1 ? 'place' : 'places';
 
   return (
-    <section className="cities__places places">
+    <section className="cities__places places" data-testid='places'>
       <VisuallyHidden tagName="h2">Places</VisuallyHidden>
       <b className="places__found">{numberPlacesToStay} {textPlacesToStay} to stay in {nameCity}</b>
       <Sorting activeOptionSorting={activeSorting} onSortingOptionClick={setActiveSorting}/>

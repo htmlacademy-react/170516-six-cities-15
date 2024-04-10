@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory, MemoryHistory} from 'history';
 import {getRandomNumber, makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
-import {Status} from "@/shared/config";
+import {Status} from '@/shared/config';
 import {Main} from './';
 
 describe('Page: Main', () => {

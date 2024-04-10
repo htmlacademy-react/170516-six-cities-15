@@ -6,7 +6,7 @@ describe('Entities: Map', () => {
   const mockDataOffers = Array.from({length: getRandomNumber(0, 5)}, makeFakeOffer);
   it('should render correct', () => {
     render(<Map points={mockDataOffers} city={mockDataOffers[0].city}/>);
-    const mapTestId = screen.getByTestId('map-component');
+    const mapTestId = screen.getByTestId('map');
     expect(mapTestId).toBeInTheDocument();
   });
 });

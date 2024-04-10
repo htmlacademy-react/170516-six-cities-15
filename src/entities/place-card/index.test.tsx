@@ -30,7 +30,7 @@ describe('Entities: PlaceCard', () => {
 
     render(withStoreComponent);
 
-    const placeCardTestId = screen.getByTestId('place-card-components');
-    expect(placeCardTestId).toBeInTheDocument()
+    const placeCardTestId = screen.getByTestId('place-card');
+    expect(placeCardTestId).toBeInTheDocument();
   });
 })

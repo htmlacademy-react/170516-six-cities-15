@@ -25,7 +25,7 @@ export const PlaceCard:FC<CardProps> = ({
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
-    <article className={`${className}__card place-card`} onMouseEnter={() => onListItemHover?.(id)} data-testid='place-card-components'>
+    <article className={`${className}__card place-card`} onMouseEnter={() => onListItemHover?.(id)} data-testid='place-card'>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

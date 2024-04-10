@@ -6,9 +6,9 @@ import thunk from 'redux-thunk';
 import { MemoryHistory, createMemoryHistory } from 'history';
 import { HelmetProvider } from 'react-helmet-async';
 import {HistoryRouter} from '@/shared/utils';
-import {createAPI} from "@/shared/api";
-import {TypeState} from "@/shared/types";
-import {AppThunkDispatch} from "@/shared/mocks";
+import {createAPI} from '@/shared/api';
+import {TypeState} from '@/shared/types';
+import {AppThunkDispatch} from '@/shared/mocks';
 
 export const withHistory = (component: JSX.Element, history?: MemoryHistory) => {
   const memoryHistory = history ?? createMemoryHistory();
@@ -47,4 +47,4 @@ export const withStore = (
     mockStore,
     mockAxiosAdapter,
   };
-}
+};

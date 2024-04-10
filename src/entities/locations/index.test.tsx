@@ -4,7 +4,6 @@ import {withHistory} from '@/shared/mocks';
 import {Locations} from './index';
 
 describe('Entities: Locations', () => {
-  //TODO: Вынести в функцию рандомный город
   const cityNameValues: CityName[] = Object.values(CityName);
 
   cityNameValues.forEach((item) => {

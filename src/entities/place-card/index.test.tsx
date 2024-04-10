@@ -1,7 +1,7 @@
-import {render, screen} from "@testing-library/react";
-import {createMemoryHistory, MemoryHistory} from "history";
-import {makeFakeOffer, makeFakeStore, withHistory, withStore} from "@/shared/mocks";
-import {PlaceCard} from "@/entities";
+import {render, screen} from '@testing-library/react';
+import {createMemoryHistory, MemoryHistory} from 'history';
+import {makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
+import {PlaceCard} from '@/entities';
 
 describe('Entities: PlaceCard', () => {
   const mockOffer = makeFakeOffer();
@@ -21,7 +21,7 @@ describe('Entities: PlaceCard', () => {
         isPremium={mockOffer.isPremium}
         rating={mockOffer.rating}
         previewImage={mockOffer.previewImage}
-      />, mockHistory)
+      />, mockHistory);
 
     const {withStoreComponent} = withStore(
       withHistoryComponent,
@@ -33,4 +33,4 @@ describe('Entities: PlaceCard', () => {
     const placeCardTestId = screen.getByTestId('place-card');
     expect(placeCardTestId).toBeInTheDocument();
   });
-})
+});

@@ -3,14 +3,34 @@ import {Action} from 'redux';
 import {ThunkDispatch} from 'redux-thunk';
 import {OfferProp, TypeState, UserLoginProps} from '@/shared/types';
 import {AuthorizationStatus, CityName} from '@/shared/config';
-import {createAPI} from "@/shared/api";
-
-export type AppThunkDispatch = ThunkDispatch<TypeState, ReturnType<typeof createAPI>, Action>;
+import {createAPI} from '@/shared/api';
 
 const goods = Array.from({length: Math.floor(Math.random() * 6) + 1}, () => lorem.word());
 
 const cities = Object.values(CityName);
 const randomCity = cities[Math.floor(Math.random() * cities.length)];
+
+const DEFAULT_STATE = {
+  offers: {
+    list: [],
+    status: null,
+    favorites: [],
+  },
+  client: {
+    user: {} as UserLoginProps,
+    authorizationStatus: AuthorizationStatus.Unknown,
+  },
+  offer: {
+    status: null,
+    statusComment: null,
+    info: null,
+    nearPlaces: [],
+    comments: []
+  }
+};
+
+export type AppThunkDispatch = ThunkDispatch<TypeState, ReturnType<typeof createAPI>, Action>;
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
 
 export const getRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
@@ -50,25 +70,6 @@ export const makeFakeOffer = ():OfferProp => ({
   maxAdults: datatype.number({min: 1, max: 10}),
   previewImage: image.imageUrl(),
 });
-
-const DEFAULT_STATE = {
-  offers: {
-    list: [],
-    status: null,
-    favorites: [],
-  },
-  client: {
-    user: {} as UserLoginProps,
-    authorizationStatus: AuthorizationStatus.Unknown,
-  },
-  offer: {
-    status: null,
-    statusComment: null,
-    info: null,
-    nearPlaces: [],
-    comments: []
-  }
-};
 
 export const makeFakeStore = (initialState?: Partial<TypeState>) => ({
   ...DEFAULT_STATE,

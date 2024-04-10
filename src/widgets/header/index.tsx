@@ -22,7 +22,7 @@ export const Header = memo(({showRightContent}: HeaderProps) => {
   }, [dispatch, isAuth]);
 
   return (
-    <header className="header">
+    <header className="header" data-testid='header'>
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">

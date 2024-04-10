@@ -3,7 +3,7 @@ import {createMemoryHistory, MemoryHistory} from 'history';
 import {withHistory} from '@/shared/mocks';
 import {Footer} from "./";
 
-describe('Component: Footer', () => {
+describe('Widget: Footer', () => {
   let mockHistory: MemoryHistory;
 
   beforeEach(() => {

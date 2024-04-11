@@ -30,7 +30,7 @@ describe('Offer Slice', () => {
   });
 
   it('should set "offer" to with offers, "status" to "resolved", with "fetchCurrentOfferAction.fulfilled"', () => {
-    const mockOffers = Array.from({length: getRandomNumber(1, 15)}, makeFakeOffer);
+    const mockOffers = makeFakeOffer();
     const expectedState = {
       ...DEFAULT_STATE.offer,
       info: mockOffers,
@@ -39,7 +39,7 @@ describe('Offer Slice', () => {
 
     const result = offerSlice.reducer(
       undefined,
-      fetchCurrentOfferAction.fulfilled(mockOffers, '', undefined)
+      fetchCurrentOfferAction.fulfilled(mockOffers, '', mockOffers.id)
     );
 
     expect(result).toEqual(expectedState);

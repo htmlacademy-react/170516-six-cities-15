@@ -1,8 +1,9 @@
+import {datatype} from 'faker';
 import {render, screen} from '@testing-library/react';
-import {makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
-import {Offer} from './';
 import {createMemoryHistory, MemoryHistory} from 'history';
+import {makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
 import {Status} from '@/shared/config';
+import {Offer} from './';
 
 describe('Page: Offer', () => {
   let mockHistory: MemoryHistory;
@@ -16,7 +17,7 @@ describe('Page: Offer', () => {
     const {withStoreComponent} = withStore(
       withHistoryComponent,
       makeFakeStore({
-        offer: {...makeFakeStore().offer, info: makeFakeOffer(), status: Status.Resolved},
+        offer: {...makeFakeStore().offer, info: {...makeFakeOffer(), images: [datatype.uuid(), datatype.uuid()]}, status: Status.Resolved},
       })
     );
 

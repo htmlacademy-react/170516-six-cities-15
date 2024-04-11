@@ -26,9 +26,7 @@ describe('Application Routing', () => {
       makeFakeStore()
     );
     mockHistory.push(Path.Main);
-
     render(withStoreComponent);
-
     expect(screen.getByTestId('main-loading')).toBeInTheDocument();
   });
 
@@ -39,9 +37,7 @@ describe('Application Routing', () => {
       makeFakeStore()
     );
     mockHistory.push(Path.Login);
-
     render(withStoreComponent);
-
     const signInTestId = screen.getByTestId('login');
     expect(signInTestId).toBeInTheDocument();
   });
@@ -62,9 +58,7 @@ describe('Application Routing', () => {
       })
     );
     mockHistory.push(Path.Favorites);
-
     render(withStoreComponent);
-
     expect(screen.getByTestId('favorites')).toBeInTheDocument();
   });
 
@@ -75,9 +69,7 @@ describe('Application Routing', () => {
       makeFakeStore()
     );
     mockHistory.push(`${Path.Offer}/${makeFakeOffer().id}`);
-
     render(withStoreComponent);
-
     expect(screen.getByTestId('offer-loading')).toBeInTheDocument();
   });
 
@@ -89,9 +81,7 @@ describe('Application Routing', () => {
     );
     const unknownRoute = '/unknown-route';
     mockHistory.push(unknownRoute);
-
     render(withStoreComponent);
-
     expect(screen.getByTestId('not-found')).toBeInTheDocument();
   });
 });

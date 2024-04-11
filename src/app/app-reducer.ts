@@ -1,7 +1,7 @@
 import {combineReducers} from '@reduxjs/toolkit';
 import {clientSlice} from '@/shared/api';
-import {offersSlice} from '@/pages/main';
-import {offerSlice} from '@/pages/offer';
+import {offersSlice} from '@/pages/main/model';
+import {offerSlice} from '@/pages/offer/model';
 
 export const rootReducer = combineReducers({
   [offersSlice.name]: offersSlice.reducer,

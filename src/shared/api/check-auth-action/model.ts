@@ -1,10 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {UserProps} from '@/shared/types';
+import {UserLoginProps} from '@/shared/types';
 import {AuthorizationStatus} from '@/shared/config';
-import {checkAuthAction, logoutAction} from './api';
+import {logoutAction} from '../logout-action';
+import {checkAuthAction} from './api';
 
 type InitialStateProp = {
-  user: UserProps | null;
+  user: UserLoginProps | null;
   authorizationStatus: AuthorizationStatus;
 }
 
@@ -36,5 +37,3 @@ export const clientSlice = createSlice({
     });
   }
 });
-
-export default clientSlice.reducer;

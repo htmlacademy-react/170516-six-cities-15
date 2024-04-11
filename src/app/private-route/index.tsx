@@ -1,21 +1,17 @@
 import {FC, ReactNode} from 'react';
 import {Navigate} from 'react-router-dom';
-import {AuthorizationStatus} from '@/shared/config';
+import {AuthorizationStatus, Path} from '@/shared/config';
 import {Loader} from '@/shared';
-import {useAppSelector} from '../app-store';
 
 type PrivateRouteProps = {
-  redirectTo: string;
+  authorizationStatus: AuthorizationStatus;
   children: ReactNode;
 }
 
-export const PrivateRoute:FC<PrivateRouteProps> = ({children, redirectTo}) => {
-  const authorizationStatus = useAppSelector((state) => state.client.authorizationStatus);
-  return (
-    <>
-      {authorizationStatus === AuthorizationStatus.Auth && children}
-      {authorizationStatus === AuthorizationStatus.NoAuth && <Navigate to={redirectTo} />}
-      {authorizationStatus === AuthorizationStatus.Unknown && <Loader />}
-    </>
-  );
-};
+export const PrivateRoute:FC<PrivateRouteProps> = ({children, authorizationStatus}) => (
+  <>
+    {authorizationStatus === AuthorizationStatus.Auth && children}
+    {authorizationStatus === AuthorizationStatus.NoAuth && <Navigate to={Path.Login} />}
+    {authorizationStatus === AuthorizationStatus.Unknown && <Loader />}
+  </>
+);

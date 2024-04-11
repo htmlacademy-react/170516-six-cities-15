@@ -1,4 +1,4 @@
-import {CommentsProps} from './type';
+import {CommentsProps} from '@/shared/types';
 
 export const MaxQuantity = {
   NearPlaces: 3,
@@ -25,7 +25,7 @@ export const getDate = (date: string) =>
     year: 'numeric',
   })}`;
 
-export const sortedComments = (comments: CommentsProps[]) => comments.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export const sortedComments = (comments: CommentsProps[]) => [...comments].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export const defaultFormState = {
   rating: '',

@@ -44,7 +44,7 @@ export const ReviewForm = ({ id }: RatingFormProps) => {
   };
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit} data-testid='reviews-form'>
       {statusCommentError && (
         <div className="reviews__error">
           <p style={{color: 'red'}}>Failed to post review. Please try again!</p>

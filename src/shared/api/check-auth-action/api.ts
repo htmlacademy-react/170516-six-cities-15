@@ -1,17 +1,8 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {PromiseProps, UserProps} from '@/shared/types';
-import {token} from '../../utils/token';
+import {PromiseProps, UserLoginProps} from '@/shared/types';
 
-export const checkAuthAction = createAsyncThunk<UserProps, undefined, PromiseProps>
+export const checkAuthAction = createAsyncThunk<UserLoginProps, undefined, PromiseProps>
 ('user/checkAuth', async (_arg, {extra: api }) => {
-  const { data } = await api.get<UserProps>('/login');
+  const { data } = await api.get<UserLoginProps>('/login');
   return data;
 });
-
-export const logoutAction = createAsyncThunk<void, void, PromiseProps> (
-  'user/logout',
-  async (_arg, {extra: api}) => {
-    await api.delete('/logout');
-    token.drop();
-  }
-);

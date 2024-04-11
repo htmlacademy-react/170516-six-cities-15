@@ -21,7 +21,7 @@ export const User:FC<UserProps> = ({
   });
 
   return (
-    <div className={`${className}__host-user user`}>
+    <div className={`${className}__host-user user`} data-testid='user'>
       <div className={`${className}__avatar-wrapper ${hasPro} user__avatar-wrapper`}>
         {!!avatarUrl && <img className={`${className}__avatar user__avatar`} src={avatarUrl} width="74" height="74" alt="Host avatar"/>}
       </div>

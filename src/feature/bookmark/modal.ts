@@ -7,7 +7,7 @@ type FavoriteData = {
 }
 
 export const postFavoriteStatusAction = createAsyncThunk<OfferProp, FavoriteData, ExtraType>(
-  'name/postFavorite',
+  'feature/postFavorite',
   async ({ id, status }, { extra: api }) => {
     const { data } = await api.post<OfferProp>(`/favorite/${id}/${status}`);
     return data;

@@ -1,9 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
-import {PreviewOfferProps, OfferProp, TypeState} from '@/shared/types';
-import {postFavoriteStatusAction} from '@/feature';
-import {CommentsProps} from './type';
-import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
+import {PreviewOfferProps, OfferProp, TypeState, CommentsProps} from '@/shared/types';
+import {postFavoriteStatusAction} from '@/feature/bookmark/modal';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from '../api';
 
 type InitialStateProps = {
   status: null | Status;
@@ -64,5 +63,3 @@ export const getStatus = (state: TypeState) => state.offer.status;
 export const postStatusComment = (state: TypeState) => state.offer.statusComment;
 export const getNearPlaces = (state: TypeState) => state.offer.nearPlaces;
 export const getComments = (state: TypeState) => state.offer.comments;
-
-export default offerSlice.reducer;

@@ -13,13 +13,10 @@ export const sortByType = (listCities: PreviewOfferProps[], type: string) => {
   switch (type) {
     case SortingOptions.TopRating:
       return listCities.toSorted((itemA, itemB) => itemB.rating - itemA.rating);
-      break;
     case SortingOptions.LowToHigh:
       return listCities.toSorted((itemA, itemB) => itemA.price - itemB.price);
-      break;
     case SortingOptions.HighToLow:
       return listCities.toSorted((itemA, itemB) => itemB.price - itemA.price);
-      break;
     default:
       return listCities.slice();
   }

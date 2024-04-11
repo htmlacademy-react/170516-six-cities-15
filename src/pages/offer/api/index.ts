@@ -1,6 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {ExtraType, OfferProp, PreviewOfferProps} from '@/shared/types';
-import {CommentsProps} from './type';
+import {ExtraType, OfferProp, PreviewOfferProps, CommentsProps} from '@/shared/types';
 
 type PostCommentsProps = {
   id: string;

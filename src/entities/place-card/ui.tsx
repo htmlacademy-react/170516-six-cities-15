@@ -6,7 +6,7 @@ import {Rating} from '@/shared';
 
 type CardProps = PreviewCardProps & {
   onListItemHover?: (id: string) => void;
-  btnBookmark: ReactNode;
+  btnBookmark?: ReactNode;
 }
 
 export const PlaceCard:FC<CardProps> = ({
@@ -25,7 +25,7 @@ export const PlaceCard:FC<CardProps> = ({
 }) => {
   const linkPath = `${Path.Offer}/${id}`;
   return (
-    <article className={`${className}__card place-card`} onMouseEnter={() => onListItemHover?.(id)}>
+    <article className={`${className}__card place-card`} onMouseEnter={() => onListItemHover?.(id)} data-testid='place-card'>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

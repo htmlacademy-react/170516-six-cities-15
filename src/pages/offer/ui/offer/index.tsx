@@ -7,11 +7,11 @@ import {Path, Status} from '@/shared/config';
 import {Loader, Rating, User} from '@/shared';
 import {Bookmark} from '@/feature';
 import {PlaceCard, Map} from '@/entities';
-import {MaxQuantity, sortedComments} from './../const';
-import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from './../api';
-import {getComments, getNearPlaces, getOffer, getStatus} from './../model';
-import {Reviews} from './reviews';
-import {ReviewForm} from './review-form';
+import {MaxQuantity, sortedComments} from '../../const';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction} from '../../api';
+import {getComments, getNearPlaces, getOffer, getStatus} from '../../model';
+import {Reviews} from '../reviews';
+import {ReviewForm} from '../review-form';
 
 export const Offer = () => {
   const {offerId} = useParams();
@@ -34,7 +34,7 @@ export const Offer = () => {
 
   if (isLoadingOffer) {
     return (
-      <div className="offer__gallery">
+      <div className="offer__gallery" data-testid='offer-loading'>
         <Loader/>
       </div>
     );
@@ -55,7 +55,7 @@ export const Offer = () => {
   const pointsNearPlaces = [...nearPlaces, offer];
 
   return (
-    <main className="page__main page__main--offer">
+    <main className="page__main page__main--offer" data-testid='offer'>
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">

@@ -3,7 +3,8 @@ export enum Path {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
-  NotFound = '*'
+  NotFound = '*',
+  Lose= '/lose'
 }
 
 export enum AuthorizationStatus {

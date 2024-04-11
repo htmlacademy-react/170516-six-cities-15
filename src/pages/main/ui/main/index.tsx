@@ -7,9 +7,9 @@ import {PreviewOfferProps} from '@/shared/types';
 import {CityName, Status} from '@/shared/config';
 import {Loader} from '@/shared';
 import {Locations, Map} from '@/entities';
-import {fetchOffersAction} from './../api';
-import {Places} from './places';
-import {CitiesEmpty} from './сities-empty';
+import {fetchOffersAction} from '../../api';
+import {Places} from '../places';
+import {CitiesEmpty} from '../сities-empty';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -40,14 +40,14 @@ export const Main = () => {
 
   if (isLoading) {
     return (
-      <main className={classNamePage}>
+      <main className={classNamePage} data-testid='main-loading'>
         <Loader/>
       </main>
     );
   }
 
   return (
-    <main className={classNamePage}>
+    <main className={classNamePage} data-testid='main'>
       <VisuallyHidden tagName="h1">Cities</VisuallyHidden>
       <Locations currentCity={locationParams}/>
       <div className="cities">

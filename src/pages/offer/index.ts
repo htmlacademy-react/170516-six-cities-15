@@ -1,2 +1,2 @@
-export {Offer} from './ui/index';
+export {Offer} from './ui/offer';
 export {offerSlice} from './model';

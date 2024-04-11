@@ -2,7 +2,6 @@ import {AxiosInstance} from 'axios';
 import {appStore} from '@/app/app-store';
 import {CityName} from '../config';
 
-export type State = ReturnType<typeof appStore.getState>;
 export type AppDispatch = typeof appStore.dispatch;
 export type TypeState = ReturnType<typeof appStore.getState>;
 
@@ -44,13 +43,16 @@ export type PreviewOfferProps = PreviewCardProps & {
   isFavorite: boolean;
 }
 
-export type UserProps= {
+export type UserProps = {
   avatarUrl: string;
-  email: string;
   isPro: boolean;
   name: string;
-  token: string;
 };
+
+export type UserLoginProps = UserProps & {
+  email: string;
+  token: string;
+}
 
 export type OfferProp = PreviewOfferProps & {
   bedrooms: number;
@@ -59,4 +61,12 @@ export type OfferProp = PreviewOfferProps & {
   images: string[];
   maxAdults: number;
   goods: string[];
+}
+
+export type CommentsProps = {
+  id: string;
+  date: string;
+  user: UserProps;
+  comment: string;
+  rating: number;
 }

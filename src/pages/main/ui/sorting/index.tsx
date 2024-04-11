@@ -24,7 +24,7 @@ export const Sorting = ({activeOptionSorting, onSortingOptionClick}: SortingProp
   });
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get" data-testid='sorting'>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={toggleDropdown}>
         {activeOptionSorting}

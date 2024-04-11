@@ -32,6 +32,6 @@ export const Map:FC<MapProps> = ({className, city, points, selectedPoint}) => {
   }, [map, points, selectedPoint]);
 
   return (
-    <section className={`map ${className}`} ref={mapRef}></section>
+    <section className={`map ${className}`} ref={mapRef} data-testid='map'></section>
   );
 };

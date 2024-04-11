@@ -3,11 +3,11 @@ import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppSelector} from '@/app/app-store';
 import {Path} from '@/shared/config';
-import {VisuallyHidden} from '@/shared/utils';
 import {PreviewOfferProps, TypeState} from '@/shared/types';
 import {PlaceCard} from '@/entities';
 import {Bookmark} from '@/feature';
-import {getFavoritesByCity} from './utils';
+import {getFavoritesByCity} from '../../utils';
+import {FavoritesEmpty} from '../favorites-epmty';
 
 export const Favorites = memo(() => {
   const favorites = useAppSelector((state: TypeState): PreviewOfferProps[] => state.offers.favorites);
@@ -18,23 +18,11 @@ export const Favorites = memo(() => {
   });
 
   if (hasEmpty) {
-    return (
-      <main className="page__main page__main--favorites page__main--favorites-empty">
-        <div className="page__favorites-container container">
-          <section className="favorites favorites--empty">
-            <VisuallyHidden>Favorites (empty)</VisuallyHidden>
-            <div className="favorites__status-wrapper">
-              <b className="favorites__status">Nothing yet saved.</b>
-              <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
-            </div>
-          </section>
-        </div>
-      </main>
-    );
+    return <FavoritesEmpty/>;
   }
 
   return (
-    <main className={`page__main page__main--favorites ${emptyClass}`}>
+    <main className={`page__main page__main--favorites ${emptyClass}`} data-testid='favorites'>
       <div className="page__favorites-container container">
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>

@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import {memo, MouseEvent} from 'react';
 import classNames from 'classnames';
 import {useAppDispatch} from '@/app/app-store';
 import {Path} from '@/shared/config';
 import {PreviewOfferProps} from '@/shared/types';
-import {VisuallyHidden} from '@/shared/utils';
+import {redirectToRoute, VisuallyHidden} from '@/shared/utils';
 import {postFavoriteStatusAction} from './modal';
 
 type BookmarkType = {
@@ -15,7 +14,6 @@ type BookmarkType = {
 }
 
 export const Bookmark = memo(({isFavorite, className, offerId, isAuth}: BookmarkType) => {
-  const navigation = useNavigate();
   const dispatch = useAppDispatch();
   const bookmarkClass = classNames(`button ${className}__bookmark-button`, {
     [`${className}__bookmark-button--active`]: isFavorite
@@ -30,12 +28,12 @@ export const Bookmark = memo(({isFavorite, className, offerId, isAuth}: Bookmark
         status: Number(!isFavorite),
       }));
     } else {
-      navigation(Path.Login);
+      dispatch(redirectToRoute(Path.Login));
     }
   };
 
   return (
-    <button className={bookmarkClass} type="button" onClick={handleBtnClick}>
+    <button className={bookmarkClass} type="button" onClick={handleBtnClick} data-testid='bookmark'>
       <svg className={`${className}__bookmark-icon`} style={{width: '100%', height: '100%'}}>
         <use href="#icon-bookmark"></use>
       </svg>

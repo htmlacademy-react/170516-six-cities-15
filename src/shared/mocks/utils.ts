@@ -1,7 +1,7 @@
-import {datatype, image, lorem, name, random} from 'faker';
+import {datatype, image, internet, lorem, name, random} from 'faker';
 import {Action} from 'redux';
 import {ThunkDispatch} from 'redux-thunk';
-import {OfferProp, TypeState, UserLoginProps} from '@/shared/types';
+import {OfferProp, TypeState, UserLoginProps, CommentsProps} from '@/shared/types';
 import {AuthorizationStatus, CityName} from '@/shared/config';
 import {createAPI} from '@/shared/api';
 
@@ -70,6 +70,22 @@ export const makeFakeOffer = ():OfferProp => ({
   maxAdults: datatype.number({min: 1, max: 10}),
   previewImage: image.imageUrl(),
 });
+
+export const makeFakeUser = ():UserLoginProps => ({
+  email: internet.email(),
+  token: datatype.string(),
+  name: name.findName(),
+  avatarUrl: image.imageUrl(),
+  isPro: datatype.boolean(),
+});
+
+export const makeFakeComment = ():CommentsProps => ({
+  id: datatype.uuid(),
+  date: datatype.datetime().toJSON(),
+  user: makeFakeUser(),
+  comment: lorem.paragraph(),
+  rating: datatype.number({min: 1, max: 5}),
+})
 
 export const makeFakeStore = (initialState?: Partial<TypeState>) => ({
   ...DEFAULT_STATE,

@@ -11,7 +11,7 @@ describe('Page: MainPlaces', () => {
   });
 
   it('should render correctly', () => {
-    const mockOffers = Array.from({length: getRandomNumber(0, 5)}, makeFakeOffer);
+    const mockOffers = Array.from({length: getRandomNumber(1, 5)}, makeFakeOffer);
 
     const withHistoryComponent = withHistory(
       <Places numberPlacesToStay={mockOffers.length} offers={mockOffers} nameCity={mockOffers[0].city.name} isAuth/>,

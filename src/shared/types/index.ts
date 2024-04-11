@@ -62,3 +62,11 @@ export type OfferProp = PreviewOfferProps & {
   maxAdults: number;
   goods: string[];
 }
+
+export type CommentsProps = {
+  id: string;
+  date: string;
+  user: UserProps;
+  comment: string;
+  rating: number;
+}

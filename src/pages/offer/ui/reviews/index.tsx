@@ -1,7 +1,7 @@
 import {FC, ReactNode} from 'react';
+import {CommentsProps} from '@/shared/types';
 import {Rating} from '@/shared';
 import {getDate} from '../../const';
-import {CommentsProps} from '../../type';
 
 type ReviewsProps = {
   className?: string;
@@ -16,7 +16,7 @@ export const Reviews:FC<ReviewsProps> = ({
   children,
   allReviews
 }) => (
-  <section className={`${className} reviews`}>
+  <section className={`${className} reviews`} data-testid='reviews'>
     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{allReviews.length}</span></h2>
     <ul className="reviews__list">
       {comments.map(({date, user, comment, rating, id }) => (

@@ -1,4 +1,4 @@
-import {CommentsProps} from './type';
+import {CommentsProps} from '@/shared/types';
 
 export const MaxQuantity = {
   NearPlaces: 3,

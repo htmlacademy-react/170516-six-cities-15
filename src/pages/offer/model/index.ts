@@ -1,9 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {Status} from '@/shared/config';
-import {PreviewOfferProps, OfferProp, TypeState} from '@/shared/types';
+import {PreviewOfferProps, OfferProp, TypeState, CommentsProps} from '@/shared/types';
 import {postFavoriteStatusAction} from '@/feature/bookmark/modal';
-import {CommentsProps} from './type';
-import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from './api';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyAction, postReviewAction} from '../api';
 
 type InitialStateProps = {
   status: null | Status;

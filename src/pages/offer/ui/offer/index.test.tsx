@@ -1,8 +1,8 @@
 import {render, screen} from '@testing-library/react';
-import {getRandomNumber, makeFakeComment, makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
+import {makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
 import {Offer} from './';
-import {createMemoryHistory, MemoryHistory} from "history";
-import {Status} from "@/shared/config";
+import {createMemoryHistory, MemoryHistory} from 'history';
+import {Status} from '@/shared/config';
 
 describe('Page: Offer', () => {
   let mockHistory: MemoryHistory;

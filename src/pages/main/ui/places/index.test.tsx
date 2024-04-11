@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {MemoryHistory, createMemoryHistory} from 'history';
-import {getRandomNumber, makeFakeOffer, makeFakeStore, withHistory, withStore} from "@/shared/mocks";
-import {Places} from "@/pages/main/ui/places/index";
+import {getRandomNumber, makeFakeOffer, makeFakeStore, withHistory, withStore} from '@/shared/mocks';
+import {Places} from './';
 
 describe('Page: MainPlaces', () => {
   let mockHistory: MemoryHistory;

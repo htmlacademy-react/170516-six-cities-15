@@ -59,8 +59,8 @@ export const Offer = () => {
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {images.slice(0, MaxQuantity.Images).map((text, idx) => (
-              <div className="offer__image-wrapper" key={text + idx}>
+            {images.slice(0, MaxQuantity.Images).map((text) => (
+              <div className="offer__image-wrapper" key={text}>
                 <img className="offer__image" src={text} alt="Photo studio"/>
               </div>
             ))}

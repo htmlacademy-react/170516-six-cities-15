@@ -85,7 +85,7 @@ export const makeFakeComment = ():CommentsProps => ({
   user: makeFakeUser(),
   comment: lorem.paragraph(),
   rating: datatype.number({min: 1, max: 5}),
-})
+});
 
 export const makeFakeStore = (initialState?: Partial<TypeState>) => ({
   ...DEFAULT_STATE,

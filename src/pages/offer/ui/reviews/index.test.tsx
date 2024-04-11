@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import {getRandomNumber, makeFakeComment} from "@/shared/mocks";
+import {getRandomNumber, makeFakeComment} from '@/shared/mocks';
 import {Reviews} from './';
 
 describe('Page: OfferReviews', () => {

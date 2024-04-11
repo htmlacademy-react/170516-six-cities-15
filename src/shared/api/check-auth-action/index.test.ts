@@ -4,8 +4,9 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {Action} from 'redux';
 import {checkAuthAction, createAPI} from '@/shared/api';
 import {AppDispatch, TypeState} from '@/shared/types';
-import {Path} from '@/shared/config';
-import {extractActionsTypes} from '@/shared/mocks';
+import {AuthorizationStatus, Path} from '@/shared/config';
+import {DEFAULT_STATE, extractActionsTypes, makeFakeUser} from '@/shared/mocks';
+import {clientSlice} from './';
 
 describe('checkAuthAction', () => {
   const axios = createAPI();
@@ -42,3 +43,35 @@ describe('checkAuthAction', () => {
     ]);
   });
 });
+
+describe('Client Slice', () => {
+  it('should set "status" to "loading", with "checkAuthAction.pending"', () => {
+    const expectedState = {
+      user: null,
+      authorizationStatus: AuthorizationStatus.Unknown,
+    };
+
+    const result = clientSlice.reducer(
+      undefined,
+      checkAuthAction.pending
+    );
+
+    expect(result).toEqual(expectedState);
+  });
+
+  it('should set "status" to "loading", with "checkAuthAction.fulfilled"', () => {
+    const mockUserData = makeFakeUser();
+    const expectedState = {
+      ...DEFAULT_STATE.client,
+      user: mockUserData,
+      authorizationStatus: AuthorizationStatus.Auth,
+    };
+
+    const result = clientSlice.reducer(
+      undefined,
+      checkAuthAction.fulfilled(mockUserData, '', undefined)
+    );
+
+    expect(result).toEqual(expectedState);
+  });
+})

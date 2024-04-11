@@ -17,7 +17,7 @@ export const DEFAULT_STATE = {
     favorites: [],
   },
   client: {
-    user: {} as UserLoginProps,
+    user: null,
     authorizationStatus: AuthorizationStatus.Unknown,
   },
   offer: {

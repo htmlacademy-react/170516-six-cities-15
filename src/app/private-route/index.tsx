@@ -4,17 +4,14 @@ import {AuthorizationStatus, Path} from '@/shared/config';
 import {Loader} from '@/shared';
 
 type PrivateRouteProps = {
-  authorizationStatus: string;
+  authorizationStatus: AuthorizationStatus;
   children: ReactNode;
 }
 
-export const PrivateRoute:FC<PrivateRouteProps> = ({children, authorizationStatus}) => {
-
-  return (
-    <>
-      {authorizationStatus === AuthorizationStatus.Auth && children}
-      {authorizationStatus === AuthorizationStatus.NoAuth && <Navigate to={Path.Login} />}
-      {authorizationStatus === AuthorizationStatus.Unknown && <Loader />}
-    </>
-  );
-};
+export const PrivateRoute:FC<PrivateRouteProps> = ({children, authorizationStatus}) => (
+  <>
+    {authorizationStatus === AuthorizationStatus.Auth && children}
+    {authorizationStatus === AuthorizationStatus.NoAuth && <Navigate to={Path.Login} />}
+    {authorizationStatus === AuthorizationStatus.Unknown && <Loader />}
+  </>
+);

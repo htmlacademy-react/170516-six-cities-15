@@ -2,7 +2,7 @@ import {renderHook} from '@testing-library/react';
 import {Map} from 'leaflet';
 import {getRandomNumber} from '@/shared/mocks';
 import {useMap} from '@/shared/utils';
-import {CityName} from "@/shared/config";
+import {CityName} from '@/shared/config';
 
 describe('Hook: useMap', () => {
   it('should create a map instance with the given data', () => {

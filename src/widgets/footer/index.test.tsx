@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory, MemoryHistory} from 'history';
 import {withHistory} from '@/shared/mocks';
-import {Footer} from "./";
+import {Footer} from './';
 
 describe('Widget: Footer', () => {
   let mockHistory: MemoryHistory;
@@ -14,7 +14,7 @@ describe('Widget: Footer', () => {
     const withHistoryComponent = withHistory(<Footer/>, mockHistory);
 
     render(withHistoryComponent);
-    const footerTestId = screen.getByTestId('footer')
+    const footerTestId = screen.getByTestId('footer');
 
     expect(footerTestId).toBeInTheDocument();
   });

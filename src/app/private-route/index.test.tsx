@@ -1,8 +1,8 @@
 import {MemoryHistory, createMemoryHistory} from 'history';
 import {Route, Routes} from 'react-router-dom';
 import {render, screen} from '@testing-library/react';
-import {AuthorizationStatus, Path} from "@/shared/config";
-import {withHistory} from "@/shared/mocks";
+import {AuthorizationStatus, Path} from '@/shared/config';
+import {withHistory} from '@/shared/mocks';
 import {PrivateRoute} from './';
 
 describe('Component: PrivateRoute', () => {
@@ -23,10 +23,11 @@ describe('Component: PrivateRoute', () => {
       <Routes>
         <Route path={Path.Login} element={<span>{expectedText}</span>}/>
         <Route path={Path.Favorites} element={
-           <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-             <span>{notExpectedText}</span>
-           </PrivateRoute>
-         }/>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <span>{notExpectedText}</span>
+          </PrivateRoute>
+        }
+        />
       </Routes>,
       mockHistory
     );

@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory, MemoryHistory} from 'history';
 import {makeFakeStore, withHistory, withStore} from '@/shared/mocks';
-import {Header} from "./";
+import {Header} from './';
 
 describe('Widget: Header', () => {
   let mockHistory: MemoryHistory;
@@ -19,7 +19,7 @@ describe('Widget: Header', () => {
     );
 
     render(withStoreComponent);
-    const footerTestId = screen.getByTestId('header')
+    const footerTestId = screen.getByTestId('header');
 
     expect(footerTestId).toBeInTheDocument();
   });

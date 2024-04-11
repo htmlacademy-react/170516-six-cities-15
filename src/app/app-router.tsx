@@ -2,7 +2,7 @@ import {Route, Routes} from 'react-router-dom';
 import {Path} from '@/shared/config';
 import {Main, Login, Favorites, Offer, NotFound} from '@/pages';
 import {PrivateRoute} from './private-route';
-import {useAppSelector} from "./app-store";
+import {useAppSelector} from './app-store';
 import {Layout} from './layout';
 
 export const AppRouter = () => {
@@ -26,4 +26,4 @@ export const AppRouter = () => {
       </Route>
     </Routes>
   );
-}
+};

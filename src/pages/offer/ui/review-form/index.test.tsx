@@ -4,7 +4,6 @@ import {ReviewForm} from './';
 
 describe('Page: OfferReviewForm', () => {
   it('should render correctly', () => {
-
     const {withStoreComponent} = withStore(<ReviewForm id={makeFakeOffer().id}/>, makeFakeStore());
     render(withStoreComponent);
 

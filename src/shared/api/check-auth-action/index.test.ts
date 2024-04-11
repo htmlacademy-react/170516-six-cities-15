@@ -74,4 +74,4 @@ describe('Client Slice', () => {
 
     expect(result).toEqual(expectedState);
   });
-})
+});

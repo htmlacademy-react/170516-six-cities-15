@@ -34,7 +34,7 @@ export const Offer = () => {
 
   if (isLoadingOffer) {
     return (
-      <div className="offer__gallery">
+      <div className="offer__gallery" data-testid='offer-loading'>
         <Loader/>
       </div>
     );

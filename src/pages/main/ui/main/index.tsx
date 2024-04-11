@@ -40,7 +40,7 @@ export const Main = () => {
 
   if (isLoading) {
     return (
-      <main className={classNamePage}>
+      <main className={classNamePage} data-testid='main-loading'>
         <Loader/>
       </main>
     );
